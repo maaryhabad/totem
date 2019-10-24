@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CD99236B2361EA6600D31E0E /* totem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = totem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD99236B2361EA6600D31E0E /* Totem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Totem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD99236E2361EA6600D31E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD9923702361EA6600D31E0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CD9923722361EA6600D31E0E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		CD99236C2361EA6600D31E0E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CD99236B2361EA6600D31E0E /* totem.app */,
+				CD99236B2361EA6600D31E0E /* Totem.app */,
 				CD9923842361EA6900D31E0E /* totemTests.xctest */,
 				CD99238F2361EA6900D31E0E /* totemUITests.xctest */,
 			);
@@ -148,7 +148,7 @@
 			);
 			name = totem;
 			productName = totem;
-			productReference = CD99236B2361EA6600D31E0E /* totem.app */;
+			productReference = CD99236B2361EA6600D31E0E /* Totem.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CD9923832361EA6900D31E0E /* totemTests */ = {
@@ -446,7 +446,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mariabad.totem;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Totem;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -464,7 +464,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mariabad.totem;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Totem;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
