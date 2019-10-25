@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F88229C23632FE10040AF22 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F88229B23632FE10040AF22 /* Colors.xcassets */; };
+		1FD281BA23633CBD00D3C8EE /* OnBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FD281B923633CBD00D3C8EE /* OnBoard.storyboard */; };
 		2A88686FF8061E5A18AEA62B /* Pods_totem_totemUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D31FA5E68DB31C6F2CAC28 /* Pods_totem_totemUITests.framework */; };
 		78355AC43B5F000870EAFA39 /* Pods_totemTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C084831F8043CA45908100D4 /* Pods_totemTests.framework */; };
 		7F5360CA12A38481DC31E451 /* Pods_totem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F88229B23632FE10040AF22 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = Totem/Colors.xcassets; sourceTree = SOURCE_ROOT; };
+		1FD281B923633CBD00D3C8EE /* OnBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = OnBoard.storyboard; path = Totem/OnBoard.storyboard; sourceTree = SOURCE_ROOT; };
 		29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51D31FA5E68DB31C6F2CAC28 /* Pods_totem_totemUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totem_totemUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6496FF24D3D7E57DE2B80836 /* Pods-totemTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-totemTests.debug.xcconfig"; path = "Target Support Files/Pods-totemTests/Pods-totemTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,7 +163,9 @@
 				CD99236E2361EA6600D31E0E /* AppDelegate.swift */,
 				CD9923702361EA6600D31E0E /* SceneDelegate.swift */,
 				CD9923722361EA6600D31E0E /* ViewController.swift */,
+				1FD281B923633CBD00D3C8EE /* OnBoard.storyboard */,
 				CD9923742361EA6600D31E0E /* Main.storyboard */,
+				1F88229B23632FE10040AF22 /* Colors.xcassets */,
 				CD99237A2361EA6900D31E0E /* Assets.xcassets */,
 				CD99237C2361EA6900D31E0E /* LaunchScreen.storyboard */,
 				CDE4D3E523631FDB0049EBB3 /* GoogleService-Info.plist */,
@@ -308,6 +314,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD281BA23633CBD00D3C8EE /* OnBoard.storyboard in Resources */,
+				1F88229C23632FE10040AF22 /* Colors.xcassets in Resources */,
 				CD99237E2361EA6900D31E0E /* LaunchScreen.storyboard in Resources */,
 				CDE4D3E623631FDB0049EBB3 /* GoogleService-Info.plist in Resources */,
 				CD99237B2361EA6900D31E0E /* Assets.xcassets in Resources */,
