@@ -9,6 +9,7 @@ target 'totem' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Firestore'
   pod 'Firebase/Core'
+  pod 'Firebase/Storage'
 
   target 'totemTests' do
     inherit! :search_paths
