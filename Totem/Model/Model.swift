@@ -16,6 +16,4 @@ class Model {
     }
     
     let sentimento = ["cansado", "legal", "feliz", "bravo", "custom"]
-    
-    
 }

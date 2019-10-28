@@ -18,6 +18,7 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
     var audioPlayer: AVAudioPlayer!
     @IBOutlet weak var gravarBotao: UIButton!
     var audioFileName: URL!
+    var result: String
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,17 +133,28 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-    
+    func pegarDataAtual() {
+        let date = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "HH:mm:ssdd-MM-yyyy"
+        
+        result = formatter.string(from: date)
+       
+    }
     
     // MARK: Firestore
     
-
     @IBAction func apertouSalvar(_ sender: Any) {
         
         let storage = Storage.storage()
         // Data in memory
         let data = Data()
         let storageRef = storage.reference()
+        
 
         // Create a reference to the file you want to upload
         let audioRef = storageRef.child("audios/recording.m4a")
@@ -163,7 +175,12 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
               // Uh-oh, an error occurred!
               return
             }
+            
+            // MARK: Salvar no Firebase a nova mensagem
+            var novaMensagem = Mensagem(audio: downloadURL, datadeEnvio: self.result, de: <#T##Usuario#>, idMensagem: self.result, para: <#T##Totem#>, salvo: false, visualizado: false)
           }
+            
+           
             print("acho que deu boa")
         }
     }

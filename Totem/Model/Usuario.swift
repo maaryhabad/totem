@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import CloudKit
 
 class Usuario {
-    var capaTotem: CKAsset
+    var capaTotem: String
     var contatos: [Usuario]!
     var nomeDoUsuario: String
     
-    init(capaTotem: CKAsset, contatos: [Usuario]!, nomeDoUsuario: String) {
+    init(capaTotem: String, contatos: [Usuario]!, nomeDoUsuario: String) {
         self.capaTotem = capaTotem
         self.contatos = contatos
         self.nomeDoUsuario = nomeDoUsuario
