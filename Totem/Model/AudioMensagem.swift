@@ -10,10 +10,10 @@ import Foundation
 import CloudKit
 
 class AudioMensagem {
-    var audio: CKAsset
+    var audio: URL
     var id: String
     
-    init(audio: CKAsset, id: String) {
+    init(audio: URL, id: String) {
         self.audio = audio
         self.id = id
     }

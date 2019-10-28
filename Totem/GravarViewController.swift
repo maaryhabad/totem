@@ -115,6 +115,15 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
 //        let path = Bundle.main.path(forResource: audioFileName, ofType: nil)!
 //        let url = URL(fileURLWithPath: path)
         
+        //aqui ele troca o output de áudio pro speaker
+        do {
+            try recordingSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
+        } catch let error as NSError {
+            print("audioSession error: \(error.localizedDescription)")
+        }
+        
+        //aqui ele dá play no áudio
+        
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audioFileName)
             audioPlayer.play()
