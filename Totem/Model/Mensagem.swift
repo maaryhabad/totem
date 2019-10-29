@@ -9,15 +9,15 @@
 import Foundation
 
 class Mensagem {
-    var audio: URL
+    var audio: String
     var datadeEnvio: String
-    var de: Usuario
+    var de: Int //id do usuário
     var idMensagem: String
-    var para: Totem
+    var para: Int //id do totem
     var salvo: Bool
     var visualizado: Bool
     
-    init(audio: URL, datadeEnvio: String, de: Usuario, idMensagem: String, para: Totem, salvo: Bool, visualizado: Bool) {
+    init(audio: String, datadeEnvio: String, de: Int, idMensagem: String, para: Int, salvo: Bool, visualizado: Bool) {
         self.audio = audio
         self.datadeEnvio = datadeEnvio
         self.de = de
@@ -41,21 +41,20 @@ class Mensagem {
         
         return mensagemData
     }
+
     
     static func mapToObject(mensagemData: [String: Any]) -> Mensagem {
         
-        let audio: URL = mensagemData["audio"] as! URL
+        let audio: String = mensagemData["audio"] as! String
         let datadeEnvio: String = mensagemData["datadeEnvio"] as! String
-        let de: Usuario = mensagemData["de"] as! Usuario
+        let de: Int = mensagemData["de"] as! Int
         let idMensagem: String = mensagemData["idMensagem"] as! String
-        let para: Totem = mensagemData["para"] as! Totem
+        let para: Int = mensagemData["para"] as! Int
         let salvo: Bool = mensagemData["salvo"] as! Bool
         let visualizado: Bool = mensagemData["visualizado"] as! Bool
-    }
-}
-
-extension Bool {
-    var intValue: Int {
-        return self ? 1 : 0
+        
+        let mensagem = Mensagem(audio: audio, datadeEnvio: datadeEnvio, de: de, idMensagem: idMensagem, para: para, salvo: salvo, visualizado: visualizado)
+        
+        return mensagem
     }
 }

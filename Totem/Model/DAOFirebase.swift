@@ -14,12 +14,19 @@ class DAOFirebase {
     
     var db: Firestore!
     
-    func save(mensagem: Mensagem) {
+    static func save(mensagem: Mensagem) {
         
         let novaMensagem = mensagem
         let db = Firestore.firestore()
         var ref: DocumentReference? = nil
-        
+        var mensagemData: [String: Any] = mensagem.mapToDictionary()
+        ref = db.collection("mensagens").addDocument(data: mensagemData) { err in
+            if let err = err {
+                print("Erro na adição do documento: \(err)")
+            } else {
+                print("Documento adicionado com  a ID: \(ref!.documentID)")
+            }
+        }
         
     }
     

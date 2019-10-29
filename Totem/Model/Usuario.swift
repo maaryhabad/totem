@@ -10,13 +10,19 @@ import Foundation
 
 class Usuario {
     var capaTotem: String
-    var contatos: [Usuario]!
+    var contatos: [Int]!
     var nomeDoUsuario: String
+    var idUsuario: Int
     
-    init(capaTotem: String, contatos: [Usuario]!, nomeDoUsuario: String) {
+    init(capaTotem: String, contatos: [Int]!, nomeDoUsuario: String, idUsuario: Int) {
         self.capaTotem = capaTotem
         self.contatos = contatos
         self.nomeDoUsuario = nomeDoUsuario
+        self.idUsuario = idUsuario
     }
     
+    
+    func generateID() {
+        let identifier = UUID()
+    }
 }
