@@ -151,16 +151,17 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
     // MARK: Firestore
     
     @IBAction func apertouSalvar(_ sender: Any) {
+        pegarDataAtual()
         // Onde tá o arquivo localmente, em String em vez de URL
         //Referência ao Storage
-        let stringPath = audioFileName.absoluteString
+        let fileId = self.result + ".m4a"
         let storage = Storage.storage()
         
         //Referência ao Storage
         let storageRef = storage.reference()
         
         //Referência ao arquivo que eu vou fazer o upload
-        let archiveRef = storageRef.child(stringPath)
+        let archiveRef = storageRef.child(fileId)
         
         let uploadTask = archiveRef.putFile(from: audioFileName, metadata: nil) { metadata, error in
             if let error = error {
@@ -168,7 +169,7 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
                 return
             } else {
                         // MARK: Salvar no Firebase a nova mensagem
-                        var novaMensagem = Mensagem(audio: stringPath, datadeEnvio: self.result, de: 00001, idMensagem: self.result, para: 00002, salvo: false, visualizado: false)
+                        var novaMensagem = Mensagem(audio: fileId, datadeEnvio: self.result, de: 00001, idMensagem: self.result, para: 00002, salvo: false, visualizado: false)
                         DAOFirebase.save(mensagem: novaMensagem)
             }
            
