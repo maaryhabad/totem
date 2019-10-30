@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2A88686FF8061E5A18AEA62B /* Pods_totem_totemUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D31FA5E68DB31C6F2CAC28 /* Pods_totem_totemUITests.framework */; };
+		3906B100236860E80022FA0E /* PrincipalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3906B0FF236860E80022FA0E /* PrincipalViewController.swift */; };
+		3916637D23686ADD00C2C7B3 /* PrincipalTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3916637C23686ADD00C2C7B3 /* PrincipalTableVC.swift */; };
+		392FE6872369B5BD005D72F0 /* DetalheContatoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392FE6852369B5BD005D72F0 /* DetalheContatoTVCell.swift */; };
+		392FE6882369B5BD005D72F0 /* DetalheContatoTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 392FE6862369B5BD005D72F0 /* DetalheContatoTVCell.xib */; };
+		392FE68A2369BC68005D72F0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392FE6892369BC68005D72F0 /* Extensions.swift */; };
+		397F6BFC23687627008980B3 /* ContatoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397F6BFA23687627008980B3 /* ContatoTVCell.swift */; };
+		397F6BFD23687627008980B3 /* ContatoTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 397F6BFB23687627008980B3 /* ContatoTVCell.xib */; };
 		3989F9822367291C00F3C070 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3989F9812367291C00F3C070 /* GoogleService-Info.plist */; };
 		78355AC43B5F000870EAFA39 /* Pods_totemTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C084831F8043CA45908100D4 /* Pods_totemTests.framework */; };
 		7F5360CA12A38481DC31E451 /* Pods_totem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */; };
@@ -48,6 +55,13 @@
 
 /* Begin PBXFileReference section */
 		29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3906B0FF236860E80022FA0E /* PrincipalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrincipalViewController.swift; path = Totem/Controller/PrincipalViewController.swift; sourceTree = SOURCE_ROOT; };
+		3916637C23686ADD00C2C7B3 /* PrincipalTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrincipalTableVC.swift; path = Totem/Controller/PrincipalTableVC.swift; sourceTree = SOURCE_ROOT; };
+		392FE6852369B5BD005D72F0 /* DetalheContatoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetalheContatoTVCell.swift; path = Totem/View/DetalheContatoTVCell.swift; sourceTree = SOURCE_ROOT; };
+		392FE6862369B5BD005D72F0 /* DetalheContatoTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DetalheContatoTVCell.xib; path = Totem/View/DetalheContatoTVCell.xib; sourceTree = SOURCE_ROOT; };
+		392FE6892369BC68005D72F0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Totem/Model/Extensions.swift; sourceTree = SOURCE_ROOT; };
+		397F6BFA23687627008980B3 /* ContatoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContatoTVCell.swift; path = Totem/View/ContatoTVCell.swift; sourceTree = SOURCE_ROOT; };
+		397F6BFB23687627008980B3 /* ContatoTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ContatoTVCell.xib; path = Totem/View/ContatoTVCell.xib; sourceTree = SOURCE_ROOT; };
 		3989F9812367291C00F3C070 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Totem/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		51D31FA5E68DB31C6F2CAC28 /* Pods_totem_totemUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totem_totemUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6496FF24D3D7E57DE2B80836 /* Pods-totemTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-totemTests.debug.xcconfig"; path = "Target Support Files/Pods-totemTests/Pods-totemTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +142,10 @@
 				CD99237A2361EA6900D31E0E /* Assets.xcassets */,
 				CD99237C2361EA6900D31E0E /* LaunchScreen.storyboard */,
 				CD8132772365F63100C05F77 /* OnBoard.storyboard */,
+				397F6BFA23687627008980B3 /* ContatoTVCell.swift */,
+				397F6BFB23687627008980B3 /* ContatoTVCell.xib */,
+				392FE6852369B5BD005D72F0 /* DetalheContatoTVCell.swift */,
+				392FE6862369B5BD005D72F0 /* DetalheContatoTVCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -137,6 +155,8 @@
 			children = (
 				CD9923722361EA6600D31E0E /* ViewController.swift */,
 				CDE5BA852365E72100EC5D73 /* GravarViewController.swift */,
+				3906B0FF236860E80022FA0E /* PrincipalViewController.swift */,
+				3916637C23686ADD00C2C7B3 /* PrincipalTableVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -217,6 +237,7 @@
 				CD9FDC572363218E00DD16C1 /* Model.swift */,
 				CD9FDC582363218E00DD16C1 /* Totem.swift */,
 				CD9FDC562363218E00DD16C1 /* Usuario.swift */,
+				392FE6892369BC68005D72F0 /* Extensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +355,8 @@
 				CD8132782365F63100C05F77 /* OnBoard.storyboard in Resources */,
 				CD99237B2361EA6900D31E0E /* Assets.xcassets in Resources */,
 				CD9923762361EA6600D31E0E /* Main.storyboard in Resources */,
+				397F6BFD23687627008980B3 /* ContatoTVCell.xib in Resources */,
+				392FE6882369B5BD005D72F0 /* DetalheContatoTVCell.xib in Resources */,
 				3989F9822367291C00F3C070 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,16 +485,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				397F6BFC23687627008980B3 /* ContatoTVCell.swift in Sources */,
 				CD9FDC592363218E00DD16C1 /* Mensagem.swift in Sources */,
+				392FE6872369B5BD005D72F0 /* DetalheContatoTVCell.swift in Sources */,
 				CD9FDC5A2363218E00DD16C1 /* AudioMensagem.swift in Sources */,
 				CD9FDC5B2363218E00DD16C1 /* Usuario.swift in Sources */,
 				CDE5BA862365E72100EC5D73 /* GravarViewController.swift in Sources */,
+				3916637D23686ADD00C2C7B3 /* PrincipalTableVC.swift in Sources */,
 				CD9923732361EA6600D31E0E /* ViewController.swift in Sources */,
 				CD99236F2361EA6600D31E0E /* AppDelegate.swift in Sources */,
 				CD9923712361EA6600D31E0E /* SceneDelegate.swift in Sources */,
+				392FE68A2369BC68005D72F0 /* Extensions.swift in Sources */,
 				CD9923792361EA6600D31E0E /* totem.xcdatamodeld in Sources */,
 				CD9FDC5C2363218E00DD16C1 /* Model.swift in Sources */,
 				CD9FDC5D2363218E00DD16C1 /* Totem.swift in Sources */,
+				3906B100236860E80022FA0E /* PrincipalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
