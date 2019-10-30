@@ -7,18 +7,17 @@
 //
 
 import Foundation
-import CloudKit
 
 class Mensagem {
-    var audio: AudioMensagem
-    var datadeEnvio: Date
-    var de: Usuario
-    var idMensagem: Int
-    var para: Totem
-    var salvo: Int
-    var visualizado: Int
+    var audio: String
+    var datadeEnvio: String
+    var de: Int //id do usuário
+    var idMensagem: String
+    var para: Int //id do totem
+    var salvo: Bool
+    var visualizado: Bool
     
-    init(audio: AudioMensagem, datadeEnvio: Date, de: Usuario, idMensagem: Int, para: Totem, salvo: Int, visualizado: Int) {
+    init(audio: String, datadeEnvio: String, de: Int, idMensagem: String, para: Int, salvo: Bool, visualizado: Bool) {
         self.audio = audio
         self.datadeEnvio = datadeEnvio
         self.de = de
@@ -27,10 +26,35 @@ class Mensagem {
         self.salvo = salvo
         self.visualizado = visualizado
     }
-}
+    
+    func mapToDictionary() ->[String: Any] {
+        
+        var mensagemData: [String:Any] = [:]
+        
+        mensagemData["audio"] = self.audio
+        mensagemData["datadeEnvio"] = self.datadeEnvio
+        mensagemData["de"] = self.de
+        mensagemData["idMensagem"] = self.idMensagem
+        mensagemData["para"] = self.para
+        mensagemData["salvo"] = self.salvo
+        mensagemData["visualizado"] = self.visualizado
+        
+        return mensagemData
+    }
 
-extension Bool {
-    var intValue: Int {
-        return self ? 1 : 0
+    
+    static func mapToObject(mensagemData: [String: Any]) -> Mensagem {
+        
+        let audio: String = mensagemData["audio"] as! String
+        let datadeEnvio: String = mensagemData["datadeEnvio"] as! String
+        let de: Int = mensagemData["de"] as! Int
+        let idMensagem: String = mensagemData["idMensagem"] as! String
+        let para: Int = mensagemData["para"] as! Int
+        let salvo: Bool = mensagemData["salvo"] as! Bool
+        let visualizado: Bool = mensagemData["visualizado"] as! Bool
+        
+        let mensagem = Mensagem(audio: audio, datadeEnvio: datadeEnvio, de: de, idMensagem: idMensagem, para: para, salvo: salvo, visualizado: visualizado)
+        
+        return mensagem
     }
 }

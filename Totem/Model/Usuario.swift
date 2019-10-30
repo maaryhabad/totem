@@ -7,17 +7,22 @@
 //
 
 import Foundation
-import CloudKit
 
 class Usuario {
-    var capaTotem: CKAsset
-    var contatos: [Usuario]!
+    var capaTotem: String
+    var contatos: [Int]!
     var nomeDoUsuario: String
+    var idUsuario: Int
     
-    init(capaTotem: CKAsset, contatos: [Usuario]!, nomeDoUsuario: String) {
+    init(capaTotem: String, contatos: [Int]!, nomeDoUsuario: String, idUsuario: Int) {
         self.capaTotem = capaTotem
         self.contatos = contatos
         self.nomeDoUsuario = nomeDoUsuario
+        self.idUsuario = idUsuario
     }
     
+    
+    func generateID() {
+        let identifier = UUID()
+    }
 }
