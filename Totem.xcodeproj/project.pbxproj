@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F908EFD23686C860006653A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F908EFC23686C860006653A /* Colors.xcassets */; };
+		1FF5F23C2369C7F600624A33 /* OnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5F23B2369C7F600624A33 /* OnboardController.swift */; };
+		1FF5F23E2369D39F00624A33 /* OnboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5F23D2369D39F00624A33 /* OnboardCell.swift */; };
 		2A88686FF8061E5A18AEA62B /* Pods_totem_totemUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D31FA5E68DB31C6F2CAC28 /* Pods_totem_totemUITests.framework */; };
 		3989F9822367291C00F3C070 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3989F9812367291C00F3C070 /* GoogleService-Info.plist */; };
 		78355AC43B5F000870EAFA39 /* Pods_totemTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C084831F8043CA45908100D4 /* Pods_totemTests.framework */; };
@@ -47,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F908EFC23686C860006653A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = Totem/View/Colors.xcassets; sourceTree = SOURCE_ROOT; };
+		1FF5F23B2369C7F600624A33 /* OnboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardController.swift; path = Totem/Controller/OnboardController.swift; sourceTree = SOURCE_ROOT; };
+		1FF5F23D2369D39F00624A33 /* OnboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardCell.swift; path = Totem/View/OnboardCell.swift; sourceTree = SOURCE_ROOT; };
 		29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3989F9812367291C00F3C070 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Totem/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		51D31FA5E68DB31C6F2CAC28 /* Pods_totem_totemUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totem_totemUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +134,8 @@
 				CD99237A2361EA6900D31E0E /* Assets.xcassets */,
 				CD99237C2361EA6900D31E0E /* LaunchScreen.storyboard */,
 				CD8132772365F63100C05F77 /* OnBoard.storyboard */,
+				1F908EFC23686C860006653A /* Colors.xcassets */,
+				1FF5F23D2369D39F00624A33 /* OnboardCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -137,6 +145,7 @@
 			children = (
 				CD9923722361EA6600D31E0E /* ViewController.swift */,
 				CDE5BA852365E72100EC5D73 /* GravarViewController.swift */,
+				1FF5F23B2369C7F600624A33 /* OnboardController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -333,6 +342,7 @@
 				CD99237E2361EA6900D31E0E /* LaunchScreen.storyboard in Resources */,
 				CD8132782365F63100C05F77 /* OnBoard.storyboard in Resources */,
 				CD99237B2361EA6900D31E0E /* Assets.xcassets in Resources */,
+				1F908EFD23686C860006653A /* Colors.xcassets in Resources */,
 				CD9923762361EA6600D31E0E /* Main.storyboard in Resources */,
 				3989F9822367291C00F3C070 /* GoogleService-Info.plist in Resources */,
 			);
@@ -462,6 +472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FF5F23C2369C7F600624A33 /* OnboardController.swift in Sources */,
 				CD9FDC592363218E00DD16C1 /* Mensagem.swift in Sources */,
 				CD9FDC5A2363218E00DD16C1 /* AudioMensagem.swift in Sources */,
 				CD9FDC5B2363218E00DD16C1 /* Usuario.swift in Sources */,
@@ -470,6 +481,7 @@
 				CD99236F2361EA6600D31E0E /* AppDelegate.swift in Sources */,
 				CD9923712361EA6600D31E0E /* SceneDelegate.swift in Sources */,
 				CD9923792361EA6600D31E0E /* totem.xcdatamodeld in Sources */,
+				1FF5F23E2369D39F00624A33 /* OnboardCell.swift in Sources */,
 				CD9FDC5C2363218E00DD16C1 /* Model.swift in Sources */,
 				CD9FDC5D2363218E00DD16C1 /* Totem.swift in Sources */,
 			);
@@ -646,7 +658,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GUL3CPS6RX;
+				DEVELOPMENT_TEAM = W9Y372X4WH;
 				INFOPLIST_FILE = totem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -665,7 +677,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GUL3CPS6RX;
+				DEVELOPMENT_TEAM = W9Y372X4WH;
 				INFOPLIST_FILE = totem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
