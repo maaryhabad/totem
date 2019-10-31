@@ -15,6 +15,7 @@
 		78355AC43B5F000870EAFA39 /* Pods_totemTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C084831F8043CA45908100D4 /* Pods_totemTests.framework */; };
 		7F5360CA12A38481DC31E451 /* Pods_totem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */; };
 		CD8132782365F63100C05F77 /* OnBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8132772365F63100C05F77 /* OnBoard.storyboard */; };
+		CD81327A23672A4D00C05F77 /* DAOFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81327923672A4D00C05F77 /* DAOFirebase.swift */; };
 		CD99236F2361EA6600D31E0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD99236E2361EA6600D31E0E /* AppDelegate.swift */; };
 		CD9923712361EA6600D31E0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923702361EA6600D31E0E /* SceneDelegate.swift */; };
 		CD9923732361EA6600D31E0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923722361EA6600D31E0E /* ViewController.swift */; };
@@ -25,7 +26,6 @@
 		CD9923892361EA6900D31E0E /* totemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923882361EA6900D31E0E /* totemTests.swift */; };
 		CD9923942361EA6900D31E0E /* totemUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923932361EA6900D31E0E /* totemUITests.swift */; };
 		CD9FDC592363218E00DD16C1 /* Mensagem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FDC542363218E00DD16C1 /* Mensagem.swift */; };
-		CD9FDC5A2363218E00DD16C1 /* AudioMensagem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FDC552363218E00DD16C1 /* AudioMensagem.swift */; };
 		CD9FDC5B2363218E00DD16C1 /* Usuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FDC562363218E00DD16C1 /* Usuario.swift */; };
 		CD9FDC5C2363218E00DD16C1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FDC572363218E00DD16C1 /* Model.swift */; };
 		CD9FDC5D2363218E00DD16C1 /* Totem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FDC582363218E00DD16C1 /* Totem.swift */; };
@@ -62,6 +62,7 @@
 		85F7A7990E55E9019EA09BA7 /* Pods-totem-totemUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-totem-totemUITests.debug.xcconfig"; path = "Target Support Files/Pods-totem-totemUITests/Pods-totem-totemUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C084831F8043CA45908100D4 /* Pods_totemTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totemTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB54217A0FBAAC9A7AC445CA /* Pods-totem.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-totem.release.xcconfig"; path = "Target Support Files/Pods-totem/Pods-totem.release.xcconfig"; sourceTree = "<group>"; };
+		CD81327923672A4D00C05F77 /* DAOFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DAOFirebase.swift; path = Totem/Model/DAOFirebase.swift; sourceTree = SOURCE_ROOT; };
 		CD8132772365F63100C05F77 /* OnBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = OnBoard.storyboard; path = totem/View/OnBoard.storyboard; sourceTree = SOURCE_ROOT; };
 		CD99236B2361EA6600D31E0E /* Totem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Totem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD99236E2361EA6600D31E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +80,6 @@
 		CD9923932361EA6900D31E0E /* totemUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = totemUITests.swift; sourceTree = "<group>"; };
 		CD9923952361EA6900D31E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD9FDC542363218E00DD16C1 /* Mensagem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mensagem.swift; sourceTree = "<group>"; };
-		CD9FDC552363218E00DD16C1 /* AudioMensagem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMensagem.swift; sourceTree = "<group>"; };
 		CD9FDC562363218E00DD16C1 /* Usuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Usuario.swift; sourceTree = "<group>"; };
 		CD9FDC572363218E00DD16C1 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CD9FDC582363218E00DD16C1 /* Totem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Totem.swift; sourceTree = "<group>"; };
@@ -221,11 +221,11 @@
 		CDE4D3E72363212D0049EBB3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CD9FDC552363218E00DD16C1 /* AudioMensagem.swift */,
 				CD9FDC542363218E00DD16C1 /* Mensagem.swift */,
 				CD9FDC572363218E00DD16C1 /* Model.swift */,
 				CD9FDC582363218E00DD16C1 /* Totem.swift */,
 				CD9FDC562363218E00DD16C1 /* Usuario.swift */,
+				CD81327923672A4D00C05F77 /* DAOFirebase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -474,7 +474,7 @@
 			files = (
 				1FF5F23C2369C7F600624A33 /* OnboardController.swift in Sources */,
 				CD9FDC592363218E00DD16C1 /* Mensagem.swift in Sources */,
-				CD9FDC5A2363218E00DD16C1 /* AudioMensagem.swift in Sources */,
+				CD81327A23672A4D00C05F77 /* DAOFirebase.swift in Sources */,
 				CD9FDC5B2363218E00DD16C1 /* Usuario.swift in Sources */,
 				CDE5BA862365E72100EC5D73 /* GravarViewController.swift in Sources */,
 				CD9923732361EA6600D31E0E /* ViewController.swift in Sources */,

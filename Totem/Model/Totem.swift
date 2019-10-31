@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CloudKit
 
 class Totem {
     var criador: Usuario //é a pessoa que faz o totem
