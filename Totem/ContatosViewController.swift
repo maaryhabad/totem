@@ -36,6 +36,18 @@ class ContatosViewController: UIViewController {
         bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
     }
     
+    @IBAction func gravarUsuario(_ sender: Any) {
+        var usuarios: [Usuario] = []
+        
+        for usuario in Model.instance.usuarios {
+            usuarios.append(usuario)
+            DAOFirebase.criarUsuario(usuario: usuario)
+        }
+        
+        print(usuarios)
+        
+    }
+    
 
     /*
     // MARK: - Navigation

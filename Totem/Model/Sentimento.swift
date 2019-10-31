@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class Sentimento {
+    var nome: String
+    var cor1: String
+    var cor2: String
+    
+    init(nome: String, cor1: String, cor2: String) {
+        self.nome = nome
+        self.cor1 = cor1
+        self.cor2 = cor2
+    }
+}

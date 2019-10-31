@@ -9,20 +9,24 @@
 import Foundation
 
 class Totem {
-    var criador: Usuario //é a pessoa que faz o totem
-    var possuinte: Usuario //é a pessoa que está com o totem
-    var mensagens: [String]
-    var mensagensSalvas: [String]
-    var nomeDoTotem: String
-    var sentimento: [String]
     
-    init(criador: Usuario, possuinte: Usuario, mensagens: [String], mensagensSalvas: [String], nomeDoTotem: String, sentimento: [String]) {
+    var id: String?
+    var criador: Usuario? //é a pessoa que faz o totem
+    var possuinte: Usuario? //é a pessoa que está com o totem
+    var mensagens: [Mensagem]?
+    var nome: String?
+    var sentimento: Sentimento?
+    
+    init(criador: Usuario, possuinte: Usuario, mensagens: [Mensagem], nome: String, sentimento: Sentimento) {
         self.criador = criador
         self.possuinte = possuinte
         self.mensagens = mensagens
-        self.mensagensSalvas = mensagensSalvas
-        self.nomeDoTotem = nomeDoTotem
+        self.nome = nome
         self.sentimento = sentimento
+    }
+    
+    init(id: String) {
+        self.id = id
     }
     
     

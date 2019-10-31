@@ -11,23 +11,48 @@ import Firebase
 import FirebaseStorage
 
 class DAOFirebase {
+    //CRUD **
     
     var db: Firestore!
     
-    static func save(mensagem: Mensagem) {
+    static func criarMensagem (mensagem: Mensagem) -> String! {
         
-        let novaMensagem = mensagem
         let db = Firestore.firestore()
+        var id: String! = nil
+        
         var ref: DocumentReference? = nil
-        var mensagemData: [String: Any] = mensagem.mapToDictionary()
-        ref = db.collection("mensagens").addDocument(data: mensagemData) { err in
+        var mensagemDic: [String: Any] = mensagem.mapToDictionary()
+        ref = db.collection("mensagens").addDocument(data: mensagemDic) { err in
             if let err = err {
-                print("Erro na adição do documento: \(err)")
+                print("Erro na adição do documento mensagens: \(err)")
+
             } else {
                 print("Documento adicionado com  a ID: \(ref!.documentID)")
+                id = ref?.documentID
             }
         }
+        return id
+    }
+    
+    func lerMensagem () {
         
+    }
+    
+    static func criarUsuario (usuario: Usuario) -> String!{
+        let db = Firestore.firestore()
+        var id: String! = nil
+        
+        var ref: DocumentReference? = nil
+        var usuarioDic: [String: Any] = usuario.mapToDictionary()
+        ref = db.collection("usuarios").addDocument(data: usuarioDic) { err in
+            if let err = err  {
+                print("Erro na adição do documento usuários: \(err)")
+            } else {
+                print("Documento adicionado com a ID: \(ref!.documentID)")
+                return id = ref?.documentID
+            }
+        }
+        return id
     }
     
     func save(totem: Totem) {
