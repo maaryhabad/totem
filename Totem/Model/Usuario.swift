@@ -11,20 +11,20 @@ import Foundation
 class Usuario {
     var imagem: String?
     var contatos: [Usuario]?
+    var contatosID: [String]?
     var nome: String?
     var id: String?
     
-    init(imagem: String, contatos: [Usuario]?, nome: String) {
+    init(imagem: String, contatos: [Usuario]?, contatosID: [String]?, nome: String) {
         self.imagem = imagem
         self.contatos = contatos
+        self.contatosID = contatosID
         self.nome = nome
-        self.id = DAOFirebase.criarUsuario(usuario: self)
         
     }
     
     init(id: String) {
         self.id = id
-        //DAOFirebase load usuario/....
     }
     
     
@@ -33,25 +33,55 @@ class Usuario {
         var usuarioData: [String:Any] = [:]
         
         usuarioData["imagem"] = self.imagem
-        usuarioData["contatos"] = self.contatos //fazer função que pega id e retorna usuários
+        usuarioData["contatos"] = self.contatos
         usuarioData["nome"] = self.nome
+        usuarioData["contatosID"] = self.contatosID
         
         return usuarioData
     }
     
-//    static func mapToObject(usuarioData: [String: Any]) -> Usuario {
-//
-//        let nome: String = usuarioData["nome"] as! String
-//        let imagem: String = usuarioData["imagem"] as! String
-//        let contatos: [String] = usuarioData as! [String]
-//
-//        let usuario = Usuario(imagem: imagem, contatos: contatos, nome: nome)
-//
-//        return usuario
-//    }
+    static func mapToObject(usuarioData: [String: Any]) -> Usuario {
+
+        let nome: String = usuarioData["nome"] as! String
+        let imagem: String = usuarioData["imagem"] as! String
+        let contatosID: [String] = (usuarioData["contatos"] as? [String]) ?? []
+        let contatos = [Usuario]()
+        
+      
+        
+        let usuario = Usuario(imagem: imagem, contatos: contatos, contatosID: contatosID, nome: nome)
+        print(usuario)
+        return usuario
+    }
     
-    //fazer os maps
+    static func populaContatos(contatosID: [String]?, completionHandler: @escaping ([Usuario])->()) {
+        
+        guard let IDList = contatosID else {return}
+        
+        let dispatchGroup = DispatchGroup()
+        
+        var contatos = [Usuario]()
+        
+        for contato in IDList {
+            dispatchGroup.enter()
+
+            
+            DAOFirebase.retornaUsuario(id: contato, comContatos: false) {
+                    usuario in
+
+                contatos.append(usuario)
+                dispatchGroup.leave()
+
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+           completionHandler(contatos)
+        }
+        
+    
+    }
     
     
-    //fazer static func que: manda o ID e retorna o Usuario.
+    
 }

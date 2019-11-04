@@ -17,7 +17,7 @@ class Totem {
     var nome: String?
     var sentimento: Sentimento?
     
-    init(criador: Usuario, possuinte: Usuario, mensagens: [Mensagem], nome: String, sentimento: Sentimento) {
+    init(criador: Usuario?, possuinte: Usuario?, mensagens: [Mensagem]?, nome: String, sentimento: Sentimento?) {
         self.criador = criador
         self.possuinte = possuinte
         self.mensagens = mensagens
@@ -29,5 +29,29 @@ class Totem {
         self.id = id
     }
     
+    func mapToDictionary() -> [String: Any] {
+        var totemData: [String:Any] = [:]
+            
+        totemData["criador"] = self.criador
+        totemData["possuinte"] = self.possuinte
+        totemData["mensagens"] = self.mensagens
+        totemData["nome"] = self.nome
+        totemData["sentimento"] = self.sentimento
+        
+        return totemData
+    }
+    
+    static func mapToObject(totemData: [String:Any]) -> Totem {
+        
+        let criador: Usuario = totemData["criador"] as! Usuario //fazer todas essas conversões
+        let possuinte: Usuario = totemData["possuinte"] as! Usuario
+        let mensagens: [Mensagem] = totemData["mensagens"] as! [Mensagem]
+        let nome: String = totemData["nome"] as! String
+        let sentimento: Sentimento = totemData["sentimento"] as! Sentimento
+        
+        let totem = Totem(criador: criador, possuinte: possuinte, mensagens: mensagens, nome: nome, sentimento: sentimento)
+        print(totem)
+        return totem
+    }
     
 }

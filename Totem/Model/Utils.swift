@@ -22,6 +22,13 @@ class Utils {
         result = formatter.string(from: date)
         return result
     }
+    
 
+
+    // fazer função que pega string e retorna um Usuario
+    // fazer função que pega string e retorna uma lista de usuários
+    // fazer função que pega string e retorna um sentimento
+    // fazer função que pega string e retorna uma lista de mensagens
+    
     
 }
