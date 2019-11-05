@@ -70,7 +70,7 @@ class ContatosViewController: UIViewController {
     }
     
     @IBAction func retornaTotem(_sender: Any) {
-        DAOFirebase.retornaTotem(id: "Psdbf3d59wlEEYGYgxkY") { t in
+        DAOFirebase.retornaTotem(id: "UpdvqtyiLBxRrlWjTQJ8") { t in
             var totem: Totem
             totem = t
             print(totem)

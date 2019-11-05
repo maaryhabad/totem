@@ -58,8 +58,9 @@ class DAOFirebase {
     }
     
     static func retornaUsuario(id: String, comContatos: Bool = true,
-                                completionHandler: @escaping ((Usuario)->()) ) {
+                               completionHandler: ((Usuario)->())? = nil) -> Usuario? {
         let db = Firestore.firestore()
+        var usuario: Usuario?
         db.collection("usuarios").whereField(FieldPath.documentID(), isEqualTo: id).getDocuments() { (qs, err) in
             if let err = err {
                 print("Erro pegando os usuarios", err)
@@ -70,19 +71,22 @@ class DAOFirebase {
                 guard querySnapshot.documents.count > 0 else  { return }
                
 
-                let usuario = Usuario.mapToObject(usuarioData: querySnapshot.documents[0].data())
+                usuario = Usuario.mapToObject(usuarioData: querySnapshot.documents[0].data())
                 
                 if comContatos {
-                    Usuario.populaContatos(contatosID: usuario.contatosID) { contatos in
-                        usuario.contatos = contatos
+                    Usuario.populaContatos(contatosID: usuario!.contatosID) { contatos in
+                        usuario!.contatos = contatos
                     }
-                    DAOFirebase.updateUsuario(id: id, contatosID: usuario.contatosID!)
+                    DAOFirebase.updateUsuario(id: id, contatosID: usuario!.contatosID!)
                 }
                 
                 print("Consegui pegar os usuarios", querySnapshot)
-                completionHandler(usuario)
+                if (completionHandler != nil) {
+                    completionHandler!(usuario!)
+                }
             }
         }
+        return usuario
     }
     
     static func updateUsuario(id: String, contatosID: [String]) {
@@ -126,10 +130,13 @@ class DAOFirebase {
                 print("Erro pegando os totens", err)
             } else {
                 guard let querySnapshot = qs else { return }
+                
                 guard querySnapshot.documents.count > 0 else { return }
                 
                 let totem = Totem.mapToObject(totemData: querySnapshot.documents[0].data())
+                
                 print("Consegui pegar os totems", querySnapshot)
+                
                 completionHandler(totem)
             }
         }
