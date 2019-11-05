@@ -16,6 +16,11 @@
 		7F5360CA12A38481DC31E451 /* Pods_totem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */; };
 		CD8132782365F63100C05F77 /* OnBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8132772365F63100C05F77 /* OnBoard.storyboard */; };
 		CD81327A23672A4D00C05F77 /* DAOFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81327923672A4D00C05F77 /* DAOFirebase.swift */; };
+		CD922C2A2371A15C001A52D1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD922C292371A15C001A52D1 /* Utils.swift */; };
+		CD922C2C2371A24C001A52D1 /* Contatos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD922C2B2371A24C001A52D1 /* Contatos.storyboard */; };
+		CD922C2E2371A2F4001A52D1 /* ContatosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD922C2D2371A2F4001A52D1 /* ContatosViewController.swift */; };
+		CD922C302371A346001A52D1 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD922C2F2371A346001A52D1 /* BottomSheetViewController.swift */; };
+		CD922C322371A3E0001A52D1 /* Sentimento.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD922C312371A3E0001A52D1 /* Sentimento.swift */; };
 		CD99236F2361EA6600D31E0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD99236E2361EA6600D31E0E /* AppDelegate.swift */; };
 		CD9923712361EA6600D31E0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923702361EA6600D31E0E /* SceneDelegate.swift */; };
 		CD9923732361EA6600D31E0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923722361EA6600D31E0E /* ViewController.swift */; };
@@ -62,8 +67,13 @@
 		85F7A7990E55E9019EA09BA7 /* Pods-totem-totemUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-totem-totemUITests.debug.xcconfig"; path = "Target Support Files/Pods-totem-totemUITests/Pods-totem-totemUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C084831F8043CA45908100D4 /* Pods_totemTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totemTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB54217A0FBAAC9A7AC445CA /* Pods-totem.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-totem.release.xcconfig"; path = "Target Support Files/Pods-totem/Pods-totem.release.xcconfig"; sourceTree = "<group>"; };
-		CD81327923672A4D00C05F77 /* DAOFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DAOFirebase.swift; path = Totem/Model/DAOFirebase.swift; sourceTree = SOURCE_ROOT; };
 		CD8132772365F63100C05F77 /* OnBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = OnBoard.storyboard; path = totem/View/OnBoard.storyboard; sourceTree = SOURCE_ROOT; };
+		CD81327923672A4D00C05F77 /* DAOFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DAOFirebase.swift; path = Totem/Model/DAOFirebase.swift; sourceTree = SOURCE_ROOT; };
+		CD922C292371A15C001A52D1 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Totem/Model/Utils.swift; sourceTree = SOURCE_ROOT; };
+		CD922C2B2371A24C001A52D1 /* Contatos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Contatos.storyboard; path = Totem/Contatos.storyboard; sourceTree = SOURCE_ROOT; };
+		CD922C2D2371A2F4001A52D1 /* ContatosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContatosViewController.swift; path = Totem/ContatosViewController.swift; sourceTree = SOURCE_ROOT; };
+		CD922C2F2371A346001A52D1 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BottomSheetViewController.swift; path = Totem/BottomSheetViewController.swift; sourceTree = SOURCE_ROOT; };
+		CD922C312371A3E0001A52D1 /* Sentimento.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sentimento.swift; path = Totem/Model/Sentimento.swift; sourceTree = SOURCE_ROOT; };
 		CD99236B2361EA6600D31E0E /* Totem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Totem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD99236E2361EA6600D31E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD9923702361EA6600D31E0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +144,7 @@
 				CD99237A2361EA6900D31E0E /* Assets.xcassets */,
 				CD99237C2361EA6900D31E0E /* LaunchScreen.storyboard */,
 				CD8132772365F63100C05F77 /* OnBoard.storyboard */,
+				CD922C2B2371A24C001A52D1 /* Contatos.storyboard */,
 				1F908EFC23686C860006653A /* Colors.xcassets */,
 				1FF5F23D2369D39F00624A33 /* OnboardCell.swift */,
 			);
@@ -145,6 +156,8 @@
 			children = (
 				CD9923722361EA6600D31E0E /* ViewController.swift */,
 				CDE5BA852365E72100EC5D73 /* GravarViewController.swift */,
+				CD922C2F2371A346001A52D1 /* BottomSheetViewController.swift */,
+				CD922C2D2371A2F4001A52D1 /* ContatosViewController.swift */,
 				1FF5F23B2369C7F600624A33 /* OnboardController.swift */,
 			);
 			path = Controller;
@@ -224,6 +237,8 @@
 				CD9FDC542363218E00DD16C1 /* Mensagem.swift */,
 				CD9FDC572363218E00DD16C1 /* Model.swift */,
 				CD9FDC582363218E00DD16C1 /* Totem.swift */,
+				CD922C312371A3E0001A52D1 /* Sentimento.swift */,
+				CD922C292371A15C001A52D1 /* Utils.swift */,
 				CD9FDC562363218E00DD16C1 /* Usuario.swift */,
 				CD81327923672A4D00C05F77 /* DAOFirebase.swift */,
 			);
@@ -345,6 +360,7 @@
 				1F908EFD23686C860006653A /* Colors.xcassets in Resources */,
 				CD9923762361EA6600D31E0E /* Main.storyboard in Resources */,
 				3989F9822367291C00F3C070 /* GoogleService-Info.plist in Resources */,
+				CD922C2C2371A24C001A52D1 /* Contatos.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,16 +489,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FF5F23C2369C7F600624A33 /* OnboardController.swift in Sources */,
+				CD922C322371A3E0001A52D1 /* Sentimento.swift in Sources */,
+				CD922C2E2371A2F4001A52D1 /* ContatosViewController.swift in Sources */,
 				CD9FDC592363218E00DD16C1 /* Mensagem.swift in Sources */,
 				CD81327A23672A4D00C05F77 /* DAOFirebase.swift in Sources */,
 				CD9FDC5B2363218E00DD16C1 /* Usuario.swift in Sources */,
 				CDE5BA862365E72100EC5D73 /* GravarViewController.swift in Sources */,
+				CD922C2A2371A15C001A52D1 /* Utils.swift in Sources */,
 				CD9923732361EA6600D31E0E /* ViewController.swift in Sources */,
 				CD99236F2361EA6600D31E0E /* AppDelegate.swift in Sources */,
 				CD9923712361EA6600D31E0E /* SceneDelegate.swift in Sources */,
 				CD9923792361EA6600D31E0E /* totem.xcdatamodeld in Sources */,
 				1FF5F23E2369D39F00624A33 /* OnboardCell.swift in Sources */,
 				CD9FDC5C2363218E00DD16C1 /* Model.swift in Sources */,
+				CD922C302371A346001A52D1 /* BottomSheetViewController.swift in Sources */,
 				CD9FDC5D2363218E00DD16C1 /* Totem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

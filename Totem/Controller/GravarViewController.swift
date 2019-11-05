@@ -19,7 +19,7 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
     var audioPlayer: AVAudioPlayer!
     @IBOutlet weak var gravarBotao: UIButton!
     var audioFileName: URL!
-    var result: String = ""
+    
     var downloadReference: URL!
     
     override func viewDidLoad() {
@@ -135,26 +135,15 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-    func pegarDataAtual() {
-        let date = Date()
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = "HH:mm:ssdd-MM-yyyy"
-        
-        result = formatter.string(from: date)
-       
-    }
+   
     
     // MARK: Firestore
     
     @IBAction func apertouSalvar(_ sender: Any) {
-        pegarDataAtual()
+        var result = Utils.pegarDataAtual()
         // Onde tá o arquivo localmente, em String em vez de URL
         //Referência ao Storage
-        let fileId = self.result + ".m4a"
+        let fileId = result + ".m4a"
         let storage = Storage.storage()
         
         //Referência ao Storage
@@ -168,9 +157,10 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
                 print("deu ruim de novo na metadata", error)
                 return
             } else {
-                        // MARK: Salvar no Firebase a nova mensagem
-                        var novaMensagem = Mensagem(audio: fileId, datadeEnvio: self.result, de: 00001, idMensagem: self.result, para: 00002, salvo: false, visualizado: false)
-                        DAOFirebase.save(mensagem: novaMensagem)
+                // MARK: Salvar no Firebase a nova mensagem
+//                var novaMensagem = Mensagem(audio: fileId, datadeEnvio: result, de: nil, para: nil, salvo: false, visualizado: false)
+//                DAOFirebase.save(mensagem: novaMensagem)
+                print("deu certo")
             }
            
            
@@ -180,6 +170,13 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
             print("acho que deu boa")
     }
 
+    
+    @IBAction func apertouContatos(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Contatos", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "Contato")
+        present(vc, animated: true, completion: nil)
+    }
+    
     
 }
 
