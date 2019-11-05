@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1F908EFD23686C860006653A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F908EFC23686C860006653A /* Colors.xcassets */; };
+		1F9A7376236C615400A7AFF0 /* BottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F9A7375236C615400A7AFF0 /* BottomSheet.storyboard */; };
+		1F9A7378236C6AC700A7AFF0 /* BottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9A7377236C6AC700A7AFF0 /* BottomSheetController.swift */; };
 		1FF5F23C2369C7F600624A33 /* OnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5F23B2369C7F600624A33 /* OnboardController.swift */; };
 		1FF5F23E2369D39F00624A33 /* OnboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5F23D2369D39F00624A33 /* OnboardCell.swift */; };
 		2A88686FF8061E5A18AEA62B /* Pods_totem_totemUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D31FA5E68DB31C6F2CAC28 /* Pods_totem_totemUITests.framework */; };
@@ -51,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		1F908EFC23686C860006653A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = Totem/View/Colors.xcassets; sourceTree = SOURCE_ROOT; };
+		1F9A7375236C615400A7AFF0 /* BottomSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = BottomSheet.storyboard; path = Totem/View/BottomSheet.storyboard; sourceTree = SOURCE_ROOT; };
+		1F9A7377236C6AC700A7AFF0 /* BottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BottomSheetController.swift; path = Totem/Controller/BottomSheetController.swift; sourceTree = SOURCE_ROOT; };
 		1FF5F23B2369C7F600624A33 /* OnboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardController.swift; path = Totem/Controller/OnboardController.swift; sourceTree = SOURCE_ROOT; };
 		1FF5F23D2369D39F00624A33 /* OnboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardCell.swift; path = Totem/View/OnboardCell.swift; sourceTree = SOURCE_ROOT; };
 		29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,8 +66,8 @@
 		85F7A7990E55E9019EA09BA7 /* Pods-totem-totemUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-totem-totemUITests.debug.xcconfig"; path = "Target Support Files/Pods-totem-totemUITests/Pods-totem-totemUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C084831F8043CA45908100D4 /* Pods_totemTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totemTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB54217A0FBAAC9A7AC445CA /* Pods-totem.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-totem.release.xcconfig"; path = "Target Support Files/Pods-totem/Pods-totem.release.xcconfig"; sourceTree = "<group>"; };
-		CD81327923672A4D00C05F77 /* DAOFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DAOFirebase.swift; path = Totem/Model/DAOFirebase.swift; sourceTree = SOURCE_ROOT; };
 		CD8132772365F63100C05F77 /* OnBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = OnBoard.storyboard; path = totem/View/OnBoard.storyboard; sourceTree = SOURCE_ROOT; };
+		CD81327923672A4D00C05F77 /* DAOFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DAOFirebase.swift; path = Totem/Model/DAOFirebase.swift; sourceTree = SOURCE_ROOT; };
 		CD99236B2361EA6600D31E0E /* Totem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Totem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD99236E2361EA6600D31E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD9923702361EA6600D31E0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				CD8132772365F63100C05F77 /* OnBoard.storyboard */,
 				1F908EFC23686C860006653A /* Colors.xcassets */,
 				1FF5F23D2369D39F00624A33 /* OnboardCell.swift */,
+				1F9A7375236C615400A7AFF0 /* BottomSheet.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 				CD9923722361EA6600D31E0E /* ViewController.swift */,
 				CDE5BA852365E72100EC5D73 /* GravarViewController.swift */,
 				1FF5F23B2369C7F600624A33 /* OnboardController.swift */,
+				1F9A7377236C6AC700A7AFF0 /* BottomSheetController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -343,6 +349,7 @@
 				CD8132782365F63100C05F77 /* OnBoard.storyboard in Resources */,
 				CD99237B2361EA6900D31E0E /* Assets.xcassets in Resources */,
 				1F908EFD23686C860006653A /* Colors.xcassets in Resources */,
+				1F9A7376236C615400A7AFF0 /* BottomSheet.storyboard in Resources */,
 				CD9923762361EA6600D31E0E /* Main.storyboard in Resources */,
 				3989F9822367291C00F3C070 /* GoogleService-Info.plist in Resources */,
 			);
@@ -474,6 +481,7 @@
 			files = (
 				1FF5F23C2369C7F600624A33 /* OnboardController.swift in Sources */,
 				CD9FDC592363218E00DD16C1 /* Mensagem.swift in Sources */,
+				1F9A7378236C6AC700A7AFF0 /* BottomSheetController.swift in Sources */,
 				CD81327A23672A4D00C05F77 /* DAOFirebase.swift in Sources */,
 				CD9FDC5B2363218E00DD16C1 /* Usuario.swift in Sources */,
 				CDE5BA862365E72100EC5D73 /* GravarViewController.swift in Sources */,
