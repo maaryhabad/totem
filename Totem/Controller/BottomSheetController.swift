@@ -7,85 +7,84 @@
 //
 
 import UIKit
+import AudioKit
+import AudioKitUI
+
+enum state {
+    case initial
+    case recording
+    case stopped
+}
 
 class BottomSheetController: UIViewController {
     @IBOutlet var record: UIView!
-    
-    var border = UIBezierPath()
-    
-    var borderSquare = UIBezierPath()
-
-    var circle = UIBezierPath()
-    
-    var square = UIBezierPath()
-    
-    let borderLayer = CAShapeLayer()
-    let circleLayer = CAShapeLayer()
+    @IBOutlet var recordButton: UIImageView!
     
     @IBOutlet weak var recordHeight: NSLayoutConstraint!
+    @IBOutlet weak var audioInputPlot: EZAudioPlot!
+    @IBOutlet var audioLabelView: UIView!
+    @IBOutlet var audioLabel: UILabel!
     
+    let mic = AKMicrophone()
+    var tracker: AKFrequencyTracker!
+    var silence: AKBooster!
+    
+    var running: state = .initial
     override func viewDidLoad() {
         super.viewDidLoad()
         
         record.layer.cornerRadius = 25
         
-        let center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height - 75)
-        var transform = CGAffineTransform.identity
-        transform = transform.translatedBy(x: center.x, y: center.y)
-        transform = transform.rotated(by: -CGFloat(Double.pi/2 + Double.pi/4))
-        transform = transform.translatedBy(x: -center.x, y: -center.y)
-        border = UIBezierPath(ovalIn: CGRect(x: ((view.frame.size.width / 2) - 30.0), y: view.frame.size.height - 105, width: 60, height: 60))
-        border.close()
-//        border.apply(transform)
-        circle = UIBezierPath(ovalIn: CGRect(x: ((view.frame.size.width / 2) - 25.0), y: view.frame.size.height - 100, width: 50, height: 50))
-        circle.close()
+        recordButton.image = UIImage(named: "BtnGravar")
         
-//        circle.apply(transform)
-        
-        square = UIBezierPath(roundedRect: CGRect(x: ((view.frame.size.width / 2) - 17.5), y: view.frame.size.height - 92.5, width: 35, height: 35), cornerRadius: 5)
-        square.close()
-        
-        
-        borderLayer.path = border.cgPath
-        borderLayer.fillColor = #colorLiteral(red: 0.9598520398, green: 0, blue: 0.3081979156, alpha: 0)
-        borderLayer.strokeColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
-        borderLayer.lineWidth = 3
-        
-
-        
-        circleLayer.path = circle.cgPath
-        circleLayer.fillColor = #colorLiteral(red: 0.9598520398, green: 0, blue: 0.3081979156, alpha: 1)
-        circleLayer.lineWidth = 0
-        
-        view.layer.addSublayer(borderLayer)
-        view.layer.addSublayer(circleLayer)
+        tracker = AKFrequencyTracker.init(mic)
+        silence = AKBooster(tracker, gain: 0)
     }
     
-    func animate() {
-        let animation = CABasicAnimation(keyPath: "path")
-        animation.duration = 0.5
-        animation.fromValue = circleLayer.path
-        animation.toValue = square.cgPath
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName(rawValue: "easeInEaseOut"))
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        
-        circleLayer.add(animation, forKey: "path")
-        circleLayer.path = square.cgPath
-        
-        self.view.layoutIfNeeded()
-        self.recordHeight.constant = 250
-        UIView.animate(withDuration: 0.5, animations: {
+        AudioKit.output = silence
+        setupPlot()
+    }
+    
+    @IBAction func recordButtonTap(_ sender: Any) {
+        if (running == .initial) {
+            recordButton.image = UIImage(named: "BtnStop")
             self.view.layoutIfNeeded()
-        })
+            self.recordHeight.constant = 250
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+
+                do {
+                    try AudioKit.start()
+                } catch {
+                    print("Erro!")
+                }
+            })
+            running = .recording
+        } else if (running == .recording) {
+            recordButton.image = UIImage(named: "BtnEnviar")
+            audioInputPlot.isHidden = true
+            audioLabelView.isHidden = false
+            
+            do {
+                try AudioKit.stop()
+            } catch {
+                print("Erro!")
+            }
+            running = .stopped
+        }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches {
-            if (circle.contains(t.location(in: self.view))) {
-                animate()
-            }
-        }
-        
+    func setupPlot() {
+        let plot = AKNodeOutputPlot(mic, frame: audioInputPlot.bounds)
+        plot.plotType = .rolling
+        plot.shouldFill = true
+        plot.shouldMirror = true
+        plot.color = .white
+        plot.backgroundColor = .clear
+        audioInputPlot.addSubview(plot)
     }
 
     /*
