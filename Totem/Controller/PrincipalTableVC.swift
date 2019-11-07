@@ -92,6 +92,7 @@ class PrincipalTableVC: UITableViewController {
     }
     
     
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0{
             if tableViewData[indexPath.section].opened == true{

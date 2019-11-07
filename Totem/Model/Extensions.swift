@@ -30,3 +30,52 @@ extension CALayer {
         }
     }
 }
+
+extension NSLayoutConstraint {
+    func constraintWithMultiplier(_ multiplier: CGFloat) -> NSLayoutConstraint {
+        return NSLayoutConstraint(item: self.firstItem!, attribute: self.firstAttribute, relatedBy: self.relation, toItem: self.secondItem, attribute: self.secondAttribute, multiplier: multiplier, constant: self.constant)
+    }
+    
+    func changeMultiplier(multiplier: CGFloat) -> NSLayoutConstraint {
+      let newConstraint = NSLayoutConstraint(
+        item: firstItem!,
+        attribute: firstAttribute,
+        relatedBy: relation,
+        toItem: secondItem,
+        attribute: secondAttribute,
+        multiplier: multiplier,
+        constant: constant)
+      newConstraint.priority = priority
+
+        NSLayoutConstraint.deactivate([self])
+        NSLayoutConstraint.activate([newConstraint])
+
+      return newConstraint
+    }
+}
+
+
+class GradientView: UIView {
+    override open class var layerClass: AnyClass {
+       return CAGradientLayer.classForCoder()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        let gradientLayer = layer as! CAGradientLayer
+        gradientLayer.colors = [UIColor.white.cgColor, UIColor.white.cgColor]
+        gradientLayer.locations = [0.0 , 1.0]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+    }
+    
+    func changeColors(x :UIColor, y :UIColor){
+        let gradientLayer = layer as! CAGradientLayer
+        gradientLayer.colors = [x.cgColor, y.cgColor]
+        gradientLayer.locations = [0.0 , 1.0]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        
+        
+    }
+}
