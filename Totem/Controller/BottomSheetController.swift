@@ -190,8 +190,10 @@ class BottomSheetController: UIViewController {
     
     func onPlayFinish() {
         player.stop()
-        displayLink.invalidate()
-        displayLink = nil
+        if (displayLink != nil) {
+            displayLink.invalidate()
+            displayLink = nil
+        }
         playButton.image = UIImage(systemName: "play.fill")
     }
     
