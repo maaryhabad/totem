@@ -38,12 +38,12 @@ class ContatosViewController: UIViewController {
     
     @IBAction func gravarUsuario(_ sender: Any) {
         var usuarios: [Usuario] = []
-        
-        for usuario in Model.instance.usuarios {
-            usuarios.append(usuario)
-            DAOFirebase.criarUsuario(usuario: usuario)
-        }
-        
+//        
+//        for usuario in Model.instance.usuarios {
+//            usuarios.append(usuario)
+//            DAOFirebase.criarUsuario(usuario: usuario)
+//        }
+//        
         print(usuarios)
         
     }
@@ -62,7 +62,7 @@ class ContatosViewController: UIViewController {
     @IBAction func criarTotem(_sender: Any) {
         var totems: [Totem] = []
         
-        for totem in Model.instance.totems {
+        for totem in Model.instance.totens! {
             totems.append(totem)
             DAOFirebase.criarTotem(totem: totem)
         }
@@ -70,11 +70,7 @@ class ContatosViewController: UIViewController {
     }
     
     @IBAction func retornaTotem(_sender: Any) {
-        DAOFirebase.retornaTotem(id: "UpdvqtyiLBxRrlWjTQJ8") { t in
-            var totem: Totem
-            totem = t
-            print(totem)
-        }
+       
     }
 
     /*

@@ -17,7 +17,7 @@ class Utils {
 
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "HH:mm:ssdd-MM-yyyy"
+        formatter.dateFormat = "yyyyMMddHHmmss"
         
         result = formatter.string(from: date)
         return result

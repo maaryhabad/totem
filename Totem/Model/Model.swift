@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class Model {
     static let instance = Model()
@@ -17,27 +18,58 @@ class Model {
     
     let sentimento = ["cansado", "legal", "feliz", "bravo", "custom"]
     
-    var usuarios : [Usuario] = [
-        Usuario(imagem: "Carlos.jpg", contatos: [], contatosID: ["Nj6h8ER0ZjIVHJsc9R3B","p4hxNQr9FAGXSLnrlTmn"], nome: "Carlos"),
-        Usuario(imagem: "Alberto.jpg", contatos: [], contatosID: [], nome: "Alberto"),
-        Usuario(imagem: "Catalina.jpg", contatos: [], contatosID: [], nome: "Catalina")
-
-//        Usuario(imagem: "Catalina.jpg", contatos: nil, nome: "Catalina"),
-//        Usuario(imagem: "Alberto.jpg", contatos: nil, nomeDoUsuario: "Alberto", idUsuario: 00002),
-//        Usuario(imagem: "Carlos.jpg", contatos: [00001, 00002], nomeDoUsuario: "Carlos", idUsuario: 00003)
-    ]
+    var usuario = Usuario(id: "UxzcHc7lR2YmGY0n4OEf")
     
+    var totens: [Totem]! = []
     
-    var totems : [Totem] = [
-        Totem(criador: nil, idCriador: "UxzcHc7lR2YmGY0n4OEf", possuinte: nil, idPossuinte: "fAa4dnL8mmu8d1SgsD5u", mensagens: nil, nome: "C2", sentimento: nil),
-        Totem(criador: nil, idCriador: "UxzcHc7lR2YmGY0n4OEf", possuinte: nil, idPossuinte: "FWjbIyLklcHtlitiDwYx", mensagens: nil, nome: "C3", sentimento: nil),
-//        Totem(criador: "UxzcHc7lR2YmGY0n4OEf", possuinte: "fAa4dnL8mmu8d1SgsD5u", mensagens: nil, nome: "C2", sentimento: nil), //está com o Alberto
-//        Totem(criador: "UxzcHc7lR2YmGY0n4OEf", possuinte: "FWjbIyLklcHtlitiDwYx", mensagens: nil, nome: "C3", sentimento: nil) //está com a Catalina
-    ]
-//
-//    var mensagens : [Mensagem] = [
-//        Mensagem(audio: "audio01.m4a", datadeEnvio: "qualquer", de: usuarios[0], para: totems[0], salvo: true, visualizado: true)
-//    ]
+    func getContatos() -> [ContatoDomain] {
+        var contatos : [ContatoDomain] = []
+        
+        for contato in Model.instance.usuario.contatos! {
+            contatos.append(ContatoDomain(contato: contato))
+        }
+        return contatos
+    }
+    
+    func baixarInfos(){
+        DAOFirebase.retornaTotens()
+    }
+    
+    func getMensagens(contatoDomain: ContatoDomain) {
+        //Objetivo: pegar as mensagens
+        let usuario = contatoDomain.totemIDUsuario
+        let contato = contatoDomain.totemIDContato
+        
+        let mensagensUsuario = DAOFirebase.buscarMensagens(field: "idCriador", id: usuario)
+        let mensagensContato = DAOFirebase.buscarMensagens(field: "idPossuinte", id: contato!)
+        
+        var todasAsMensagens: [Mensagem] = []
+        
+        todasAsMensagens.append(contentsOf: mensagensUsuario)
+        todasAsMensagens.append(contentsOf: mensagensContato)
+        
+        
+        
+        
+        //Faria uma busca no banco de dados a partir do id pelo totem do criador na collection totem
+        //Converter o retorno para Object
+        //pegar o array de mensagens
+        //Converter o array de Strings que vem do Banco para tipo Mensagem (ver conversão no modelo do Usuario)
+        //retornar o array do tipo Mensagem
+        //fazer a mesma coisa pro possuinte
+        //organizar o array por data
+    }
+    
+    func getTotem(id: String) -> Totem! {
+        print("total totens: \(self.totens.count)")
+        for totem in totens {
+            print("totem \(totem.id) ==  id  \(id)")
+            if id == totem.id {
+                return totem
+            }
+        }
+        return nil
+    }
 }
 
 //criar as mensagens
