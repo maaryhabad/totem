@@ -19,11 +19,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sbe-tv-3Tj">
                                 <rect key="frame" x="15" y="761" width="384" height="150"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTm-hM-cLF">
-                                        <rect key="frame" x="0.0" y="0.0" width="384" height="75"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTm-hM-cLF">
+                                        <rect key="frame" x="0.0" y="-25" width="384" height="200"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="75" id="HMZ-tu-wak"/>
+                                            <constraint firstAttribute="height" constant="200" id="HMZ-tu-wak"/>
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hoc-E5-xP7" userLabel="Audio Label View">
@@ -64,26 +64,107 @@
                                     <constraint firstAttribute="height" constant="150" id="Mxg-1c-78e"/>
                                     <constraint firstAttribute="bottom" secondItem="73E-dw-tZf" secondAttribute="bottom" constant="55" id="XJP-7U-hlF"/>
                                     <constraint firstItem="QTm-hM-cLF" firstAttribute="leading" secondItem="Sbe-tv-3Tj" secondAttribute="leading" id="aiA-S1-VeH"/>
-                                    <constraint firstItem="QTm-hM-cLF" firstAttribute="top" secondItem="Sbe-tv-3Tj" secondAttribute="top" id="fvr-gz-BBH"/>
+                                    <constraint firstItem="QTm-hM-cLF" firstAttribute="top" secondItem="Sbe-tv-3Tj" secondAttribute="top" constant="-25" id="fvr-gz-BBH"/>
                                     <constraint firstAttribute="trailing" secondItem="hoc-E5-xP7" secondAttribute="trailing" id="hbd-x6-QC9"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m6c-ZP-ki7" userLabel="Player View">
+                                <rect key="frame" x="21" y="418" width="372" height="70"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="play.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wge-4m-Uh9">
+                                        <rect key="frame" x="176" y="49.5" width="20" height="21.5"/>
+                                        <color key="tintColor" name="Black"/>
+                                        <gestureRecognizers/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="nUL-8N-UcI" appends="YES" id="8XN-TL-KBq"/>
+                                        </connections>
+                                    </imageView>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Rh-Iq-sd2">
+                                        <rect key="frame" x="23" y="0.0" width="326" height="31"/>
+                                        <color key="minimumTrackTintColor" name="Black"/>
+                                        <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="sliderChange:" destination="9yH-f8-zwd" eventType="valueChanged" id="i8B-cB-xqI"/>
+                                            <action selector="touchDownSlider:" destination="9yH-f8-zwd" eventType="touchDown" id="oJy-tk-Q6W"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QqR-az-f2f">
+                                        <rect key="frame" x="30" y="30" width="23.5" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fd0-cb-o3Y">
+                                        <rect key="frame" x="318.5" y="30" width="23.5" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="gobackward.15" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="phX-lJ-huq">
+                                        <rect key="frame" x="130.5" y="48" width="20.5" height="21.5"/>
+                                        <color key="tintColor" name="Black"/>
+                                        <gestureRecognizers/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="medium"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="uuZ-c4-ypW" appends="YES" id="Y5m-Tl-8S6"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="goforward.15" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="E8w-sI-nyU">
+                                        <rect key="frame" x="221" y="48" width="20.5" height="21.5"/>
+                                        <color key="tintColor" name="Black"/>
+                                        <gestureRecognizers/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="medium"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="0QR-6s-XIa" appends="YES" id="vW6-cK-504"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="5Rh-Iq-sd2" firstAttribute="top" secondItem="m6c-ZP-ki7" secondAttribute="top" id="18P-r0-T9e"/>
+                                    <constraint firstAttribute="trailing" secondItem="5Rh-Iq-sd2" secondAttribute="trailing" constant="25" id="3nt-7t-6V8"/>
+                                    <constraint firstItem="Fd0-cb-o3Y" firstAttribute="trailing" secondItem="5Rh-Iq-sd2" secondAttribute="trailing" constant="-5" id="97C-3f-i96"/>
+                                    <constraint firstItem="E8w-sI-nyU" firstAttribute="leading" secondItem="wge-4m-Uh9" secondAttribute="trailing" constant="25" id="LCY-LP-0vP"/>
+                                    <constraint firstItem="E8w-sI-nyU" firstAttribute="centerY" secondItem="wge-4m-Uh9" secondAttribute="centerY" id="LO2-oz-DQG"/>
+                                    <constraint firstItem="QqR-az-f2f" firstAttribute="top" secondItem="5Rh-Iq-sd2" secondAttribute="bottom" id="NEd-bz-0aI"/>
+                                    <constraint firstItem="Fd0-cb-o3Y" firstAttribute="top" secondItem="5Rh-Iq-sd2" secondAttribute="bottom" id="PG9-gh-IVl"/>
+                                    <constraint firstAttribute="width" constant="372" id="QjV-DQ-OSV"/>
+                                    <constraint firstItem="QqR-az-f2f" firstAttribute="leading" secondItem="5Rh-Iq-sd2" secondAttribute="leading" constant="5" id="a9U-iR-Bkq"/>
+                                    <constraint firstItem="5Rh-Iq-sd2" firstAttribute="leading" secondItem="m6c-ZP-ki7" secondAttribute="leading" constant="25" id="cDb-wO-nV2"/>
+                                    <constraint firstAttribute="height" constant="70" id="fq6-DM-Ktp"/>
+                                    <constraint firstItem="phX-lJ-huq" firstAttribute="centerY" secondItem="wge-4m-Uh9" secondAttribute="centerY" id="goL-Q9-5Gp"/>
+                                    <constraint firstItem="wge-4m-Uh9" firstAttribute="centerX" secondItem="m6c-ZP-ki7" secondAttribute="centerX" id="hKc-7y-ISO"/>
+                                    <constraint firstItem="wge-4m-Uh9" firstAttribute="leading" secondItem="phX-lJ-huq" secondAttribute="trailing" constant="25" id="kST-mX-vSr"/>
+                                    <constraint firstAttribute="bottom" secondItem="wge-4m-Uh9" secondAttribute="bottom" id="lbO-TX-fR5"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Sbe-tv-3Tj" firstAttribute="leading" secondItem="H8J-xt-zgC" secondAttribute="leading" constant="15" id="4WK-7c-xDV"/>
+                            <constraint firstItem="m6c-ZP-ki7" firstAttribute="centerY" secondItem="H8J-xt-zgC" secondAttribute="centerY" id="Rui-3K-mGM"/>
                             <constraint firstItem="Sbe-tv-3Tj" firstAttribute="bottom" secondItem="W7f-BB-mRZ" secondAttribute="bottom" constant="15" id="YOX-dj-nSM"/>
+                            <constraint firstItem="m6c-ZP-ki7" firstAttribute="centerX" secondItem="H8J-xt-zgC" secondAttribute="centerX" id="dyC-qT-5VJ"/>
                             <constraint firstItem="H8J-xt-zgC" firstAttribute="trailing" secondItem="Sbe-tv-3Tj" secondAttribute="trailing" constant="15" id="kkE-AG-h68"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="H8J-xt-zgC"/>
                     </view>
                     <connections>
-                        <outlet property="audioInputPlot" destination="QTm-hM-cLF" id="JqK-j9-Khx"/>
+                        <outlet property="audioInputPlot" destination="QTm-hM-cLF" id="eP6-wj-59I"/>
                         <outlet property="audioLabel" destination="9pv-XK-6dJ" id="NLr-so-rpS"/>
                         <outlet property="audioLabelView" destination="hoc-E5-xP7" id="KkW-Jw-ptE"/>
+                        <outlet property="currentPlayerTime" destination="QqR-az-f2f" id="O3U-mv-VWI"/>
+                        <outlet property="goBackward" destination="phX-lJ-huq" id="Kn6-CV-idm"/>
+                        <outlet property="goForward" destination="E8w-sI-nyU" id="QaB-TB-ZQQ"/>
+                        <outlet property="playButton" destination="wge-4m-Uh9" id="Zy6-F5-veD"/>
+                        <outlet property="playerSlider" destination="5Rh-Iq-sd2" id="Wqi-x5-9Rc"/>
+                        <outlet property="playerView" destination="m6c-ZP-ki7" id="cTL-qx-0MF"/>
                         <outlet property="record" destination="Sbe-tv-3Tj" id="ECX-c7-T8J"/>
                         <outlet property="recordButton" destination="73E-dw-tZf" id="ezu-oe-cdH"/>
                         <outlet property="recordHeight" destination="Mxg-1c-78e" id="wE8-cl-cEU"/>
+                        <outlet property="totalPlayerTime" destination="Fd0-cb-o3Y" id="KKY-Wh-OhA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xjq-u0-a9f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -92,11 +173,29 @@
                         <action selector="recordButtonTap:" destination="9yH-f8-zwd" id="NOW-Rb-huc"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="nUL-8N-UcI" userLabel="Play Button Tap">
+                    <connections>
+                        <action selector="playAudio:" destination="9yH-f8-zwd" id="geq-Cw-Jz2"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="uuZ-c4-ypW" userLabel="Backward Tap">
+                    <connections>
+                        <action selector="backward:" destination="9yH-f8-zwd" id="M3Y-XP-Gbj"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="0QR-6s-XIa" userLabel="Forward Tap">
+                    <connections>
+                        <action selector="forward:" destination="9yH-f8-zwd" id="kKi-it-nWR"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="13.043478260869566" y="-5.3571428571428568"/>
         </scene>
     </scenes>
     <resources>
+        <image name="gobackward.15" catalog="system" width="60" height="64"/>
+        <image name="goforward.15" catalog="system" width="60" height="64"/>
+        <image name="play.fill" catalog="system" width="58" height="64"/>
         <namedColor name="Black">
             <color red="0.063000001013278961" green="0.063000001013278961" blue="0.063000001013278961" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
