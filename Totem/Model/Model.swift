@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class Model {
     static let instance = Model()
@@ -14,11 +15,62 @@ class Model {
     private init() {
         
     }
+        
+    var usuario = Usuario(id: "UxzcHc7lR2YmGY0n4OEf")
     
-    let sentimento = ["cansado", "legal", "feliz", "bravo", "custom"]
-    var usuarios : [Usuario] = [
-        Usuario(capaTotem: "Catalina.jpg", contatos: [00002, 00003], nomeDoUsuario: "Catalina", idUsuario: 00001),
-        Usuario(capaTotem: "Alberto.jpg", contatos: [00001, 00003], nomeDoUsuario: "Alberto", idUsuario: 00002),
-        Usuario(capaTotem: "Carlos.jpg", contatos: [00001, 00002], nomeDoUsuario: "Carlos", idUsuario: 00003)
-    ]
+    var totens: [Totem]! = []
+    
+    func getContatos() -> [ContatoDomain] {
+        var contatos : [ContatoDomain] = []
+        
+        for contato in Model.instance.usuario.contatos! {
+            contatos.append(ContatoDomain(contato: contato))
+        }
+        return contatos
+    }
+    
+    func baixarInfos(){
+        //Baixar Usuário (com os contatos)
+        print("baixar infos")
+        Utils.getDateString(date: "20191109172029")
+        
+//        DAOFirebase.retornaTotens()
+//        DAOFirebase.retornaUsuario(id: usuario.id!)
+    }
+    
+    func getMensagens(contatoDomain: ContatoDomain) -> [MensagemDomain]{
+        
+        let usuario = contatoDomain.totemIDUsuario
+        let contato = contatoDomain.totemIDContato
+        
+        let mensagensUsuario = DAOFirebase.buscarMensagens(field: "idCriador", id: usuario)
+        let mensagensContato = DAOFirebase.buscarMensagens(field: "idPossuinte", id: contato!)
+        
+        var todasAsMensagens: [Mensagem] = []
+        
+        todasAsMensagens.append(contentsOf: mensagensUsuario)
+        todasAsMensagens.append(contentsOf: mensagensContato)
+        
+        todasAsMensagens.sort(by: { $0.datadeEnvio > $1.datadeEnvio } )
+        
+        var msgsDomain :[MensagemDomain] = []
+        for msg in todasAsMensagens{
+            msgsDomain.append(MensagemDomain(msg: msg))
+        }
+        
+        return msgsDomain
+    }
+    
+    func getTotem(id: String) -> Totem! {
+        print("total totens: \(self.totens.count)")
+        for totem in totens {
+            print("totem \(totem.id) ==  id \(id)")
+            if id == totem.id {
+                return totem
+            }
+        }
+        return nil
+    }
 }
+
+//criar as mensagens

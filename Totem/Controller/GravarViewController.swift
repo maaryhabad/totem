@@ -19,7 +19,8 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
     var audioPlayer: AVAudioPlayer!
     @IBOutlet weak var gravarBotao: UIButton!
     var audioFileName: URL!
-    var result: String = ""
+
+    var urlAudio: URL!
     var downloadReference: URL!
     
     override func viewDidLoad() {
@@ -45,15 +46,12 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
         } catch {
             // failed to record!
         }
-        
-        
     }
-    
-
     
     func startRecording() {
         // onde o áudio fica salvo
-        self.audioFileName = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+//        self.audioFileName = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+        self.audioFileName = getDocumentsDirectory().appendingPathComponent("recording.wav")
 
         // configurações do áudio
         let settings = [
@@ -135,26 +133,15 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-    func pegarDataAtual() {
-        let date = Date()
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = "HH:mm:ssdd-MM-yyyy"
-        
-        result = formatter.string(from: date)
-       
-    }
+   
     
     // MARK: Firestore
     
     @IBAction func apertouSalvar(_ sender: Any) {
-        pegarDataAtual()
-        // Onde tá o arquivo localmente, em String em vez de URL
-        //Referência ao Storage
-        let fileId = self.result + ".m4a"
+        let result = Utils.pegarDataAtual()
+       //Referência ao Storage
+//        let fileId = result + ".m4a"
+        let fileId = result + ".wav"
         let storage = Storage.storage()
         
         //Referência ao Storage
@@ -164,22 +151,67 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
         let archiveRef = storageRef.child(fileId)
         
         let uploadTask = archiveRef.putFile(from: audioFileName, metadata: nil) { metadata, error in
+
             if let error = error {
                 print("deu ruim de novo na metadata", error)
                 return
             } else {
-                        // MARK: Salvar no Firebase a nova mensagem
-                        var novaMensagem = Mensagem(audio: fileId, datadeEnvio: self.result, de: 00001, idMensagem: self.result, para: 00002, salvo: false, visualizado: false)
-                        DAOFirebase.save(mensagem: novaMensagem)
+                //MARK: Salvar no Firebase a nova mensagem
+                //MARK: para: contatoDomain.id
+                
+                archiveRef.downloadURL(completion: {(url, error) in
+                    self.urlAudio = url
+
+                    let tempo = Mensagem.pegarDuracao(resource: self.audioFileName, filePath: fileId)
+                    print(tempo)
+
+                    let totemId = "UpdvqtyiLBxRrlWjTQJ8"
+                    print("FileID: ", fileId)
+                    print("Result: ", result)
+                    print("UsuarioID: ", Model.instance.usuario.id!)
+
+                    let usr = Model.instance.usuario
+                    Utils.convertStringtoDate(data: result)
+                    let novaMensagem = Mensagem(url: self.urlAudio.absoluteString, audio: fileId, datadeEnvio: result, duracao: tempo, de: usr.id!, deNome: usr.nome!, para: totemId, salvo: false, visualizado: false)
+
+                    DAOFirebase.criarMensagem(mensagem: novaMensagem){id in
+                        //STOP LOAD
+                        novaMensagem.id = id
+
+                        let totem = Model.instance.getTotem(id: totemId)
+                        print("Id totem:  \(String(describing: totem?.id))")
+                        print("Mensagem id: \(novaMensagem.id)")
+                        totem!.inserirMensagem(mensagem: novaMensagem)
+                    }
+                    //START LOAD
+                })
             }
-           
-           
         }
-            
-           
-            print("acho que deu boa")
+        print("acho que deu boa")
     }
 
     
+    @IBAction func apertouContatos(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Contatos", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "Contato")
+        present(vc, animated: true, completion: nil)
+    }
+    
+    static func realTimeTotem(id: String){
+        let db = Firestore.firestore()
+        var totem: Totem?
+        
+        db.collection("totem").whereField(FieldPath.documentID(), isEqualTo: id).addSnapshotListener({(qs, err) in
+            if let err = err {
+                print("Erro pegando os usuarios", err)
+            } else {
+                guard let querySnapshot = qs else { return }
+                guard querySnapshot.documents.count > 0 else  { return }
+
+                totem = Totem.mapToObject(totemData: querySnapshot.documents[0].data(), id: querySnapshot.documents[0].documentID)
+                print("Atualizou totem \(String(describing: totem?.nome))")
+            }
+        })
+    }
 }
 

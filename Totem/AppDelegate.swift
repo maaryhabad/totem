@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         let storage = Storage.storage()
+
+        Model.instance.baixarInfos()
         return true
     }
 

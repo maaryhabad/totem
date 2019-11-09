@@ -40,6 +40,14 @@
                                     <action selector="apertouSalvar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xK7-PS-d74"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97j-k7-qtI">
+                                <rect key="frame" x="152" y="609" width="110" height="46"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="Contatos"/>
+                                <connections>
+                                    <action selector="apertouContatos:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DB4-Lv-fYn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -47,8 +55,10 @@
                             <constraint firstItem="pJ2-at-jo4" firstAttribute="top" secondItem="ZIR-Ul-Fmw" secondAttribute="bottom" constant="8" id="GD3-BC-7NS"/>
                             <constraint firstItem="ZIR-Ul-Fmw" firstAttribute="top" secondItem="snB-2U-U9e" secondAttribute="bottom" constant="7.5" id="MmC-5z-tzK"/>
                             <constraint firstItem="pJ2-at-jo4" firstAttribute="centerX" secondItem="ZIR-Ul-Fmw" secondAttribute="centerX" id="Rbp-Fw-aVV"/>
+                            <constraint firstItem="97j-k7-qtI" firstAttribute="top" secondItem="pJ2-at-jo4" secondAttribute="bottom" constant="8" id="a20-e9-8dW"/>
                             <constraint firstItem="ZIR-Ul-Fmw" firstAttribute="centerX" secondItem="snB-2U-U9e" secondAttribute="centerX" id="gSS-tG-lNp"/>
                             <constraint firstItem="snB-2U-U9e" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="lry-07-OdM"/>
+                            <constraint firstItem="97j-k7-qtI" firstAttribute="centerX" secondItem="pJ2-at-jo4" secondAttribute="centerX" id="rkb-zv-Abf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
