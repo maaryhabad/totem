@@ -161,15 +161,19 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
                 //MARK: para: contatoDomain.id
                 
                 
-                let audioDuration = asset.duration
-                let audioDurationSeconds = CMTimeGetSeconds(audioDuration)
+                let duracaoDouble = Mensagem.pegarDuracao(resource: self.audioFileName, filePath: fileId)
+                let duracaoS = NSString(format: "%.0f", duracaoDouble) as String
+                let duracao = Int(duracaoS)
+                let tempo = Utils.toTimeString(segundos: duracao!)
+                print(tempo)
+                print(duracao)
                 
                 let totemId = "UpdvqtyiLBxRrlWjTQJ8"
                 print("FileID: ", fileId)
                 print("Result: ", result)
                 print("UsuarioID: ", Model.instance.usuario.id)
   
-                let novaMensagem = Mensagem(audio: fileId, datadeEnvio: result, duracao: "", de: Model.instance.usuario.id, para: totemId, salvo: false, visualizado: false)
+                let novaMensagem = Mensagem(audio: fileId, datadeEnvio: result, duracao: duracaoS, de: Model.instance.usuario.id!, para: totemId, salvo: false, visualizado: false)
 //let novaMensagem = Mensagem(audio: fileId, datadeEnvio: result, de: Model.instance.usuario.id!, para: totemId, salvo: false, visualizado: false)
                 
                 var idMsg :String = ""
@@ -197,6 +201,21 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
         present(vc, animated: true, completion: nil)
     }
     
-    
+    static func realTimeTotem(id: String){
+        let db = Firestore.firestore()
+        var totem: Totem?
+        
+        db.collection("totem").whereField(FieldPath.documentID(), isEqualTo: id).addSnapshotListener({(qs, err) in
+            if let err = err {
+                print("Erro pegando os usuarios", err)
+            } else {
+                guard let querySnapshot = qs else { return }
+                guard querySnapshot.documents.count > 0 else  { return }
+
+                totem = Totem.mapToObject(totemData: querySnapshot.documents[0].data(), id: querySnapshot.documents[0].documentID)
+                print("Atualizou totem \(totem?.nome)")
+            }
+        })
+    }
 }
 

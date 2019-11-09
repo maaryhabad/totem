@@ -14,13 +14,14 @@ class Usuario {
     var contatosID: [String]?
     var nome: String?
     var id: String?
+    var sentimento: String?
     
-    init(imagem: String, contatos: [Usuario]?, contatosID: [String]?, nome: String) {
+    init(imagem: String, contatos: [Usuario]?, contatosID: [String]?, nome: String, sentimento: String?) {
         self.imagem = imagem
         self.contatos = contatos
         self.contatosID = contatosID
         self.nome = nome
-        
+        self.sentimento = sentimento
     }
     
     init(id: String) {
@@ -30,6 +31,7 @@ class Usuario {
         self.contatos = usrFirebase?.contatos
         self.contatosID = usrFirebase?.contatosID
         self.nome = usrFirebase?.nome
+        self.sentimento = usrFirebase?.sentimento
     }
     
     
@@ -41,6 +43,7 @@ class Usuario {
 //        usuarioData["contatos"] = self.contatos
         usuarioData["nome"] = self.nome
         usuarioData["contatosID"] = self.contatosID
+        usuarioData["sentimento"] = self.sentimento
         
         return usuarioData
     }
@@ -51,10 +54,10 @@ class Usuario {
         let imagem: String = usuarioData["imagem"] as! String
         let contatosID: [String] = (usuarioData["contatos"] as? [String]) ?? []
         let contatos = [Usuario]()
-        
+        let sentimento: String = usuarioData["sentimento"] as! String
       
         
-        let usuario = Usuario(imagem: imagem, contatos: contatos, contatosID: contatosID, nome: nome)
+        let usuario = Usuario(imagem: imagem, contatos: contatos, contatosID: contatosID, nome: nome, sentimento: sentimento)
         print(usuario)
         return usuario
     }

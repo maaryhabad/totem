@@ -30,6 +30,16 @@ class Utils {
         let date = dateFormatter.date(from: data)
         return date!
     }
+    
+    static func toTimeString(segundos :Int) -> String{
+        var m = segundos / 60 as! Int
+        var s = segundos - (segundos * m)
+        
+        var mString = NSString(format: "00", m)
+        var sString = NSString(format: "00", s)
+        var tempo = "\(m):\(s)"
+        return tempo
+    }
 
     // fazer função que pega string e retorna um Usuario
     // fazer função que pega string e retorna uma lista de usuários

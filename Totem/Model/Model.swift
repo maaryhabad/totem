@@ -15,9 +15,7 @@ class Model {
     private init() {
         
     }
-    
-    let sentimento = ["cansado", "legal", "feliz", "bravo", "custom"]
-    
+        
     var usuario = Usuario(id: "UxzcHc7lR2YmGY0n4OEf")
     
     var totens: [Totem]! = []
@@ -31,11 +29,9 @@ class Model {
         return contatos
     }
     
-    func baixarInfos(contatoDomain: ContatoDomain){
+    func baixarInfos(){
         DAOFirebase.retornaTotens()
         DAOFirebase.retornaUsuario(id: usuario.id!)
-        getMensagens(contatoDomain: contatoDomain)
-        
     }
     
     func getMensagens(contatoDomain: ContatoDomain) {

@@ -22,7 +22,6 @@
 		CD922C2C2371A24C001A52D1 /* Contatos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD922C2B2371A24C001A52D1 /* Contatos.storyboard */; };
 		CD922C2E2371A2F4001A52D1 /* ContatosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD922C2D2371A2F4001A52D1 /* ContatosViewController.swift */; };
 		CD922C302371A346001A52D1 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD922C2F2371A346001A52D1 /* BottomSheetViewController.swift */; };
-		CD922C322371A3E0001A52D1 /* Sentimento.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD922C312371A3E0001A52D1 /* Sentimento.swift */; };
 		CD99236F2361EA6600D31E0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD99236E2361EA6600D31E0E /* AppDelegate.swift */; };
 		CD9923712361EA6600D31E0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923702361EA6600D31E0E /* SceneDelegate.swift */; };
 		CD9923732361EA6600D31E0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923722361EA6600D31E0E /* ViewController.swift */; };
@@ -77,7 +76,6 @@
 		CD922C2B2371A24C001A52D1 /* Contatos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Contatos.storyboard; path = Totem/Contatos.storyboard; sourceTree = SOURCE_ROOT; };
 		CD922C2D2371A2F4001A52D1 /* ContatosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContatosViewController.swift; path = Totem/ContatosViewController.swift; sourceTree = SOURCE_ROOT; };
 		CD922C2F2371A346001A52D1 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BottomSheetViewController.swift; path = Totem/BottomSheetViewController.swift; sourceTree = SOURCE_ROOT; };
-		CD922C312371A3E0001A52D1 /* Sentimento.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sentimento.swift; path = Totem/Model/Sentimento.swift; sourceTree = SOURCE_ROOT; };
 		CD99236B2361EA6600D31E0E /* Totem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Totem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD99236E2361EA6600D31E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD9923702361EA6600D31E0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 				CD9FDC542363218E00DD16C1 /* Mensagem.swift */,
 				CD9FDC572363218E00DD16C1 /* Model.swift */,
 				CD9FDC582363218E00DD16C1 /* Totem.swift */,
-				CD922C312371A3E0001A52D1 /* Sentimento.swift */,
 				CD922C292371A15C001A52D1 /* Utils.swift */,
 				CD9FDC562363218E00DD16C1 /* Usuario.swift */,
 				CD81327923672A4D00C05F77 /* DAOFirebase.swift */,
@@ -495,7 +492,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FF5F23C2369C7F600624A33 /* OnboardController.swift in Sources */,
-				CD922C322371A3E0001A52D1 /* Sentimento.swift in Sources */,
 				CD27435B237700BC00B2D25B /* MensagemDomain.swift in Sources */,
 				CD922C2E2371A2F4001A52D1 /* ContatosViewController.swift in Sources */,
 				CD9FDC592363218E00DD16C1 /* Mensagem.swift in Sources */,

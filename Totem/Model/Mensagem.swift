@@ -68,8 +68,8 @@ class Mensagem {
         return mensagem
     }
     
-    static func pegarDuracao(resource: String, filePath: String) -> Double {
-        let asset = AVURLAsset(url: URL(fileURLWithPath: filePath))
+    static func pegarDuracao(resource: URL, filePath: String) -> Double {
+        let asset = AVURLAsset(url: resource)
         return Double(CMTimeGetSeconds(asset.duration))
     }
 }
