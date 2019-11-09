@@ -15,10 +15,15 @@ class MensagemTVCell: UITableViewCell {
     @IBOutlet var tempoLabel: UILabel!
     @IBOutlet var flagMsgNova: UIView!
     @IBOutlet var detalhesGravacaoView: UIView!
+    @IBOutlet weak var playButton: UIImageView!
     
+    var mensagemURL: URL!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.playAction))
+        playButton.addGestureRecognizer(tap)
         
         detalhesGravacaoView.isHidden = true
     }
@@ -35,6 +40,10 @@ class MensagemTVCell: UITableViewCell {
     
     func isRead(){
         flagMsgNova.alpha = 0.0
+    }
+    
+    @objc func playAction () {
+        //TODO play Action
     }
     
 }

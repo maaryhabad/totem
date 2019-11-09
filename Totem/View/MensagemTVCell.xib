@@ -99,57 +99,21 @@
                                         <rect key="frame" x="0.0" y="7" width="372" height="70"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="play.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ag7-gm-0KZ">
-                                                <rect key="frame" x="176" y="49.5" width="20" height="21.5"/>
+                                                <rect key="frame" x="164.5" y="12" width="43" height="47"/>
                                                 <color key="tintColor" name="Black"/>
                                                 <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Ag7-gm-0KZ" secondAttribute="height" multiplier="19:20" id="ZzR-Q4-G35"/>
+                                                </constraints>
                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
-                                            </imageView>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uQg-JH-8KX">
-                                                <rect key="frame" x="23" y="0.0" width="326" height="31"/>
-                                                <color key="minimumTrackTintColor" name="Black"/>
-                                                <color key="thumbTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWS-6K-AXV">
-                                                <rect key="frame" x="30" y="30" width="23.5" height="16.5"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
-                                                <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9HK-c6-wMi">
-                                                <rect key="frame" x="318.5" y="30" width="23.5" height="16.5"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
-                                                <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="gobackward.15" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PEV-TV-vy5">
-                                                <rect key="frame" x="130.5" y="48" width="20.5" height="21.5"/>
-                                                <color key="tintColor" name="Black"/>
-                                                <gestureRecognizers/>
-                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="medium"/>
-                                            </imageView>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="goforward.15" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dqd-eQ-9oM">
-                                                <rect key="frame" x="221" y="48" width="20.5" height="21.5"/>
-                                                <color key="tintColor" name="Black"/>
-                                                <gestureRecognizers/>
-                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="medium"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstItem="uQg-JH-8KX" firstAttribute="leading" secondItem="7sV-uL-jYD" secondAttribute="leading" constant="25" id="0Um-zl-l10"/>
-                                            <constraint firstItem="9HK-c6-wMi" firstAttribute="top" secondItem="uQg-JH-8KX" secondAttribute="bottom" id="K5n-8d-tSf"/>
-                                            <constraint firstAttribute="bottom" secondItem="Ag7-gm-0KZ" secondAttribute="bottom" id="KPn-U8-hp3"/>
-                                            <constraint firstItem="Ag7-gm-0KZ" firstAttribute="leading" secondItem="PEV-TV-vy5" secondAttribute="trailing" constant="25" id="M75-jS-55Z"/>
-                                            <constraint firstItem="uQg-JH-8KX" firstAttribute="top" secondItem="7sV-uL-jYD" secondAttribute="top" id="Mxr-6a-KmK"/>
-                                            <constraint firstItem="PEV-TV-vy5" firstAttribute="centerY" secondItem="Ag7-gm-0KZ" secondAttribute="centerY" id="XrJ-nx-2DG"/>
-                                            <constraint firstItem="cWS-6K-AXV" firstAttribute="leading" secondItem="uQg-JH-8KX" secondAttribute="leading" constant="5" id="aEg-yn-ekf"/>
-                                            <constraint firstItem="9HK-c6-wMi" firstAttribute="trailing" secondItem="uQg-JH-8KX" secondAttribute="trailing" constant="-5" id="aFc-Po-xTf"/>
-                                            <constraint firstItem="cWS-6K-AXV" firstAttribute="top" secondItem="uQg-JH-8KX" secondAttribute="bottom" id="gNY-YA-m8F"/>
-                                            <constraint firstItem="Ag7-gm-0KZ" firstAttribute="centerX" secondItem="7sV-uL-jYD" secondAttribute="centerX" id="qa2-QD-1l2"/>
-                                            <constraint firstItem="dqd-eQ-9oM" firstAttribute="centerY" secondItem="Ag7-gm-0KZ" secondAttribute="centerY" id="sh6-dB-VXo"/>
-                                            <constraint firstItem="dqd-eQ-9oM" firstAttribute="leading" secondItem="Ag7-gm-0KZ" secondAttribute="trailing" constant="25" id="xag-Ks-oIz"/>
-                                            <constraint firstAttribute="trailing" secondItem="uQg-JH-8KX" secondAttribute="trailing" constant="25" id="yJv-1h-WHf"/>
+                                            <constraint firstItem="Ag7-gm-0KZ" firstAttribute="height" secondItem="7sV-uL-jYD" secondAttribute="height" multiplier="0.65" id="4GV-hq-uDK"/>
+                                            <constraint firstItem="Ag7-gm-0KZ" firstAttribute="centerX" secondItem="7sV-uL-jYD" secondAttribute="centerX" id="4pB-Tc-cDj"/>
+                                            <constraint firstItem="Ag7-gm-0KZ" firstAttribute="centerY" secondItem="7sV-uL-jYD" secondAttribute="centerY" id="8Vl-Aw-Gs9"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -193,14 +157,13 @@
                 <outlet property="detalhesGravacaoView" destination="plQ-CD-lCX" id="Ce6-no-O2i"/>
                 <outlet property="flagMsgNova" destination="Vfu-OI-2SK" id="9OD-IW-VZX"/>
                 <outlet property="nomeLabel" destination="Xpl-Qp-vYH" id="LTm-Ge-Ado"/>
+                <outlet property="playButton" destination="Ag7-gm-0KZ" id="XMv-Vo-Yl9"/>
                 <outlet property="tempoLabel" destination="NqL-id-1Tk" id="MHY-cc-Lbz"/>
             </connections>
             <point key="canvasLocation" x="152.89855072463769" y="63.616071428571423"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="gobackward.15" catalog="system" width="60" height="64"/>
-        <image name="goforward.15" catalog="system" width="60" height="64"/>
         <image name="play.fill" catalog="system" width="58" height="64"/>
         <namedColor name="Black">
             <color red="0.063000001013278961" green="0.063000001013278961" blue="0.063000001013278961" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
