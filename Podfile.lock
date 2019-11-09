@@ -1,4 +1,10 @@
 PODS:
+  - AudioKit (4.9.2):
+    - AudioKit/Core (= 4.9.2)
+    - AudioKit/UI (= 4.9.2)
+  - AudioKit/Core (4.9.2)
+  - AudioKit/UI (4.9.2):
+    - AudioKit/Core
   - BoringSSL-GRPC (0.0.3):
     - BoringSSL-GRPC/Implementation (= 0.0.3)
     - BoringSSL-GRPC/Interface (= 0.0.3)
@@ -117,6 +123,7 @@ PODS:
   - Protobuf (3.10.0)
 
 DEPENDENCIES:
+  - AudioKit (~> 4.0)
   - Firebase/Analytics
   - Firebase/Core
   - Firebase/Firestore
@@ -124,6 +131,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AudioKit
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAnalytics
@@ -146,6 +154,7 @@ SPEC REPOS:
     - Protobuf
 
 SPEC CHECKSUMS:
+  AudioKit: ee388f0c9ad4e90b6106c14caaf809cd7ca220da
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   Firebase: bc9cfc7a96c73268656d5aaab453ff1b4b530e0e
   FirebaseAnalytics: 0e3ecff2c5d86070f7d4325e21f1edabfbd558dc
@@ -167,6 +176,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
 
-PODFILE CHECKSUM: bc6d4e896a40c43d0eef6f634ebd2c919f58f2a4
+PODFILE CHECKSUM: 5444a595c7ae28e04f57d62badba0bc4ea593cad
 
 COCOAPODS: 1.8.4

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F908EFD23686C860006653A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F908EFC23686C860006653A /* Colors.xcassets */; };
+		1F9A7376236C615400A7AFF0 /* BottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F9A7375236C615400A7AFF0 /* BottomSheet.storyboard */; };
+		1F9A7378236C6AC700A7AFF0 /* BottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9A7377236C6AC700A7AFF0 /* BottomSheetController.swift */; };
+		1FF5F23C2369C7F600624A33 /* OnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5F23B2369C7F600624A33 /* OnboardController.swift */; };
+		1FF5F23E2369D39F00624A33 /* OnboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5F23D2369D39F00624A33 /* OnboardCell.swift */; };
 		2A88686FF8061E5A18AEA62B /* Pods_totem_totemUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D31FA5E68DB31C6F2CAC28 /* Pods_totem_totemUITests.framework */; };
 		3906B100236860E80022FA0E /* PrincipalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3906B0FF236860E80022FA0E /* PrincipalViewController.swift */; };
 		3916637D23686ADD00C2C7B3 /* PrincipalTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3916637C23686ADD00C2C7B3 /* PrincipalTableVC.swift */; };
@@ -19,6 +24,7 @@
 		78355AC43B5F000870EAFA39 /* Pods_totemTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C084831F8043CA45908100D4 /* Pods_totemTests.framework */; };
 		7F5360CA12A38481DC31E451 /* Pods_totem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */; };
 		CD8132782365F63100C05F77 /* OnBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD8132772365F63100C05F77 /* OnBoard.storyboard */; };
+		CD81327A23672A4D00C05F77 /* DAOFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD81327923672A4D00C05F77 /* DAOFirebase.swift */; };
 		CD99236F2361EA6600D31E0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD99236E2361EA6600D31E0E /* AppDelegate.swift */; };
 		CD9923712361EA6600D31E0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923702361EA6600D31E0E /* SceneDelegate.swift */; };
 		CD9923732361EA6600D31E0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923722361EA6600D31E0E /* ViewController.swift */; };
@@ -29,7 +35,6 @@
 		CD9923892361EA6900D31E0E /* totemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923882361EA6900D31E0E /* totemTests.swift */; };
 		CD9923942361EA6900D31E0E /* totemUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923932361EA6900D31E0E /* totemUITests.swift */; };
 		CD9FDC592363218E00DD16C1 /* Mensagem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FDC542363218E00DD16C1 /* Mensagem.swift */; };
-		CD9FDC5A2363218E00DD16C1 /* AudioMensagem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FDC552363218E00DD16C1 /* AudioMensagem.swift */; };
 		CD9FDC5B2363218E00DD16C1 /* Usuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FDC562363218E00DD16C1 /* Usuario.swift */; };
 		CD9FDC5C2363218E00DD16C1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FDC572363218E00DD16C1 /* Model.swift */; };
 		CD9FDC5D2363218E00DD16C1 /* Totem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9FDC582363218E00DD16C1 /* Totem.swift */; };
@@ -54,6 +59,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F908EFC23686C860006653A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = Totem/View/Colors.xcassets; sourceTree = SOURCE_ROOT; };
+		1F9A7375236C615400A7AFF0 /* BottomSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = BottomSheet.storyboard; path = Totem/View/BottomSheet.storyboard; sourceTree = SOURCE_ROOT; };
+		1F9A7377236C6AC700A7AFF0 /* BottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BottomSheetController.swift; path = Totem/Controller/BottomSheetController.swift; sourceTree = SOURCE_ROOT; };
+		1FF5F23B2369C7F600624A33 /* OnboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardController.swift; path = Totem/Controller/OnboardController.swift; sourceTree = SOURCE_ROOT; };
+		1FF5F23D2369D39F00624A33 /* OnboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardCell.swift; path = Totem/View/OnboardCell.swift; sourceTree = SOURCE_ROOT; };
 		29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3906B0FF236860E80022FA0E /* PrincipalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrincipalViewController.swift; path = Totem/Controller/PrincipalViewController.swift; sourceTree = SOURCE_ROOT; };
 		3916637C23686ADD00C2C7B3 /* PrincipalTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrincipalTableVC.swift; path = Totem/Controller/PrincipalTableVC.swift; sourceTree = SOURCE_ROOT; };
@@ -71,6 +81,7 @@
 		C084831F8043CA45908100D4 /* Pods_totemTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totemTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB54217A0FBAAC9A7AC445CA /* Pods-totem.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-totem.release.xcconfig"; path = "Target Support Files/Pods-totem/Pods-totem.release.xcconfig"; sourceTree = "<group>"; };
 		CD8132772365F63100C05F77 /* OnBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = OnBoard.storyboard; path = totem/View/OnBoard.storyboard; sourceTree = SOURCE_ROOT; };
+		CD81327923672A4D00C05F77 /* DAOFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DAOFirebase.swift; path = Totem/Model/DAOFirebase.swift; sourceTree = SOURCE_ROOT; };
 		CD99236B2361EA6600D31E0E /* Totem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Totem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD99236E2361EA6600D31E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD9923702361EA6600D31E0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,7 +98,6 @@
 		CD9923932361EA6900D31E0E /* totemUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = totemUITests.swift; sourceTree = "<group>"; };
 		CD9923952361EA6900D31E0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD9FDC542363218E00DD16C1 /* Mensagem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mensagem.swift; sourceTree = "<group>"; };
-		CD9FDC552363218E00DD16C1 /* AudioMensagem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMensagem.swift; sourceTree = "<group>"; };
 		CD9FDC562363218E00DD16C1 /* Usuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Usuario.swift; sourceTree = "<group>"; };
 		CD9FDC572363218E00DD16C1 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CD9FDC582363218E00DD16C1 /* Totem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Totem.swift; sourceTree = "<group>"; };
@@ -142,6 +152,9 @@
 				CD99237A2361EA6900D31E0E /* Assets.xcassets */,
 				CD99237C2361EA6900D31E0E /* LaunchScreen.storyboard */,
 				CD8132772365F63100C05F77 /* OnBoard.storyboard */,
+				1F908EFC23686C860006653A /* Colors.xcassets */,
+				1FF5F23D2369D39F00624A33 /* OnboardCell.swift */,
+				1F9A7375236C615400A7AFF0 /* BottomSheet.storyboard */,
 				397F6BFA23687627008980B3 /* ContatoTVCell.swift */,
 				397F6BFB23687627008980B3 /* ContatoTVCell.xib */,
 				39E10903236C6B77002E346A /* MensagemTVCell.swift */,
@@ -155,6 +168,8 @@
 			children = (
 				CD9923722361EA6600D31E0E /* ViewController.swift */,
 				CDE5BA852365E72100EC5D73 /* GravarViewController.swift */,
+				1FF5F23B2369C7F600624A33 /* OnboardController.swift */,
+				1F9A7377236C6AC700A7AFF0 /* BottomSheetController.swift */,
 				3906B0FF236860E80022FA0E /* PrincipalViewController.swift */,
 				3916637C23686ADD00C2C7B3 /* PrincipalTableVC.swift */,
 			);
@@ -232,12 +247,12 @@
 		CDE4D3E72363212D0049EBB3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CD9FDC552363218E00DD16C1 /* AudioMensagem.swift */,
 				CD9FDC542363218E00DD16C1 /* Mensagem.swift */,
 				CD9FDC572363218E00DD16C1 /* Model.swift */,
 				CD9FDC582363218E00DD16C1 /* Totem.swift */,
 				CD9FDC562363218E00DD16C1 /* Usuario.swift */,
 				392FE6892369BC68005D72F0 /* Extensions.swift */,
+				CD81327923672A4D00C05F77 /* DAOFirebase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -354,6 +369,8 @@
 				CD99237E2361EA6900D31E0E /* LaunchScreen.storyboard in Resources */,
 				CD8132782365F63100C05F77 /* OnBoard.storyboard in Resources */,
 				CD99237B2361EA6900D31E0E /* Assets.xcassets in Resources */,
+				1F908EFD23686C860006653A /* Colors.xcassets in Resources */,
+				1F9A7376236C615400A7AFF0 /* BottomSheet.storyboard in Resources */,
 				CD9923762361EA6600D31E0E /* Main.storyboard in Resources */,
 				39E10906236C6B77002E346A /* MensagemTVCell.xib in Resources */,
 				397F6BFD23687627008980B3 /* ContatoTVCell.xib in Resources */,
@@ -486,8 +503,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				397F6BFC23687627008980B3 /* ContatoTVCell.swift in Sources */,
+				1FF5F23C2369C7F600624A33 /* OnboardController.swift in Sources */,
 				CD9FDC592363218E00DD16C1 /* Mensagem.swift in Sources */,
-				CD9FDC5A2363218E00DD16C1 /* AudioMensagem.swift in Sources */,
+				1F9A7378236C6AC700A7AFF0 /* BottomSheetController.swift in Sources */,
+				CD81327A23672A4D00C05F77 /* DAOFirebase.swift in Sources */,
 				CD9FDC5B2363218E00DD16C1 /* Usuario.swift in Sources */,
 				CDE5BA862365E72100EC5D73 /* GravarViewController.swift in Sources */,
 				3916637D23686ADD00C2C7B3 /* PrincipalTableVC.swift in Sources */,
@@ -496,6 +515,7 @@
 				CD9923712361EA6600D31E0E /* SceneDelegate.swift in Sources */,
 				392FE68A2369BC68005D72F0 /* Extensions.swift in Sources */,
 				CD9923792361EA6600D31E0E /* totem.xcdatamodeld in Sources */,
+				1FF5F23E2369D39F00624A33 /* OnboardCell.swift in Sources */,
 				CD9FDC5C2363218E00DD16C1 /* Model.swift in Sources */,
 				39E10905236C6B77002E346A /* MensagemTVCell.swift in Sources */,
 				CD9FDC5D2363218E00DD16C1 /* Totem.swift in Sources */,
@@ -674,7 +694,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GUL3CPS6RX;
+				DEVELOPMENT_TEAM = W9Y372X4WH;
 				INFOPLIST_FILE = totem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -693,7 +713,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GUL3CPS6RX;
+				DEVELOPMENT_TEAM = W9Y372X4WH;
 				INFOPLIST_FILE = totem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

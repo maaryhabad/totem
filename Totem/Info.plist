@@ -20,8 +20,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>O app usa o microfone para gravar sua mensagem.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>O app usa o microfone para gravar sua mensagem.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -36,7 +36,7 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
+					<string>OnBoard</string>
 				</dict>
 			</array>
 		</dict>

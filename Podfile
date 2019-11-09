@@ -10,6 +10,7 @@ target 'totem' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
+  pod 'AudioKit', '~> 4.0'
 
   target 'totemTests' do
     inherit! :search_paths

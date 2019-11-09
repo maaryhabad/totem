@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import FirebaseStorage
+import Firebase
 
 
 class GravarViewController: UIViewController, AVAudioRecorderDelegate {
@@ -18,6 +19,8 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
     var audioPlayer: AVAudioPlayer!
     @IBOutlet weak var gravarBotao: UIButton!
     var audioFileName: URL!
+    var result: String = ""
+    var downloadReference: URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,41 +135,51 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-    
+    func pegarDataAtual() {
+        let date = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "HH:mm:ssdd-MM-yyyy"
+        
+        result = formatter.string(from: date)
+       
+    }
     
     // MARK: Firestore
     
-
     @IBAction func apertouSalvar(_ sender: Any) {
-        
+        pegarDataAtual()
+        // Onde tá o arquivo localmente, em String em vez de URL
+        //Referência ao Storage
+        let fileId = self.result + ".m4a"
         let storage = Storage.storage()
-        // Data in memory
-        let data = Data()
+        
+        //Referência ao Storage
         let storageRef = storage.reference()
-
-        // Create a reference to the file you want to upload
-        let audioRef = storageRef.child("audios/recording.m4a")
-
-        // Upload the file to the path "audios/recording.m4a"
-        let uploadTask = audioRef.putData(data, metadata: nil) { (metadata, error) in
-          guard let metadata = metadata else {
-            print("Aconteceu um erro na metadata")
-            // Uh-oh, an error occurred!
-            return
-          }
-          // Metadata contains file metadata such as size, content-type.
-          let size = metadata.size
-          // You can also access to download URL after upload.
-          audioRef.downloadURL { (url, error) in
-            guard let downloadURL = url else {
-                print("Aconteceu um erro no link de download")
-              // Uh-oh, an error occurred!
-              return
+        
+        //Referência ao arquivo que eu vou fazer o upload
+        let archiveRef = storageRef.child(fileId)
+        
+        let uploadTask = archiveRef.putFile(from: audioFileName, metadata: nil) { metadata, error in
+            if let error = error {
+                print("deu ruim de novo na metadata", error)
+                return
+            } else {
+                        // MARK: Salvar no Firebase a nova mensagem
+                        var novaMensagem = Mensagem(audio: fileId, datadeEnvio: self.result, de: 00001, idMensagem: self.result, para: 00002, salvo: false, visualizado: false)
+                        DAOFirebase.save(mensagem: novaMensagem)
             }
-          }
-            print("acho que deu boa")
+           
+           
         }
+            
+           
+            print("acho que deu boa")
     }
+
     
 }
 
