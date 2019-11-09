@@ -17,7 +17,7 @@ class MensagemTVCell: UITableViewCell {
     @IBOutlet var detalhesGravacaoView: UIView!
     @IBOutlet weak var playButton: UIImageView!
     
-    var mensagemURL: URL!
+    var mensagemURL: String!
     
     override func awakeFromNib() {
         super.awakeFromNib()

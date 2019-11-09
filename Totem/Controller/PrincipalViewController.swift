@@ -250,7 +250,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.tempoLabel.text = "00:53"
             cell.isNew()
             //TODO put mensagem string
-            cell.mensagemURL = URL(string: "\(indexPath.row).wav")
+            cell.mensagemURL = "\(indexPath.row).wav"
             
             return cell
         }
