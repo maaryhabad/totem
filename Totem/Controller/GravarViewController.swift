@@ -19,7 +19,8 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
     var audioPlayer: AVAudioPlayer!
     @IBOutlet weak var gravarBotao: UIButton!
     var audioFileName: URL!
-    
+
+    var urlAudio: URL!
     var downloadReference: URL!
     
     override func viewDidLoad() {
@@ -45,15 +46,12 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
         } catch {
             // failed to record!
         }
-        
-        
     }
-    
-
     
     func startRecording() {
         // onde o áudio fica salvo
-        self.audioFileName = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+//        self.audioFileName = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+        self.audioFileName = getDocumentsDirectory().appendingPathComponent("recording.wav")
 
         // configurações do áudio
         let settings = [
@@ -140,9 +138,10 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
     // MARK: Firestore
     
     @IBAction func apertouSalvar(_ sender: Any) {
-        var result = Utils.pegarDataAtual()
+        let result = Utils.pegarDataAtual()
        //Referência ao Storage
-        let fileId = result + ".m4a"
+//        let fileId = result + ".m4a"
+        let fileId = result + ".wav"
         let storage = Storage.storage()
         
         //Referência ao Storage
@@ -160,38 +159,35 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
                 //MARK: Salvar no Firebase a nova mensagem
                 //MARK: para: contatoDomain.id
                 
-                
-                let duracaoDouble = Mensagem.pegarDuracao(resource: self.audioFileName, filePath: fileId)
-                let duracaoS = NSString(format: "%.0f", duracaoDouble) as String
-                let duracao = Int(duracaoS)
-                let tempo = Utils.toTimeString(segundos: duracao!)
-                print(tempo)
-                print(duracao)
-                
-                let totemId = "UpdvqtyiLBxRrlWjTQJ8"
-                print("FileID: ", fileId)
-                print("Result: ", result)
-                print("UsuarioID: ", Model.instance.usuario.id)
-  
-                let novaMensagem = Mensagem(audio: fileId, datadeEnvio: result, duracao: duracaoS, de: Model.instance.usuario.id!, para: totemId, salvo: false, visualizado: false)
-//let novaMensagem = Mensagem(audio: fileId, datadeEnvio: result, de: Model.instance.usuario.id!, para: totemId, salvo: false, visualizado: false)
-                
-                var idMsg :String = ""
-                DAOFirebase.criarMensagem(mensagem: novaMensagem){id in
-                    //STOP LOAD
-                    novaMensagem.id = id
-                    
-                    var totem = Model.instance.getTotem(id: totemId)
-                    print("Id totem:  \(totem?.id)")
-                    print("Mensagem id: \(novaMensagem.id)")
-                    totem!.inserirMensagem(mensagem: novaMensagem)
-                }
-                //START LOAD
+                archiveRef.downloadURL(completion: {(url, error) in
+                    self.urlAudio = url
+
+                    let tempo = Mensagem.pegarDuracao(resource: self.audioFileName, filePath: fileId)
+                    print(tempo)
+
+                    let totemId = "UpdvqtyiLBxRrlWjTQJ8"
+                    print("FileID: ", fileId)
+                    print("Result: ", result)
+                    print("UsuarioID: ", Model.instance.usuario.id!)
+
+                    let usr = Model.instance.usuario
+                    Utils.convertStringtoDate(data: result)
+                    let novaMensagem = Mensagem(url: self.urlAudio.absoluteString, audio: fileId, datadeEnvio: result, duracao: tempo, de: usr.id!, deNome: usr.nome!, para: totemId, salvo: false, visualizado: false)
+
+                    DAOFirebase.criarMensagem(mensagem: novaMensagem){id in
+                        //STOP LOAD
+                        novaMensagem.id = id
+
+                        let totem = Model.instance.getTotem(id: totemId)
+                        print("Id totem:  \(String(describing: totem?.id))")
+                        print("Mensagem id: \(novaMensagem.id)")
+                        totem!.inserirMensagem(mensagem: novaMensagem)
+                    }
+                    //START LOAD
+                })
             }
         }
-            
-           
-            print("acho que deu boa")
+        print("acho que deu boa")
     }
 
     
@@ -213,7 +209,7 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
                 guard querySnapshot.documents.count > 0 else  { return }
 
                 totem = Totem.mapToObject(totemData: querySnapshot.documents[0].data(), id: querySnapshot.documents[0].documentID)
-                print("Atualizou totem \(totem?.nome)")
+                print("Atualizou totem \(String(describing: totem?.nome))")
             }
         })
     }

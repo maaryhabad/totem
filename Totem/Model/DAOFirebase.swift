@@ -37,9 +37,7 @@ class DAOFirebase {
                 }
             }
         }
-        
         print("Criou msg no firebase")
-        
     }
 
 //    Usuario.populaContatos(contatosID: usuario!.contatosID) { contatos in

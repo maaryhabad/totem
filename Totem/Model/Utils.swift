@@ -40,6 +40,21 @@ class Utils {
         var tempo = "\(m):\(s)"
         return tempo
     }
+    
+    static func getDateString(date :String) -> String{
+        
+        let startMes = date.index(date.startIndex, offsetBy: 4)
+        let endMes = date.index(date.endIndex, offsetBy: -8)
+        let rangeMes = startMes..<endMes
+        let mes = String(date[rangeMes])
+        
+        let startDia = date.index(date.startIndex, offsetBy: 6)
+        let endDia = date.index(date.endIndex, offsetBy: -6)
+        let rangeDia = startDia..<endDia
+        let dia = String(date[rangeDia])
+        
+        return "\(dia)/\(mes)"
+    }
 
     // fazer função que pega string e retorna um Usuario
     // fazer função que pega string e retorna uma lista de usuários

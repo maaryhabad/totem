@@ -12,12 +12,16 @@ class MensagemDomain {
     
     var primeiroNome = ""
     var duracaoAudio = ""
-    var date: Date
+    var isVisualizado :Bool
+    var dataEnvio: String
+    var url :String
     
-    init(primeiroNome: String, duracaoAudio: String, date: Date) {
-        self.primeiroNome = primeiroNome
-        self.duracaoAudio = duracaoAudio
-        self.date = date
+    init(msg :Mensagem) {
+        self.primeiroNome = msg.deNome.split(separator: " ")[0].uppercased()
+        self.duracaoAudio = msg.duracao
+        self.isVisualizado = msg.visualizado
+        self.dataEnvio = Utils.getDateString(date: msg.datadeEnvio)
+        self.url = msg.url
     }
     
 }

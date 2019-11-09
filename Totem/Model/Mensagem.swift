@@ -11,19 +11,23 @@ import AVFoundation
 
 class Mensagem {
     var id: String
+    var url: String
     var audio = ""
     var datadeEnvio = ""
-    var duracao = ""
+    var duracao :String = ""
     var de = "" //id do usuário
+    var deNome :String = ""
     var para = "" //id do totem
     var salvo = false
     var visualizado = false
     
-    init(audio: String, datadeEnvio: String, duracao: String, de: String, para: String, salvo: Bool, visualizado: Bool) {
+    init(url: String, audio: String, datadeEnvio: String, duracao: String, de: String, deNome :String, para: String, salvo: Bool, visualizado: Bool) {
+        self.url = url
         self.audio = audio
         self.datadeEnvio = datadeEnvio
         self.duracao = duracao
         self.de = de
+        self.deNome = deNome
         self.para = para
         self.salvo = salvo
         self.visualizado = visualizado
@@ -31,19 +35,21 @@ class Mensagem {
         
     }
     
-    init(id: String) {
-        self.id = id
-        
-    }
+//    init(id: String) {
+//        self.id = id
+//
+//    }
     
     func mapToDictionary() ->[String: Any] {
         
         var mensagemData: [String:Any] = [:]
         
+        mensagemData["url"] = self.url
         mensagemData["audio"] = self.audio
         mensagemData["datadeEnvio"] = self.datadeEnvio
         mensagemData["duracao"] = self.duracao
         mensagemData["de"] = self.de
+        mensagemData["deNome"] = self.deNome
         mensagemData["para"] = self.para
         mensagemData["salvo"] = self.salvo
         mensagemData["visualizado"] = self.visualizado
@@ -55,22 +61,30 @@ class Mensagem {
     static func mapToObject(mensagemData: [String: Any]) -> Mensagem {
 
         let id: String = mensagemData["id"] as! String
+        let url :String = mensagemData["url"] as! String
         let audio: String = mensagemData["audio"] as! String
         let datadeEnvio: String = mensagemData["datadeEnvio"] as! String
         let duracao: String = mensagemData["duracao"] as! String
         let de: String = mensagemData["de"] as! String //converter para usuario
+        let deNome :String = mensagemData["deNome"] as! String
         let para: String = mensagemData["para"] as! String //converter para totem
         let salvo: Bool = mensagemData["salvo"] as! Bool
         let visualizado: Bool = mensagemData["visualizado"] as! Bool
 
-        let mensagem = Mensagem(audio: audio, datadeEnvio: datadeEnvio, duracao: duracao, de: de, para: para, salvo: salvo, visualizado: visualizado)
+        let mensagem = Mensagem(url: url, audio: audio, datadeEnvio: datadeEnvio, duracao: duracao, de: de, deNome: deNome, para: para, salvo: salvo, visualizado: visualizado)
 
         return mensagem
     }
     
-    static func pegarDuracao(resource: URL, filePath: String) -> Double {
+    static func pegarDuracao(resource: URL, filePath: String) -> String {
         let asset = AVURLAsset(url: resource)
-        return Double(CMTimeGetSeconds(asset.duration))
+        let duracaoDouble =  Double(CMTimeGetSeconds(asset.duration))
+        
+        let duracaoStr = NSString(format: "%.0f", duracaoDouble) as String
+        let duracao = Int(duracaoStr)
+        let tempo = Utils.toTimeString(segundos: duracao!)
+        
+        return tempo
     }
 }
 

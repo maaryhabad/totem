@@ -30,11 +30,15 @@ class Model {
     }
     
     func baixarInfos(){
-        DAOFirebase.retornaTotens()
-        DAOFirebase.retornaUsuario(id: usuario.id!)
+        //Baixar Usuário (com os contatos)
+        print("baixar infos")
+        Utils.getDateString(date: "20191109172029")
+        
+//        DAOFirebase.retornaTotens()
+//        DAOFirebase.retornaUsuario(id: usuario.id!)
     }
     
-    func getMensagens(contatoDomain: ContatoDomain) {
+    func getMensagens(contatoDomain: ContatoDomain) -> [MensagemDomain]{
         
         let usuario = contatoDomain.totemIDUsuario
         let contato = contatoDomain.totemIDContato
@@ -49,7 +53,12 @@ class Model {
         
         todasAsMensagens.sort(by: { $0.datadeEnvio > $1.datadeEnvio } )
         
+        var msgsDomain :[MensagemDomain] = []
+        for msg in todasAsMensagens{
+            msgsDomain.append(MensagemDomain(msg: msg))
+        }
         
+        return msgsDomain
     }
     
     func getTotem(id: String) -> Totem! {
