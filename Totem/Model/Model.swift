@@ -31,12 +31,15 @@ class Model {
         return contatos
     }
     
-    func baixarInfos(){
+    func baixarInfos(contatoDomain: ContatoDomain){
         DAOFirebase.retornaTotens()
+        DAOFirebase.retornaUsuario(id: usuario.id)
+        getMensagens(contatoDomain: contatoDomain)
+        
     }
     
     func getMensagens(contatoDomain: ContatoDomain) {
-        //Objetivo: pegar as mensagens
+        
         let usuario = contatoDomain.totemIDUsuario
         let contato = contatoDomain.totemIDContato
         
@@ -48,22 +51,15 @@ class Model {
         todasAsMensagens.append(contentsOf: mensagensUsuario)
         todasAsMensagens.append(contentsOf: mensagensContato)
         
+        todasAsMensagens.sort(by: { $0.datadeEnvio > $1.datadeEnvio } )
         
         
-        
-        //Faria uma busca no banco de dados a partir do id pelo totem do criador na collection totem
-        //Converter o retorno para Object
-        //pegar o array de mensagens
-        //Converter o array de Strings que vem do Banco para tipo Mensagem (ver conversão no modelo do Usuario)
-        //retornar o array do tipo Mensagem
-        //fazer a mesma coisa pro possuinte
-        //organizar o array por data
     }
     
     func getTotem(id: String) -> Totem! {
         print("total totens: \(self.totens.count)")
         for totem in totens {
-            print("totem \(totem.id) ==  id  \(id)")
+            print("totem \(totem.id) ==  id \(id)")
             if id == totem.id {
                 return totem
             }

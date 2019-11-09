@@ -141,8 +141,7 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func apertouSalvar(_ sender: Any) {
         var result = Utils.pegarDataAtual()
-        // Onde tá o arquivo localmente, em String em vez de URL
-        //Referência ao Storage
+       //Referência ao Storage
         let fileId = result + ".m4a"
         let storage = Storage.storage()
         
