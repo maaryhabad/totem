@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N9q-lW-Gyy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N9q-lW-Gyy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -83,6 +84,12 @@
         <!--Totem-->
         <scene sceneID="Nx4-cK-RP0">
             <objects>
+                <tapGestureRecognizer id="m5c-az-LFX" userLabel="Record Button Tap">
+                    <connections>
+                        <action selector="recordButtonTap:" destination="77X-74-fXC" id="vyw-tR-ONI"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1YS-ro-738" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="77X-74-fXC" customClass="PrincipalViewController" customModule="Totem" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BbS-9y-D6o">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -215,14 +222,14 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="tableGravacoes" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Ed-JS-2PL" userLabel="tableGravacoes">
-                                                        <rect key="frame" x="0.0" y="89" width="377" height="270"/>
+                                                        <rect key="frame" x="0.0" y="89" width="377" height="155"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </tableView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="KwJ-ic-r8n" firstAttribute="centerX" secondItem="Xoq-R3-SN4" secondAttribute="centerX" id="8uX-2c-0Pp"/>
-                                                    <constraint firstAttribute="bottom" secondItem="9Ed-JS-2PL" secondAttribute="bottom" id="9VG-En-b6q"/>
+                                                    <constraint firstAttribute="bottom" secondItem="9Ed-JS-2PL" secondAttribute="bottom" constant="115" id="9VG-En-b6q"/>
                                                     <constraint firstItem="ecu-sQ-jPG" firstAttribute="width" secondItem="Xoq-R3-SN4" secondAttribute="width" id="BDQ-ng-rlK"/>
                                                     <constraint firstItem="9Ed-JS-2PL" firstAttribute="width" secondItem="Xoq-R3-SN4" secondAttribute="width" id="J22-zB-ExP"/>
                                                     <constraint firstItem="9Ed-JS-2PL" firstAttribute="centerX" secondItem="ecu-sQ-jPG" secondAttribute="centerX" id="N1Y-EC-lHy"/>
@@ -518,18 +525,76 @@
                                     <constraint firstItem="vpI-Jv-o0T" firstAttribute="top" secondItem="l4B-nG-av0" secondAttribute="top" constant="15" id="xPN-cu-YIY"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcc-QC-Gih" userLabel="Record">
+                                <rect key="frame" x="15" y="761" width="384" height="150"/>
+                                <subviews>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6P-Lc-fZD" userLabel="Audio Input Plot">
+                                        <rect key="frame" x="0.0" y="-25" width="384" height="200"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="ksU-ZI-dl8"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xe-IL-jHq" userLabel="Audio Label View">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="75"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjz-aN-Eqz" userLabel="Audio Label">
+                                                <rect key="frame" x="158.5" y="15.5" width="67" height="44"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="32"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Vjz-aN-Eqz" firstAttribute="centerY" secondItem="1xe-IL-jHq" secondAttribute="centerY" id="BMK-pr-Zxb"/>
+                                            <constraint firstAttribute="height" constant="75" id="PWq-6p-6Wx"/>
+                                            <constraint firstItem="Vjz-aN-Eqz" firstAttribute="centerX" secondItem="1xe-IL-jHq" secondAttribute="centerX" id="hoQ-yz-Z9M"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rns-9R-TJ8" userLabel="Record Button">
+                                        <rect key="frame" x="162" y="35" width="60" height="60"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="ZtJ-5E-lvI"/>
+                                            <constraint firstAttribute="width" constant="60" id="tfa-aU-JjX"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="m5c-az-LFX" appends="YES" id="4Ij-29-XrE"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" name="Black"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="j6P-Lc-fZD" secondAttribute="trailing" id="7Tv-f6-ed7"/>
+                                    <constraint firstAttribute="height" constant="150" id="UUP-3S-LTO"/>
+                                    <constraint firstItem="Rns-9R-TJ8" firstAttribute="centerX" secondItem="vcc-QC-Gih" secondAttribute="centerX" id="UlP-TM-J23"/>
+                                    <constraint firstItem="1xe-IL-jHq" firstAttribute="top" secondItem="vcc-QC-Gih" secondAttribute="top" id="YAB-Bm-jfa"/>
+                                    <constraint firstItem="j6P-Lc-fZD" firstAttribute="top" secondItem="vcc-QC-Gih" secondAttribute="top" constant="-25" id="agM-45-EOE"/>
+                                    <constraint firstItem="j6P-Lc-fZD" firstAttribute="leading" secondItem="vcc-QC-Gih" secondAttribute="leading" id="bI3-FZ-aIX"/>
+                                    <constraint firstAttribute="bottom" secondItem="Rns-9R-TJ8" secondAttribute="bottom" constant="55" id="bPn-v7-iZY"/>
+                                    <constraint firstItem="1xe-IL-jHq" firstAttribute="leading" secondItem="vcc-QC-Gih" secondAttribute="leading" id="j2T-05-0Wm"/>
+                                    <constraint firstAttribute="trailing" secondItem="1xe-IL-jHq" secondAttribute="trailing" id="mGb-Me-UTK"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97264021639999998" green="0.97631102800000003" blue="0.98431617019999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="l4B-nG-av0" firstAttribute="top" secondItem="g5K-ro-R2Z" secondAttribute="top" id="BqW-Rm-a6F"/>
+                            <constraint firstAttribute="bottom" secondItem="vcc-QC-Gih" secondAttribute="bottom" constant="-15" id="KoD-gt-wwo"/>
+                            <constraint firstItem="vcc-QC-Gih" firstAttribute="leading" secondItem="g5K-ro-R2Z" secondAttribute="leading" constant="15" id="PUg-Wz-ONO"/>
                             <constraint firstItem="g5K-ro-R2Z" firstAttribute="bottom" secondItem="l4B-nG-av0" secondAttribute="bottom" id="PYS-RV-Mkj"/>
                             <constraint firstItem="l4B-nG-av0" firstAttribute="trailing" secondItem="g5K-ro-R2Z" secondAttribute="trailing" id="WQJ-eH-bd4"/>
                             <constraint firstItem="l4B-nG-av0" firstAttribute="leading" secondItem="g5K-ro-R2Z" secondAttribute="leading" id="dsj-Nt-IL0"/>
+                            <constraint firstItem="g5K-ro-R2Z" firstAttribute="trailing" secondItem="vcc-QC-Gih" secondAttribute="trailing" constant="15" id="peR-j6-Qdc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g5K-ro-R2Z"/>
                     </view>
                     <navigationItem key="navigationItem" title="Totem" id="HWd-KM-tza"/>
                     <connections>
+                        <outlet property="audioInputPlot" destination="j6P-Lc-fZD" id="Mxx-4T-AWf"/>
+                        <outlet property="audioLabel" destination="Vjz-aN-Eqz" id="fRa-jg-QOn"/>
+                        <outlet property="audioLabelView" destination="1xe-IL-jHq" id="FV9-cA-pEn"/>
                         <outlet property="bgView" destination="l4B-nG-av0" id="sQq-pM-vLY"/>
                         <outlet property="cansadoImg" destination="PJK-bG-2Wd" id="84z-NP-qhO"/>
                         <outlet property="cansadoView" destination="EwJ-Zl-YLF" id="z3U-ZA-Uqx"/>
@@ -545,13 +610,15 @@
                         <outlet property="humoresView" destination="5bV-Z2-qvL" id="Y0B-OK-hDC"/>
                         <outlet property="irritadoImg" destination="ajH-8x-Ucx" id="dqc-OM-1Yk"/>
                         <outlet property="irritadoView" destination="qEh-g7-i2G" id="Gkd-ep-agW"/>
+                        <outlet property="record" destination="vcc-QC-Gih" id="UIr-KK-Dew"/>
+                        <outlet property="recordButton" destination="Rns-9R-TJ8" id="o48-yU-5tk"/>
+                        <outlet property="recordHeight" destination="UUP-3S-LTO" id="oVX-rb-BDs"/>
                         <outlet property="table" destination="rjM-8W-9hT" id="lgv-bS-pVM"/>
                         <outlet property="tableMensagens" destination="9Ed-JS-2PL" id="tGd-wd-Thf"/>
                         <outlet property="tranquiloImg" destination="RfX-DO-lL1" id="66j-VW-Qk9"/>
                         <outlet property="tranquiloView" destination="RXm-FG-088" id="Yb4-hA-f3C"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1YS-ro-738" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2676.811594202899" y="1489.9553571428571"/>
         </scene>
@@ -601,5 +668,8 @@
         <image name="Tranquilo" width="50" height="50"/>
         <image name="contatoElvin" width="172" height="172"/>
         <image name="returnToContatos" width="38" height="25"/>
+        <namedColor name="Black">
+            <color red="0.063000001013278961" green="0.063000001013278961" blue="0.063000001013278961" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AudioKit
+import AudioKitUI
 
 class PrincipalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -28,6 +30,28 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var tranquiloImg: UIImageView!
     @IBOutlet var cansadoImg: UIImageView!
     @IBOutlet var irritadoImg: UIImageView!
+    
+    //Vars p/ view Record
+    @IBOutlet var record: UIView!
+    @IBOutlet var recordButton: UIImageView!
+    @IBOutlet var recordHeight: NSLayoutConstraint!
+    @IBOutlet var audioInputPlot: UIView!
+    @IBOutlet var audioLabelView: UIView!
+    @IBOutlet var audioLabel: UILabel!
+    var displayLink :CADisplayLink! = nil
+    
+    //Var para audio
+    var micMixer: AKMixer!
+    var recorder: AKNodeRecorder!
+    var player: AKAudioPlayer!
+    var tape: AKAudioFile!
+    var micBooster: AKBooster!
+    var mainMixer: AKMixer!
+    var plot: AKNodeOutputPlot?
+    let mic = AKMicrophone()
+    var running: state = .ready
+    var skippedTo: Double = 0.0
+    
     
     @IBOutlet var contaInfoView: GradientView!
     
@@ -60,6 +84,48 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        AKAudioFile.cleanTempDirectory()
+        
+        AKSettings.bufferLength = .medium
+        
+        do {
+            try AKSettings.setSession(category: .playAndRecord, with: .allowBluetoothA2DP)
+        } catch {
+            AKLog("Could not set session category.")
+        }
+
+        AKSettings.defaultToSpeaker = true
+        
+        let monoToStereo = AKStereoFieldLimiter(mic, amount: 1)
+        micMixer = AKMixer(monoToStereo)
+        micBooster = AKBooster(micMixer)
+
+        // Will set the level of microphone monitoring
+        micBooster.gain = 0
+        recorder = try? AKNodeRecorder(node: micMixer)
+        if let file = recorder.audioFile {
+            do {
+                try player = AKAudioPlayer(file: file)
+            } catch {
+                AKLog("Error on file loading")
+            }
+        }
+        player.looping = false
+//        player.completionHandler = onPlayFinish
+
+        mainMixer = AKMixer(player, micBooster)
+
+        AudioKit.output = mainMixer
+        do {
+            try AudioKit.start()
+        } catch {
+            AKLog("AudioKit did not start!")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,6 +151,16 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
         tranquiloView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector(("someAction:"))))
         cansadoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector(("someAction:"))))
         irritadoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector(("someAction:"))))
+        
+        //Gravação do audio
+        record.layer.cornerRadius = 25
+        recordButton.image = UIImage(named: "BtnGravar")
+//        playerSlider.isContinuous = false
+        setupPlot()
+        
+        let config = UIImage.SymbolConfiguration(scale: .small)
+        let thumb = UIImage(systemName: "circle.fill")?.withConfiguration(config).withTintColor(.lightGray, renderingMode: .alwaysOriginal)
+//        playerSlider.setThumbImage(thumb, for: .normal)
     }
     
     //Função para click numa emoção
@@ -130,46 +206,20 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         
-        //Mudar a cor do card
-        let amareloX = #colorLiteral(red: 0.9930667281, green: 0.9711793065, blue: 0, alpha: 1)
-        let amareloY = #colorLiteral(red: 0.8069227141, green: 0.605541353, blue: 0.001397269817, alpha: 1)
-        
-        let azulX = #colorLiteral(red: 0.2394615939, green: 0.5985017667, blue: 1, alpha: 1)
-        let azulY = #colorLiteral(red: 0.2802936715, green: 0.3074454975, blue: 0.7883472621, alpha: 1)
-        
-        let verdeX = #colorLiteral(red: 0.2432119415, green: 1, blue: 0.349971955, alpha: 1)
-        let verdeY = #colorLiteral(red: 0.1078010393, green: 0.7889236992, blue: 0, alpha: 1)
-        
-        let roxoX = #colorLiteral(red: 0.7977316976, green: 0.3991055914, blue: 0.6926496238, alpha: 1)
-        let roxoY = #colorLiteral(red: 0.5898076296, green: 0.2702057064, blue: 0.6506463289, alpha: 1)
-        
-        let vermelhoX = #colorLiteral(red: 0.9810246825, green: 0.5891146064, blue: 0.2307883501, alpha: 1)
-        let vermelhoY = #colorLiteral(red: 0.9276855588, green: 0.2729465365, blue: 0.3393034637, alpha: 1)
-        
         switch selectedView {
         case 0:
-            self.contaInfoView.changeColors(x: amareloX, y: amareloY)
+            self.contaInfoView.changeColors(x: #colorLiteral(red: 0.9930667281, green: 0.9711793065, blue: 0, alpha: 1), y: #colorLiteral(red: 0.8069227141, green: 0.605541353, blue: 0.001397269817, alpha: 1))
         case 1:
-            self.contaInfoView.changeColors(x: azulX, y: azulY)
+            self.contaInfoView.changeColors(x: #colorLiteral(red: 0.2394615939, green: 0.5985017667, blue: 1, alpha: 1), y: #colorLiteral(red: 0.2802936715, green: 0.3074454975, blue: 0.7883472621, alpha: 1))
         case 2:
-            self.contaInfoView.changeColors(x: verdeX, y: verdeY)
+            self.contaInfoView.changeColors(x: #colorLiteral(red: 0.2432119415, green: 1, blue: 0.349971955, alpha: 1), y: #colorLiteral(red: 0.1078010393, green: 0.7889236992, blue: 0, alpha: 1))
         case 3:
-            self.contaInfoView.changeColors(x: roxoX, y: roxoY)
+            self.contaInfoView.changeColors(x: #colorLiteral(red: 0.7977316976, green: 0.3991055914, blue: 0.6926496238, alpha: 1), y: #colorLiteral(red: 0.5898076296, green: 0.2702057064, blue: 0.6506463289, alpha: 1))
         case 4:
-            self.contaInfoView.changeColors(x: vermelhoX, y: vermelhoY)
+            self.contaInfoView.changeColors(x: #colorLiteral(red: 0.9810246825, green: 0.5891146064, blue: 0.2307883501, alpha: 1), y: #colorLiteral(red: 0.9276855588, green: 0.2729465365, blue: 0.3393034637, alpha: 1))
         default:
             self.contaInfoView.changeColors(x: UIColor.white, y: UIColor.white)
         }
-//        let gradient: CAGradientLayer = CAGradientLayer()
-//
-//        gradient.colors = [UIColor.blue.cgColor, UIColor.red.cgColor]
-//        gradient.locations = [0.0 , 1.0]
-//        gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
-//        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
-//        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.contaInfoView.frame.size.height)
-
-        
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -184,7 +234,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("numberOfRowsInSection -> \(String(describing: tableView.restorationIdentifier))")
         if(tableView.restorationIdentifier == "tableGravacoes"){
-        return 5
+        return 8
         }
         
         return 3
@@ -360,6 +410,82 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         })
     }
+    
+    
+    // ------------------------------------------------------------------------------------------------------
+    // BOTTOM SHEET RECORD
+    // ------------------------------------------------------------------------------------------------------
+    
+    @IBAction func recordButtonTap(_ sender: Any) {
+        if (running == .ready) {
+            recordButton.image = UIImage(named: "BtnStop")
+            self.view.layoutIfNeeded()
+            self.recordHeight.constant = 250
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+            })
+            
+            if AKSettings.headPhonesPlugged {
+                micBooster.gain = 1
+            }
+            
+            micMixer.outputNode.removeTap(onBus: 0)
+            
+            //Gravar audio
+            do {
+                try recorder.record()
+            } catch { AKLog("Errored recording.") }
+            
+            running = .recording
+            audioInputPlot.isHidden = false
+            
+        } else if (running == .recording) {
+            recordButton.image = UIImage(named: "BtnEnviar")
+            audioInputPlot.isHidden = true
+            audioLabelView.isHidden = false
+            
+            micBooster.gain = 0
+            tape = recorder.audioFile!
+            
+            //Carregar audio
+            do {
+                try player.replace(file: tape)
+            } catch {
+                AKLog("Error on audio loading")
+            }
+            
+            let duration = player.audioFile.duration
+            recorder.stop()
+            audioLabel.text = String(Int(duration/60)) + ":" + String(format: "%02d", Int(duration.truncatingRemainder(dividingBy: 60)))
+            tape.exportAsynchronously(name: "tmp.wav", baseDir: .documents, exportFormat: .wav) {_, exportError in
+                if let error = exportError {
+                    AKLog("Export Failed \(error)")
+                } else {
+                    AKLog("Export succeeded")
+                }
+            }
+            running = .recorded
+        } else if (running == .recorded) {
+            let duration = player.audioFile.duration
+            //MARK: Define o tempo do audio na célula
+            var totalPlayerTime = String(Int(duration/60)) + ":" + String(format: "%02d", Int(duration.truncatingRemainder(dividingBy: 60)))
+            
+            print("Tempo audio: \(totalPlayerTime)")
+            
+//            totalPlayerTime.text = String(Int(duration/60)) + ":" + String(format: "%02d", Int(duration.truncatingRemainder(dividingBy: 60)))
+        }
+    }
+    
+    func setupPlot() {
+        plot = AKNodeOutputPlot(mic, frame: audioInputPlot.bounds)
+        plot?.plotType = .buffer
+        plot?.shouldFill = true
+        plot?.shouldMirror = true
+        plot?.color = .white
+        plot?.backgroundColor = .clear
+        audioInputPlot.addSubview(plot!)
+    }
+    
     
     
     /*
