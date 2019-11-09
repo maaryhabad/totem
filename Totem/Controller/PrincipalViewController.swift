@@ -9,6 +9,8 @@
 import UIKit
 import AudioKit
 import AudioKitUI
+import FirebaseStorage
+import Firebase
 
 class PrincipalViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -51,6 +53,8 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     let mic = AKMicrophone()
     var running: state = .ready
     var skippedTo: Double = 0.0
+    
+    var audioFileName: URL!
     
     
     @IBOutlet var contaInfoView: GradientView!
@@ -459,20 +463,70 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             let duration = player.audioFile.duration
             recorder.stop()
             audioLabel.text = String(Int(duration/60)) + ":" + String(format: "%02d", Int(duration.truncatingRemainder(dividingBy: 60)))
-            tape.exportAsynchronously(name: "tmp.wav", baseDir: .documents, exportFormat: .wav) {_, exportError in
+            tape.exportAsynchronously(name: "tmp.wav", baseDir: .documents, exportFormat: .wav) {data, exportError in
                 if let error = exportError {
                     AKLog("Export Failed \(error)")
                 } else {
                     AKLog("Export succeeded")
+                    self.audioFileName = data?.url
+                    print(data?.url.absoluteString)
                 }
             }
             running = .recorded
         } else if (running == .recorded) {
             let duration = player.audioFile.duration
-            //MARK: Define o tempo do audio na célula
-            var totalPlayerTime = String(Int(duration/60)) + ":" + String(format: "%02d", Int(duration.truncatingRemainder(dividingBy: 60)))
-            
-            print("Tempo audio: \(totalPlayerTime)")
+//                let result = Utils.pegarDataAtual() //TODO
+            let result = "1234"
+               //Referência ao Storage
+        //        let fileId = result + ".m4a"
+                let fileId = result + ".wav"
+                let storage = Storage.storage()
+                
+                //Referência ao Storage
+                let storageRef = storage.reference()
+                
+                //Referência ao arquivo que eu vou fazer o upload
+                let archiveRef = storageRef.child(fileId)
+                print("primeiro")
+                let uploadTask = archiveRef.putFile(from: audioFileName, metadata: nil) { metadata, error in
+
+                    if let error = error {
+                        print("deu ruim de novo na metadata", error)
+                        return
+                    } else {
+                        //MARK: Salvar no Firebase a nova mensagem
+                        //MARK: para: contatoDomain.id
+                        print("segundo")
+                        
+                        archiveRef.downloadURL(completion: {(url, error) in
+//                            self.urlAudio = url
+
+//                            let tempo = Mensagem.pegarDuracao(resource: self.audioFileName, filePath: fileId)
+//                            print(tempo)
+
+                            let totemId = "UpdvqtyiLBxRrlWjTQJ8"
+                            print("FileID: ", fileId)
+                            print("Result: ", result)
+//                            print("UsuarioID: ", Model.instance.usuario.id!)
+//
+//                            let usr = Model.instance.usuario
+//                            Utils.convertStringtoDate(data: result)
+//                            let novaMensagem = Mensagem(url: self.urlAudio.absoluteString, audio: fileId, datadeEnvio: result, duracao: tempo, de: usr.id!, deNome: usr.nome!, para: totemId, salvo: false, visualizado: false)
+
+//                            DAOFirebase.criarMensagem(mensagem: novaMensagem){id in
+//                                //STOP LOAD
+//                                novaMensagem.id = id
+//
+//                                let totem = Model.instance.getTotem(id: totemId)
+//                                print("Id totem:  \(String(describing: totem?.id))")
+//                                print("Mensagem id: \(novaMensagem.id)")
+//                                totem!.inserirMensagem(mensagem: novaMensagem)
+//                            }
+                            //START LOAD
+                        })
+                    }
+                    print("acho que deu boa")
+                }
             
 //            totalPlayerTime.text = String(Int(duration/60)) + ":" + String(format: "%02d", Int(duration.truncatingRemainder(dividingBy: 60)))
         }
