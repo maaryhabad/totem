@@ -191,6 +191,42 @@ class DAOFirebase {
                }
     
        }
-
+    
+    //MARK: Listeners
+    
+    func listenerContatos() {
+        let db = Firestore.firestore()
+        
+        db.collection("usuario").document(Model.instance.usuario.id!).addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Erro no listener do usuário: \(error!)")
+                return
+            }
+            let source = document.metadata.hasPendingWrites ? "Local" : "Server"
+            print("\(source) data: \(document.data() ?? [:])")
+        }
+    }
+    
+    func listenerMensagens() {
+        let db = Firestore.firestore()
+        
+        db.collection("mensagens").whereField("de", isEqualTo: Model.instance.usuario.id).addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Erro: \(error)")
+                return
+            }
+            snapshot.documentChanges.forEach { diff in
+                if (diff.type == .added) {
+                    print("Nova mensagem: \(diff.document.data())")
+                }
+                if (diff.type == .modified) {
+                    print("Mensagem modificada: \(diff.document.data())")
+                }
+                if (diff.type == .removed) {
+                    print("Mensagem removida: \(diff.document.data())")
+                }
+            }
+        }
+    }
 }
 

@@ -159,12 +159,18 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
             } else {
                 //MARK: Salvar no Firebase a nova mensagem
                 //MARK: para: contatoDomain.id
+                
+                
+                let audioDuration = asset.duration
+                let audioDurationSeconds = CMTimeGetSeconds(audioDuration)
+                
                 let totemId = "UpdvqtyiLBxRrlWjTQJ8"
                 print("FileID: ", fileId)
                 print("Result: ", result)
                 print("UsuarioID: ", Model.instance.usuario.id)
-                
-                let novaMensagem = Mensagem(audio: fileId, datadeEnvio: result, de: Model.instance.usuario.id!, para: totemId, salvo: false, visualizado: false)
+  
+                let novaMensagem = Mensagem(audio: fileId, datadeEnvio: result, duracao: "", de: Model.instance.usuario.id, para: totemId, salvo: false, visualizado: false)
+//let novaMensagem = Mensagem(audio: fileId, datadeEnvio: result, de: Model.instance.usuario.id!, para: totemId, salvo: false, visualizado: false)
                 
                 var idMsg :String = ""
                 DAOFirebase.criarMensagem(mensagem: novaMensagem){id in

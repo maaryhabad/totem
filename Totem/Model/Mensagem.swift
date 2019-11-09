@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 class Mensagem {
     var id: String
@@ -65,6 +66,11 @@ class Mensagem {
         let mensagem = Mensagem(audio: audio, datadeEnvio: datadeEnvio, duracao: duracao, de: de, para: para, salvo: salvo, visualizado: visualizado)
 
         return mensagem
+    }
+    
+    static func pegarDuracao(resource: String, filePath: String) -> Double {
+        let asset = AVURLAsset(url: URL(fileURLWithPath: filePath))
+        return Double(CMTimeGetSeconds(asset.duration))
     }
 }
 

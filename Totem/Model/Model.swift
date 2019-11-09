@@ -33,7 +33,7 @@ class Model {
     
     func baixarInfos(contatoDomain: ContatoDomain){
         DAOFirebase.retornaTotens()
-        DAOFirebase.retornaUsuario(id: usuario.id)
+        DAOFirebase.retornaUsuario(id: usuario.id!)
         getMensagens(contatoDomain: contatoDomain)
         
     }
