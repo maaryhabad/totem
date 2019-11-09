@@ -141,8 +141,7 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func apertouSalvar(_ sender: Any) {
         var result = Utils.pegarDataAtual()
-        // Onde tá o arquivo localmente, em String em vez de URL
-        //Referência ao Storage
+       //Referência ao Storage
         let fileId = result + ".m4a"
         let storage = Storage.storage()
         
@@ -153,17 +152,38 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
         let archiveRef = storageRef.child(fileId)
         
         let uploadTask = archiveRef.putFile(from: audioFileName, metadata: nil) { metadata, error in
+
             if let error = error {
                 print("deu ruim de novo na metadata", error)
                 return
             } else {
-                // MARK: Salvar no Firebase a nova mensagem
-//                var novaMensagem = Mensagem(audio: fileId, datadeEnvio: result, de: nil, para: nil, salvo: false, visualizado: false)
-//                DAOFirebase.save(mensagem: novaMensagem)
-                print("deu certo")
+                //MARK: Salvar no Firebase a nova mensagem
+                //MARK: para: contatoDomain.id
+                
+                
+                let audioDuration = asset.duration
+                let audioDurationSeconds = CMTimeGetSeconds(audioDuration)
+                
+                let totemId = "UpdvqtyiLBxRrlWjTQJ8"
+                print("FileID: ", fileId)
+                print("Result: ", result)
+                print("UsuarioID: ", Model.instance.usuario.id)
+  
+                let novaMensagem = Mensagem(audio: fileId, datadeEnvio: result, duracao: "", de: Model.instance.usuario.id, para: totemId, salvo: false, visualizado: false)
+//let novaMensagem = Mensagem(audio: fileId, datadeEnvio: result, de: Model.instance.usuario.id!, para: totemId, salvo: false, visualizado: false)
+                
+                var idMsg :String = ""
+                DAOFirebase.criarMensagem(mensagem: novaMensagem){id in
+                    //STOP LOAD
+                    novaMensagem.id = id
+                    
+                    var totem = Model.instance.getTotem(id: totemId)
+                    print("Id totem:  \(totem?.id)")
+                    print("Mensagem id: \(novaMensagem.id)")
+                    totem!.inserirMensagem(mensagem: novaMensagem)
+                }
+                //START LOAD
             }
-           
-           
         }
             
            

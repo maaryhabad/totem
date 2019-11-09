@@ -17,13 +17,19 @@ class Utils {
 
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "HH:mm:ssdd-MM-yyyy"
+        formatter.dateFormat = "yyyyMMddHHmmss"
         
         result = formatter.string(from: date)
         return result
     }
     
-
+    static func convertStringtoDate(data: String) -> Date {
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyyMMddHHmmss"
+        let date = dateFormatter.date(from: data)
+        return date!
+    }
 
     // fazer função que pega string e retorna um Usuario
     // fazer função que pega string e retorna uma lista de usuários

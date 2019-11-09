@@ -25,6 +25,11 @@ class Usuario {
     
     init(id: String) {
         self.id = id
+        var usrFirebase = DAOFirebase.retornaUsuario(id: id)
+        self.imagem = usrFirebase?.imagem
+        self.contatos = usrFirebase?.contatos
+        self.contatosID = usrFirebase?.contatosID
+        self.nome = usrFirebase?.nome
     }
     
     
@@ -33,7 +38,7 @@ class Usuario {
         var usuarioData: [String:Any] = [:]
         
         usuarioData["imagem"] = self.imagem
-        usuarioData["contatos"] = self.contatos
+//        usuarioData["contatos"] = self.contatos
         usuarioData["nome"] = self.nome
         usuarioData["contatosID"] = self.contatosID
         
@@ -54,7 +59,7 @@ class Usuario {
         return usuario
     }
     
-    static func populaContatos(contatosID: [String]?, completionHandler: @escaping ([Usuario])->()) {
+    static func populaContatos(contatosID: [String]?, completionHandler: @escaping ( [Usuario] )->() ) {
         
         guard let IDList = contatosID else {return}
         
@@ -66,8 +71,7 @@ class Usuario {
             dispatchGroup.enter()
 
             
-            DAOFirebase.retornaUsuario(id: contato, comContatos: false) {
-                    usuario in
+            DAOFirebase.retornaUsuario(id: contato) { usuario in
 
                 contatos.append(usuario)
                 dispatchGroup.leave()
@@ -85,3 +89,5 @@ class Usuario {
     
     
 }
+
+
