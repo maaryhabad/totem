@@ -32,12 +32,12 @@ class Utils {
     }
     
     static func toTimeString(segundos :Int) -> String{
-        var m = segundos / 60 as! Int
-        var s = segundos - (segundos * m)
+        let m = segundos / 60 as! Int
+        let s = segundos - (segundos * m)
         
-        var mString = NSString(format: "00", m)
-        var sString = NSString(format: "00", s)
-        var tempo = "\(m):\(s)"
+        let mString = NSString(format: "%02d", m)
+        let sString = NSString(format: "%02d", s)
+        let tempo = "\(mString):\(sString)"
         return tempo
     }
     

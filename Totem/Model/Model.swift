@@ -16,7 +16,7 @@ class Model {
         
     }
     
-    var usuarioId :String = "UxzcHc7lR2YmGY0n4OEf"
+    var usuarioId :String = "fAa4dnL8mmu8d1SgsD5u"//UxzcHc7lR2YmGY0n4OEf"
     var usuario = Usuario()
     var totens: [Totem]! = [] //Meus totens
     var contatos :[ContatoDomain]! = []
@@ -54,26 +54,32 @@ class Model {
         return contatos
     }
     
-    func getMensagens(contatoDomain: ContatoDomain) -> [MensagemDomain]{
+    func getMensagens(contatoDomain: ContatoDomain, completion: @escaping (([MensagemDomain])->())) -> [MensagemDomain] {
         
         let usuario = contatoDomain.totemIDUsuario
         let contato = contatoDomain.totemIDContato
         
-        let mensagensUsuario = DAOFirebase.buscarMensagens(field: "idCriador", id: usuario)
-        let mensagensContato = DAOFirebase.buscarMensagens(field: "idPossuinte", id: contato!)
-        
+        var mensagensUsuario :[Mensagem]!
+        var mensagensContato :[Mensagem]!
         var todasAsMensagens: [Mensagem] = []
-        
-        todasAsMensagens.append(contentsOf: mensagensUsuario)
-        todasAsMensagens.append(contentsOf: mensagensContato)
-        
-        todasAsMensagens.sort(by: { $0.datadeEnvio > $1.datadeEnvio } )
-        
         var msgsDomain :[MensagemDomain] = []
-        for msg in todasAsMensagens{
-            msgsDomain.append(MensagemDomain(msg: msg))
-        }
         
+        DAOFirebase.buscarMensagens(id: usuario){ mensagens in
+            mensagensUsuario = mensagens
+
+            DAOFirebase.buscarMensagens(id: contato!){mensagens in
+                mensagensContato = mensagens
+                
+                todasAsMensagens.append(contentsOf: mensagensUsuario)
+                todasAsMensagens.append(contentsOf: mensagensContato)
+                todasAsMensagens.sort(by: { $0.datadeEnvio > $1.datadeEnvio } )
+
+                for msg in todasAsMensagens{
+                    msgsDomain.append(MensagemDomain(msg: msg))
+                }
+                completion(msgsDomain)
+            }
+        }
         return msgsDomain
     }
     
