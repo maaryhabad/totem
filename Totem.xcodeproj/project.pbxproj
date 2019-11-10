@@ -94,9 +94,7 @@
 		CD922C2B2371A24C001A52D1 /* Contatos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Contatos.storyboard; path = Totem/Contatos.storyboard; sourceTree = SOURCE_ROOT; };
 		CD922C2D2371A2F4001A52D1 /* ContatosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContatosViewController.swift; path = Totem/ContatosViewController.swift; sourceTree = SOURCE_ROOT; };
 		CD922C2F2371A346001A52D1 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BottomSheetViewController.swift; path = Totem/BottomSheetViewController.swift; sourceTree = SOURCE_ROOT; };
-		CD8132772365F63100C05F77 /* OnBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = OnBoard.storyboard; path = totem/View/OnBoard.storyboard; sourceTree = SOURCE_ROOT; };
-		CD81327923672A4D00C05F77 /* DAOFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DAOFirebase.swift; path = Totem/Model/DAOFirebase.swift; sourceTree = SOURCE_ROOT; };
-		CD99236B2361EA6600D31E0E /* Totem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Totem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD99236B2361EA6600D31E0E /* TOT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TOT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD99236E2361EA6600D31E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD9923702361EA6600D31E0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CD9923722361EA6600D31E0E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -221,7 +219,7 @@
 		CD99236C2361EA6600D31E0E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CD99236B2361EA6600D31E0E /* Totem.app */,
+				CD99236B2361EA6600D31E0E /* TOT.app */,
 				CD9923842361EA6900D31E0E /* totemTests.xctest */,
 				CD99238F2361EA6900D31E0E /* totemUITests.xctest */,
 			);
@@ -296,7 +294,7 @@
 			);
 			name = totem;
 			productName = totem;
-			productReference = CD99236B2361EA6600D31E0E /* Totem.app */;
+			productReference = CD99236B2361EA6600D31E0E /* TOT.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CD9923832361EA6900D31E0E /* totemTests */ = {
@@ -720,14 +718,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GUL3CPS6RX;
+				DEVELOPMENT_TEAM = ADP5XER6GT;
 				INFOPLIST_FILE = totem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mariabad.totem;
-				PRODUCT_NAME = Totem;
+				PRODUCT_NAME = TOT;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -739,14 +737,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GUL3CPS6RX;
+				DEVELOPMENT_TEAM = ADP5XER6GT;
 				INFOPLIST_FILE = totem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mariabad.totem;
-				PRODUCT_NAME = Totem;
+				PRODUCT_NAME = TOT;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
