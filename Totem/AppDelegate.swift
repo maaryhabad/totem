@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         Model.instance
         Model.instance.baixarInfos()
+        Model.instance.bleManager.setup()
         return true
     }
 

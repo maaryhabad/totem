@@ -242,19 +242,19 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
         switch selectedView {
         case 0:
             self.contaInfoView.changeColors(x: #colorLiteral(red: 0.9930667281, green: 0.9711793065, blue: 0, alpha: 1), y: #colorLiteral(red: 0.8069227141, green: 0.605541353, blue: 0.001397269817, alpha: 1))
-            self.mudarSentimento(sentimento: "feliz")
+            self.mudarSentimento(sentimento: "Feliz")
         case 1:
             self.contaInfoView.changeColors(x: #colorLiteral(red: 0.2394615939, green: 0.5985017667, blue: 1, alpha: 1), y: #colorLiteral(red: 0.2802936715, green: 0.3074454975, blue: 0.7883472621, alpha: 1))
-            self.mudarSentimento(sentimento: "confiante")
+            self.mudarSentimento(sentimento: "Confiante")
         case 2:
             self.contaInfoView.changeColors(x: #colorLiteral(red: 0.2432119415, green: 1, blue: 0.349971955, alpha: 1), y: #colorLiteral(red: 0.1078010393, green: 0.7889236992, blue: 0, alpha: 1))
-            self.mudarSentimento(sentimento: "tranquilo")
+            self.mudarSentimento(sentimento: "Tranquilo")
         case 3:
             self.contaInfoView.changeColors(x: #colorLiteral(red: 0.7977316976, green: 0.3991055914, blue: 0.6926496238, alpha: 1), y: #colorLiteral(red: 0.5898076296, green: 0.2702057064, blue: 0.6506463289, alpha: 1))
-            self.mudarSentimento(sentimento: "cansado")
+            self.mudarSentimento(sentimento: "Cansado")
         case 4:
             self.contaInfoView.changeColors(x: #colorLiteral(red: 0.9810246825, green: 0.5891146064, blue: 0.2307883501, alpha: 1), y: #colorLiteral(red: 0.9276855588, green: 0.2729465365, blue: 0.3393034637, alpha: 1))
-            self.mudarSentimento(sentimento: "irritado")
+            self.mudarSentimento(sentimento: "Irritado")
         default:
             self.contaInfoView.changeColors(x: UIColor.white, y: UIColor.white)
         }
@@ -614,6 +614,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func mudarSentimento(sentimento :String){
+        print("total totens model: \(Model.instance.totens.count)")
         for totem in Model.instance.totens{
             totem.mudarSentimento(sentimento: sentimento)
         }

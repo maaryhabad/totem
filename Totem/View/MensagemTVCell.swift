@@ -49,6 +49,8 @@ class MensagemTVCell: UITableViewCell {
         print("nova msg: \(String(describing: self.flagMsgNova))")
         
         self.isRead()
+        Model.instance.bleManager.writeAudio(url: self.mensagemURL)
+        
     }
     
 }

@@ -270,6 +270,7 @@ class DAOFirebase {
                 guard querySnapshot.documents.count > 0 else  { return }
 
                 totem = Totem.mapToObject(totemData: querySnapshot.documents[0].data(), id: querySnapshot.documents[0].documentID)
+                totem!.atualizarSentimento()
                 print("Atualizou totem \(String(describing: totem?.nome))")
             }
             completion(totem!)
@@ -278,6 +279,7 @@ class DAOFirebase {
     }
     
     static func updateTotem(totem: Totem) {
+        print("update totem \(totem.nome)")
             let db = Firestore.firestore()
             //print(contatosID)
         db.collection("totem").document(totem.id!).updateData([

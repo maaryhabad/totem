@@ -80,22 +80,18 @@ class Totem {
         var strSentimento :String = ""
         
         if(self.sentimento == "Feliz"){
-            selectedView = 0
             strSentimento = "HIGHYELLOW"
         }else if(self.sentimento ==  "Confiante"){
-            selectedView = 1
             strSentimento = "HIGHBLUE"
         }else if(self.sentimento ==  "Tranquilo"){
-            selectedView = 2
             strSentimento = "HIGHGREEN"
         }else if(self.sentimento ==  "Cansado"){
-            selectedView = 3
             strSentimento = "HIGHPURPLE"
         }else if(self.sentimento ==  "Irritado"){
-            selectedView = 4
             strSentimento = "HIGHRED"
         }
         
+        Model.instance.bleManager.writeLEDValue(value: strSentimento)
     }
     
     func mudarSentimento(sentimento :String){

@@ -21,6 +21,8 @@ class Model {
     var totens: [Totem]! = [] //Meus totens
     var contatos :[ContatoDomain]! = []
     
+    var bleManager = BLEManager.instance
+    
     func baixarInfos(){
         _ = DAOFirebase.retornaUsuario(userId: usuarioId){usuario in
             self.usuario = usuario

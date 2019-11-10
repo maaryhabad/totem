@@ -15,6 +15,7 @@
 		2A88686FF8061E5A18AEA62B /* Pods_totem_totemUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D31FA5E68DB31C6F2CAC28 /* Pods_totem_totemUITests.framework */; };
 		3906B100236860E80022FA0E /* PrincipalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3906B0FF236860E80022FA0E /* PrincipalViewController.swift */; };
 		3916637D23686ADD00C2C7B3 /* PrincipalTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3916637C23686ADD00C2C7B3 /* PrincipalTableVC.swift */; };
+		392CCF712378C4450053A0FD /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392CCF702378C4450053A0FD /* BLEManager.swift */; };
 		392FE68A2369BC68005D72F0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392FE6892369BC68005D72F0 /* Extensions.swift */; };
 		397F6BFC23687627008980B3 /* ContatoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397F6BFA23687627008980B3 /* ContatoTVCell.swift */; };
 		397F6BFD23687627008980B3 /* ContatoTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 397F6BFB23687627008980B3 /* ContatoTVCell.xib */; };
@@ -73,6 +74,7 @@
 		29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3906B0FF236860E80022FA0E /* PrincipalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrincipalViewController.swift; path = Totem/Controller/PrincipalViewController.swift; sourceTree = SOURCE_ROOT; };
 		3916637C23686ADD00C2C7B3 /* PrincipalTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrincipalTableVC.swift; path = Totem/Controller/PrincipalTableVC.swift; sourceTree = SOURCE_ROOT; };
+		392CCF702378C4450053A0FD /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BLEManager.swift; path = Totem/Controller/BLEManager.swift; sourceTree = SOURCE_ROOT; };
 		392FE6892369BC68005D72F0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Totem/Model/Extensions.swift; sourceTree = SOURCE_ROOT; };
 		397F6BFA23687627008980B3 /* ContatoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContatoTVCell.swift; path = Totem/View/ContatoTVCell.swift; sourceTree = SOURCE_ROOT; };
 		397F6BFB23687627008980B3 /* ContatoTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ContatoTVCell.xib; path = Totem/View/ContatoTVCell.xib; sourceTree = SOURCE_ROOT; };
@@ -94,8 +96,6 @@
 		CD922C2B2371A24C001A52D1 /* Contatos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Contatos.storyboard; path = Totem/Contatos.storyboard; sourceTree = SOURCE_ROOT; };
 		CD922C2D2371A2F4001A52D1 /* ContatosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContatosViewController.swift; path = Totem/ContatosViewController.swift; sourceTree = SOURCE_ROOT; };
 		CD922C2F2371A346001A52D1 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BottomSheetViewController.swift; path = Totem/BottomSheetViewController.swift; sourceTree = SOURCE_ROOT; };
-		CD8132772365F63100C05F77 /* OnBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = OnBoard.storyboard; path = totem/View/OnBoard.storyboard; sourceTree = SOURCE_ROOT; };
-		CD81327923672A4D00C05F77 /* DAOFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DAOFirebase.swift; path = Totem/Model/DAOFirebase.swift; sourceTree = SOURCE_ROOT; };
 		CD99236B2361EA6600D31E0E /* Totem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Totem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD99236E2361EA6600D31E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD9923702361EA6600D31E0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +189,7 @@
 				1F9A7377236C6AC700A7AFF0 /* BottomSheetController.swift */,
 				3906B0FF236860E80022FA0E /* PrincipalViewController.swift */,
 				3916637C23686ADD00C2C7B3 /* PrincipalTableVC.swift */,
+				392CCF702378C4450053A0FD /* BLEManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -524,6 +525,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				397F6BFC23687627008980B3 /* ContatoTVCell.swift in Sources */,
+				392CCF712378C4450053A0FD /* BLEManager.swift in Sources */,
 				1FF5F23C2369C7F600624A33 /* OnboardController.swift in Sources */,
 				CD27435B237700BC00B2D25B /* MensagemDomain.swift in Sources */,
 				CD922C2E2371A2F4001A52D1 /* ContatosViewController.swift in Sources */,
