@@ -17,9 +17,33 @@ class Model {
     }
     
     var usuarioId :String = "UxzcHc7lR2YmGY0n4OEf"
-    var usuario = Usuario(id: "UxzcHc7lR2YmGY0n4OEf")
+    var usuario = Usuario()
+    var totens: [Totem]! = [] //Meus totens
+    var contatos :[ContatoDomain]! = []
     
-    var totens: [Totem]! = []
+    func baixarInfos(){
+        _ = DAOFirebase.retornaUsuario(userId: usuarioId){usuario in
+            self.usuario = usuario
+            print("\n\n================================================")
+            print("Nome usuario: \(String(describing: self.usuario.nome))")
+            
+            if (self.usuario.contatosID!.count) > 0 {
+                Usuario.populaContatos(contatosID: self.usuario.contatosID) { contatos in
+                    self.usuario.contatos = contatos
+                    print("Contatos usuario: \(String(describing: self.usuario.contatos?.count))")
+                    
+                    _ = DAOFirebase.retornaTotens(idCriador: self.usuarioId){totens in
+                        self.totens = totens
+                        print("Total totens: \(self.totens.count)")
+                        
+                        self.contatos = self.getContatos()
+                        print("Total contatosDomain: \(self.contatos.count)")
+                        print("================================================\n\n")
+                    }
+                }
+            }
+        }
+    }
     
     func getContatos() -> [ContatoDomain] {
         var contatos : [ContatoDomain] = []
@@ -28,23 +52,6 @@ class Model {
             contatos.append(ContatoDomain(contato: contato))
         }
         return contatos
-    }
-    
-    func baixarInfos(){
-        //print("baixar infos")
-        //Baixar Usuário (com os contatos)
-        DAOFirebase.retornaUsuario(userId: usuarioId){usuario in
-            //print("\n\nRetorno de retornaUsuario")
-            //print("nome: \(usuario.nome)")
-            //print("qtde contatos: \(usuario.contatos)")
-            //print("contatos: \(usuario.contatosID)")
-            
-            self.usuario = usuario
-            
-            //print(self.usuario.id, self.usuario.nome, self.usuario.imagem)
-            DAOFirebase.retornaTotens()
-        } //UxzcHc7lR2YmGY0n4OEf
-//        //print("usuario pos inst: \(String(describing: self.usuario.nome))")
     }
     
     func getMensagens(contatoDomain: ContatoDomain) -> [MensagemDomain]{

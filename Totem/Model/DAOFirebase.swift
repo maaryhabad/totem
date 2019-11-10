@@ -70,7 +70,6 @@ class DAOFirebase {
     
     static func retornaUsuario(userId: String, completion: @escaping ((Usuario)->())) -> Usuario? {
         
-        // buscar os dados do usuário que estão na nuvem
         let db = Firestore.firestore()
         var usuario: Usuario?
         db.collection("usuarios").whereField(FieldPath.documentID(), isEqualTo: userId).getDocuments() { (querySnapshot, err) in
@@ -82,27 +81,12 @@ class DAOFirebase {
                 guard querySnapshot.documents.count > 0 else  { return }
 
                 usuario = Usuario.mapToObject(usuarioData: querySnapshot.documents[0].data(), id: querySnapshot.documents[0].documentID)
-//                Model.instance.usuario = usuario!
-                ////print("usuario = \(usuario?.nome)")
-                ////print(usuario?.contatosID!)
                 
-                if (usuario?.contatosID!.count)! > 0 {
-                    ////print("entrou no if")
-                    Usuario.populaContatos(contatosID: usuario!.contatosID) { contatos in
-                        ////print("\n\n\n\nem retornaUsuario-populaContatos: qtde de contatos = \(contatos.count)")
-                        usuario!.contatos = contatos
-                        ////print("Usuarios!.contatosId = \(usuario?.contatosID)")
-//                        Model.instance.usuario.contatos = contatos
-                        ////print("usuario_model = \(usuario?.nome)")
-                    }
-                ////print(userId)
+                
+                completion(usuario!)
             }
-            }
-            
-            completion(usuario!)
-            
         }
-    return usuario
+        return usuario
     }
     
     
@@ -184,26 +168,22 @@ class DAOFirebase {
         return id
     }
     
-    static func retornaTotens(){
+    static func retornaTotens(idCriador :String, completion: @escaping (([Totem])->())) -> [Totem]!{
         let db = Firestore.firestore()
+        var totens: [Totem]! = []
         
-        db.collection("totem").getDocuments() { (QuerySnapshot, err) in
+        db.collection("totem").whereField("idCriador", isEqualTo: idCriador).getDocuments() { (QuerySnapshot, err) in
             if let err = err {
-                //print("Erro pegando os totens", err)
+                print("Erro em retornaTotens", err)
             } else {
-//                Model.instance.totems.removeAll()
-                //print("Conseguiu pegar os totens")
                 for document in QuerySnapshot!.documents {
                     let totem = Totem.mapToObject(totemData: document.data(), id: document.documentID)
-                    //print("retornaTotens: \(totem.nome)")
-                    
-                    if totem.idCriador == Model.instance.usuario.id {
-                        //print("entrou no if totem")
-                        Model.instance.totens.append(totem)
-                    }
+                    totens.append(totem)
                 }
             }
+            completion(totens)
         }
+        return totens
     }
     
     static func buscarMensagens(field: String, id: String) -> [Mensagem] {
@@ -211,11 +191,11 @@ class DAOFirebase {
         var mensagens: [Mensagem] = []
         
         db.collection("totem").whereField(field, isEqualTo: id).getDocuments() { (qs, err) in
-            if let err = err {
+            if err != nil {
                 //print("Erro na busca pelo totem", err)
             } else {
                 for document in qs!.documents {
-                    var mensagem = Mensagem.mapToObject(mensagemData: document.data())
+                    let mensagem = Mensagem.mapToObject(mensagemData: document.data())
                     mensagens.append(mensagem)
                 }
             }
@@ -224,19 +204,39 @@ class DAOFirebase {
         
     }
     
+    static func buscarTotem(idPossuinte :String, idCriador :String, completion: @escaping ((String)->())) -> String{
+        let db = Firestore.firestore()
+        var totemId :String = ""
+        
+        db.collection("totem").whereField("idPossuinte", isEqualTo: idPossuinte).getDocuments() { (qs, err) in
+            if err != nil {
+                //print("Erro na busca pelo totem", err)
+            } else {
+                for document in qs!.documents {
+                    let totemIdcriador = ("\(document.data()["idCriador"] ?? "")")
+                    if(totemIdcriador == idCriador){
+                        print("entrou no if buscarTotem")
+                        totemId = ("\(document.documentID)")
+                    }
+                }
+            
+            }
+            completion(totemId)
+        }
+        
+        return totemId
+    }
+    
     static func updateTotemMensagens(totem: Totem) {
         let db = Firestore.firestore()
         
-        //print("Total msg totem: \(totem.mensagens?.count)")
-        
-        //print(totem.mensagens)
         db.collection("totem").document(totem.id!).updateData([
             "mensagens" : totem.mensagens
                ]) { err in
                    if let err = err {
-                       //print("Erro ao fazer o update do documento", err)
+                       print("Erro ao fazer o update do documento", err)
                    } else {
-                       //print("Fez upload do update do documento")
+//                       print("Fez upload do update do documento")
                    }
                }
     
@@ -257,26 +257,45 @@ class DAOFirebase {
         }
     }
     
-    func listenerMensagens() {
+    static func realTimeTotem(id: String, completion: @escaping ((Totem)->())) -> Totem!{
         let db = Firestore.firestore()
+        var totem: Totem?
         
-        db.collection("mensagens").whereField("de", isEqualTo: Model.instance.usuario.id).addSnapshotListener { querySnapshot, error in
-            guard let snapshot = querySnapshot else {
-                //print("Erro: \(error)")
-                return
+        db.collection("totem").whereField(FieldPath.documentID(), isEqualTo: id).addSnapshotListener({(qs, err) in
+            if let err = err {
+                print("Erro pegando os usuarios", err)
+            } else {
+                guard let querySnapshot = qs else { return }
+                guard querySnapshot.documents.count > 0 else  { return }
+
+                totem = Totem.mapToObject(totemData: querySnapshot.documents[0].data(), id: querySnapshot.documents[0].documentID)
+                print("Atualizou totem \(String(describing: totem?.nome))")
             }
-            snapshot.documentChanges.forEach { diff in
-                if (diff.type == .added) {
-                    //print("Nova mensagem: \(diff.document.data())")
-                }
-                if (diff.type == .modified) {
-                    //print("Mensagem modificada: \(diff.document.data())")
-                }
-                if (diff.type == .removed) {
-                    //print("Mensagem removida: \(diff.document.data())")
-                }
-            }
-        }
+            completion(totem!)
+        })
+        return totem
     }
+    
+//    func listenerMensagens() {
+//        let db = Firestore.firestore()
+//
+//        db.collection("totem").whereField(FieldPath.documentID(), isEqualTo: userId).addSnapshotListener { querySnapshot, error in
+//            guard let snapshot = querySnapshot else {
+//                //print("Erro: \(error)")
+//                return
+//            }
+//            snapshot.documentChanges.forEach { diff in
+//                if (diff.type == .added) {
+//                    //print("Nova mensagem: \(diff.document.data())")
+//                }
+//                if (diff.type == .modified) {
+//                    //print("Mensagem modificada: \(diff.document.data())")
+//                }
+//                if (diff.type == .removed) {
+//                    //print("Mensagem removida: \(diff.document.data())")
+//                }
+//            }
+//        }
+//    }
 }
 

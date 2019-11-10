@@ -33,6 +33,10 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var cansadoImg: UIImageView!
     @IBOutlet var irritadoImg: UIImageView!
     
+    //Card conta
+    @IBOutlet var nomeLabelConta: UILabel!
+    @IBOutlet var iconeTotemConta: UIImageView!
+    
     //Vars p/ view Record
     @IBOutlet var record: UIView!
     @IBOutlet var recordButton: UIImageView!
@@ -56,7 +60,6 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var audioFileName: URL!
     var urlAudio: URL!
-    
     
     @IBOutlet var contaInfoView: GradientView!
     
@@ -145,6 +148,9 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //Shadow in card
         contaInfosView.layer.applySketchShadow(color: UIColor.black, alpha: Float(0.09), x: CGFloat(2.0), y: CGFloat(2.0), blur: CGFloat(10.0), spread: CGFloat(0.0))
+        
+        //View conta
+        self.popularCardConta()
         
         //View de mensagens oculta
         detalhesView.isHidden = true
@@ -247,6 +253,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
         if(tableView.restorationIdentifier == "tableGravacoes"){
             if(self.selectIndexUsuario != -1){
                 self.mensagensUsuario = Model.instance.getMensagens(contatoDomain: self.contatosDomain[self.selectIndexUsuario])
+                ("qtde de mensagens: \(self.mensagensUsuario.count)")
                 return self.mensagensUsuario.count
             }
             return 0
@@ -555,6 +562,13 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
                                 //MARK: Atualizar tableMensagens
                             }
                             //START LOAD
+                            self.recordHeight.constant = 150
+                            self.recordButton.image = UIImage(named: "BtnStart")
+                            self.audioLabel.isHidden = true
+                            UIView.animate(withDuration: 0.5, animations: {
+                                self.view.layoutIfNeeded()
+                            })
+                            self.running = .ready
                         })
                     }
                 }
@@ -571,6 +585,11 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
         plot?.color = .white
         plot?.backgroundColor = .clear
         audioInputPlot.addSubview(plot!)
+    }
+    
+    func popularCardConta(){
+        self.nomeLabelConta.text = Model.instance.usuario.nome
+        self.iconeTotemConta.image = UIImage(named: Model.instance.usuario.iconeTotem!)
     }
     
     

@@ -94,12 +94,6 @@
         <!--Totem-->
         <scene sceneID="Nx4-cK-RP0">
             <objects>
-                <tapGestureRecognizer id="m5c-az-LFX" userLabel="Record Button Tap">
-                    <connections>
-                        <action selector="recordButtonTap:" destination="77X-74-fXC" id="vyw-tR-ONI"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1YS-ro-738" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="77X-74-fXC" customClass="PrincipalViewController" customModule="Totem" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BbS-9y-D6o">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -492,9 +486,20 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PQ-IA-2xk" userLabel="ContatoImgView">
                                                 <rect key="frame" x="159.5" y="0.0" width="95" height="95"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SHX-Io-tDl" userLabel="iconeTotemConta">
+                                                        <rect key="frame" x="23.5" y="24" width="48" height="47.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="SHX-Io-tDl" secondAttribute="height" multiplier="1:1" id="eNP-8z-mcg"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="7PQ-IA-2xk" secondAttribute="height" multiplier="1:1" id="BJT-2W-9qr"/>
+                                                    <constraint firstItem="SHX-Io-tDl" firstAttribute="height" secondItem="7PQ-IA-2xk" secondAttribute="height" multiplier="0.5" id="Gro-jE-uWV"/>
+                                                    <constraint firstItem="SHX-Io-tDl" firstAttribute="centerY" secondItem="7PQ-IA-2xk" secondAttribute="centerY" id="g4f-Ni-fyT"/>
+                                                    <constraint firstItem="SHX-Io-tDl" firstAttribute="centerX" secondItem="7PQ-IA-2xk" secondAttribute="centerX" id="vtw-p3-FWh"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -618,8 +623,10 @@
                         <outlet property="felizView" destination="PIA-7g-PMv" id="kzx-JM-pXL"/>
                         <outlet property="humorTituloView" destination="Wsc-tA-j4o" id="lMC-8U-oXC"/>
                         <outlet property="humoresView" destination="5bV-Z2-qvL" id="Y0B-OK-hDC"/>
+                        <outlet property="iconeTotemConta" destination="SHX-Io-tDl" id="qQr-8o-YKo"/>
                         <outlet property="irritadoImg" destination="ajH-8x-Ucx" id="dqc-OM-1Yk"/>
                         <outlet property="irritadoView" destination="qEh-g7-i2G" id="Gkd-ep-agW"/>
+                        <outlet property="nomeLabelConta" destination="S3N-FF-KXJ" id="1pU-fK-c5F"/>
                         <outlet property="record" destination="vcc-QC-Gih" id="UIr-KK-Dew"/>
                         <outlet property="recordButton" destination="Rns-9R-TJ8" id="o48-yU-5tk"/>
                         <outlet property="recordHeight" destination="UUP-3S-LTO" id="oVX-rb-BDs"/>
@@ -629,6 +636,12 @@
                         <outlet property="tranquiloView" destination="RXm-FG-088" id="Yb4-hA-f3C"/>
                     </connections>
                 </viewController>
+                <tapGestureRecognizer id="m5c-az-LFX" userLabel="Record Button Tap">
+                    <connections>
+                        <action selector="recordButtonTap:" destination="77X-74-fXC" id="vyw-tR-ONI"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1YS-ro-738" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2676.811594202899" y="1489.9553571428571"/>
         </scene>
@@ -674,7 +687,7 @@
         <image name="Confiante" width="50" height="50"/>
         <image name="Feliz" width="50" height="50"/>
         <image name="Irritado" width="50" height="50"/>
-        <image name="TotemTrueIcon" width="25" height="32"/>
+        <image name="TotemTrueIcon" width="286" height="678"/>
         <image name="Tranquilo" width="50" height="50"/>
         <image name="contatoElvin" width="172" height="172"/>
         <image name="returnToContatos" width="38" height="25"/>

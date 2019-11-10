@@ -27,7 +27,7 @@ class Usuario {
         self.sentimento = sentimento
     }
     
-    init(id: String) {
+    init() {
 //        self.id = id
 //        DAOFirebase.retornaUsuario(id: id)
 //        DAOFirebase.retornaUsuario(userId: id){}
