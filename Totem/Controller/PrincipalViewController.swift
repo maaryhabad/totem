@@ -55,6 +55,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     var skippedTo: Double = 0.0
     
     var audioFileName: URL!
+    var urlAudio: String
     
     
     @IBOutlet var contaInfoView: GradientView!
@@ -475,10 +476,9 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             running = .recorded
         } else if (running == .recorded) {
             let duration = player.audioFile.duration
-//                let result = Utils.pegarDataAtual() //TODO
-            let result = "1234"
+                let result = Utils.pegarDataAtual()
+            
                //Referência ao Storage
-        //        let fileId = result + ".m4a"
                 let fileId = result + ".wav"
                 let storage = Storage.storage()
                 
@@ -499,9 +499,9 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
                         print("segundo")
                         
                         archiveRef.downloadURL(completion: {(url, error) in
-//                            self.urlAudio = url
+                            self.urlAudio = url
 
-//                            let tempo = Mensagem.pegarDuracao(resource: self.audioFileName, filePath: fileId)
+                            let tempo = Mensagem.pegarDuracao(resource: self.audioFileName, filePath: fileId)
 //                            print(tempo)
 
                             let totemId = "UpdvqtyiLBxRrlWjTQJ8"
@@ -509,18 +509,18 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
                             print("Result: ", result)
 //                            print("UsuarioID: ", Model.instance.usuario.id!)
 //
-//                            let usr = Model.instance.usuario
-//                            Utils.convertStringtoDate(data: result)
-//                            let novaMensagem = Mensagem(url: self.urlAudio.absoluteString, audio: fileId, datadeEnvio: result, duracao: tempo, de: usr.id!, deNome: usr.nome!, para: totemId, salvo: false, visualizado: false)
+                            let usr = Model.instance.usuario
+                            let dt = Utils.convertStringtoDate(data: result)
+                            let novaMensagem = Mensagem(url: self.urlAudio.absoluteString, audio: fileId, datadeEnvio: dt, duracao: tempo, de: usr.id!, deNome: usr.nome!, para: totemId, salvo: false, visualizado: false)
 
-//                            DAOFirebase.criarMensagem(mensagem: novaMensagem){id in
+                            DAOFirebase.criarMensagem(mensagem: novaMensagem){id in
 //                                //STOP LOAD
-//                                novaMensagem.id = id
+                                novaMensagem.id = id
 //
-//                                let totem = Model.instance.getTotem(id: totemId)
-//                                print("Id totem:  \(String(describing: totem?.id))")
-//                                print("Mensagem id: \(novaMensagem.id)")
-//                                totem!.inserirMensagem(mensagem: novaMensagem)
+                                let totem = Model.instance.getTotem(id: totemId)
+                                print("Id totem:  \(String(describing: totem?.id))")
+                                print("Mensagem id: \(novaMensagem.id)")
+                                totem!.inserirMensagem(mensagem: novaMensagem)
 //                            }
                             //START LOAD
                         })
