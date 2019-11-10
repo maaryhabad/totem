@@ -61,7 +61,7 @@ class Totem {
 
         
         let totem = Totem(id: id, criador: nil, idCriador: idCriador, possuinte: nil, idPossuinte: idPossuinte, mensagens: mensagens, nome: nome)
-        print(totem)
+//        print(totem)
         return totem
     }
     

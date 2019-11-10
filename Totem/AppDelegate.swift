@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         let storage = Storage.storage()
 
+        Model.instance
         Model.instance.baixarInfos()
         return true
     }

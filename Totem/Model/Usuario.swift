@@ -10,14 +10,17 @@ import Foundation
 
 class Usuario {
     var imagem: String?
+    var iconeTotem: String?
     var contatos: [Usuario]?
     var contatosID: [String]?
     var nome: String?
     var id: String?
     var sentimento: String?
     
-    init(imagem: String, contatos: [Usuario]?, contatosID: [String]?, nome: String, sentimento: String?) {
+    init(id: String, imagem: String, iconeTotem: String, contatos: [Usuario]?, contatosID: [String]?, nome: String, sentimento: String?) {
+        self.id = id
         self.imagem = imagem
+        self.iconeTotem = iconeTotem
         self.contatos = contatos
         self.contatosID = contatosID
         self.nome = nome
@@ -25,13 +28,14 @@ class Usuario {
     }
     
     init(id: String) {
-        self.id = id
-        var usrFirebase = DAOFirebase.retornaUsuario(id: id)
-        self.imagem = usrFirebase?.imagem
-        self.contatos = usrFirebase?.contatos
-        self.contatosID = usrFirebase?.contatosID
-        self.nome = usrFirebase?.nome
-        self.sentimento = usrFirebase?.sentimento
+//        self.id = id
+//        DAOFirebase.retornaUsuario(id: id)
+//        DAOFirebase.retornaUsuario(userId: id){}
+//        self.imagem = usrFirebase?.imagem
+//        self.contatos = usrFirebase?.contatos
+//        self.contatosID = usrFirebase?.contatosID
+//        self.nome = usrFirebase?.nome
+//        self.sentimento = usrFirebase?.sentimento
     }
     
     
@@ -40,6 +44,7 @@ class Usuario {
         var usuarioData: [String:Any] = [:]
         
         usuarioData["imagem"] = self.imagem
+        usuarioData["iconeTotem"] = self.iconeTotem
 //        usuarioData["contatos"] = self.contatos
         usuarioData["nome"] = self.nome
         usuarioData["contatosID"] = self.contatosID
@@ -48,17 +53,17 @@ class Usuario {
         return usuarioData
     }
     
-    static func mapToObject(usuarioData: [String: Any]) -> Usuario {
+    static func mapToObject(usuarioData: [String: Any], id :String) -> Usuario {
 
         let nome: String = usuarioData["nome"] as! String
         let imagem: String = usuarioData["imagem"] as! String
-        let contatosID: [String] = (usuarioData["contatos"] as? [String]) ?? []
+        let iconeTotem: String = usuarioData["iconeTotem"] as! String
+        let contatosID: [String] = (usuarioData["contatosID"] as? [String]) ?? []
         let contatos = [Usuario]()
         let sentimento: String = usuarioData["sentimento"] as! String
       
         
-        let usuario = Usuario(imagem: imagem, contatos: contatos, contatosID: contatosID, nome: nome, sentimento: sentimento)
-        print(usuario)
+        let usuario = Usuario(id: id, imagem: imagem, iconeTotem: iconeTotem, contatos: contatos, contatosID: contatosID, nome: nome, sentimento: sentimento)
         return usuario
     }
     
@@ -71,14 +76,13 @@ class Usuario {
         var contatos = [Usuario]()
         
         for contato in IDList {
-            dispatchGroup.enter()
-
-            
-            DAOFirebase.retornaUsuario(id: contato) { usuario in
-
-                contatos.append(usuario)
-                dispatchGroup.leave()
-
+            if(contato != Model.instance.usuarioId){
+                dispatchGroup.enter()
+                
+                DAOFirebase.retornaUsuario(userId: contato) { usuario in
+                    contatos.append(usuario)
+                    dispatchGroup.leave()
+                }
             }
         }
         

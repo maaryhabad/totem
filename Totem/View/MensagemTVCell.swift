@@ -43,7 +43,10 @@ class MensagemTVCell: UITableViewCell {
     }
     
     @objc func playAction () {
-        //TODO play Action
+        print("Mensagem de: \(String(describing: self.nomeLabel.text))")
+        print("data: \(String(describing: self.dataLabel.text))")
+        print("tempo: \(String(describing: self.tempoLabel))")
+        print("nova msg: \(String(describing: self.flagMsgNova))")
     }
     
 }

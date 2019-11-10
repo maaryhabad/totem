@@ -55,7 +55,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     var skippedTo: Double = 0.0
     
     var audioFileName: URL!
-    var urlAudio: String
+    var urlAudio: URL!
     
     
     @IBOutlet var contaInfoView: GradientView!
@@ -63,10 +63,13 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     var emocoesView :[UIView] = []
     var emocoesImg :[UIImageView?] = []
     
-    
+    var selectIndexUsuario = -1
     var selectIndexMsg = -1
     var selectIndexEmocao = -1
     var cardContaIsOpen = Bool(true)
+    
+    var mensagensUsuario :[MensagemDomain]! = []
+    var contatosDomain :[ContatoDomain]! = []
     
     @IBOutlet var table: UITableView!{
         didSet{
@@ -145,6 +148,9 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
         
         //View de mensagens oculta
         detalhesView.isHidden = true
+        
+        //View Record
+        record.isHidden = true
         
         //Emoções
         self.emocoesImg = [self.felizImg, self.confianteImg, self.tranquiloImg, self.cansadoImg, self.irritadoImg]
@@ -228,7 +234,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("numberOfSections -> \(String(describing: tableView.restorationIdentifier))")
+        //print("numberOfSections -> \(String(describing: tableView.restorationIdentifier))")
         if(tableView.restorationIdentifier == "tableGravacoes"){
             return 1
         }
@@ -237,39 +243,52 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("numberOfRowsInSection -> \(String(describing: tableView.restorationIdentifier))")
+        //print("numberOfRowsInSection -> \(String(describing: tableView.restorationIdentifier))")
         if(tableView.restorationIdentifier == "tableGravacoes"){
-        return 8
+            if(self.selectIndexUsuario != -1){
+                self.mensagensUsuario = Model.instance.getMensagens(contatoDomain: self.contatosDomain[self.selectIndexUsuario])
+                return self.mensagensUsuario.count
+            }
+            return 0
         }
-        
-        return 3
+        self.contatosDomain = Model.instance.getContatos()
+        //print("qtde contatos usuario model: \(Model.instance.usuario.contatosID!.count)")
+        //print("qtde contatos domain: \(self.contatosDomain)")
+        return self.contatosDomain.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("cellForRowAt -> \(String(describing: tableView.restorationIdentifier))")
+        //print("cellForRowAt -> \(String(describing: tableView.restorationIdentifier))")
         if(tableView.restorationIdentifier == "tableGravacoes"){
             let cell = tableView.dequeueReusableCell(withIdentifier: "mensagemCell", for: indexPath) as! MensagemTVCell
+            let mensagem = self.mensagensUsuario[indexPath.row]
             
-            cell.nomeLabel.text = "ELVIN"
-            cell.dataLabel.text = "quinta-feira"
-            cell.tempoLabel.text = "00:53"
-            cell.isNew()
-            //TODO put mensagem string
-            cell.mensagemURL = "\(indexPath.row).wav"
+            cell.nomeLabel.text = mensagem.primeiroNome
+            cell.dataLabel.text = mensagem.dataEnvio
+            cell.tempoLabel.text = mensagem.duracaoAudio
+            if(mensagem.isVisualizado){
+                cell.isRead()
+            }else{
+                cell.isNew()
+            }
+            
+            cell.mensagemURL = mensagem.url
             
             return cell
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "contatoCell", for: indexPath) as! ContatoTVCell
-        cell.nome.text = "Elvin Sharvill"
-        cell.imagem.image = UIImage(named: "contatoElvin")
-        cell.totemIcon.image = UIImage(named: "TotemTrueIcon")
+        let contato = self.contatosDomain[indexPath.row]
+        
+        cell.nome.text = contato.nome
+        cell.imagem.image = UIImage(named: contato.imagem)
+        cell.totemIcon.image = UIImage(named: contato.flagTotemImg)
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("didSelectRowAt -> \(String(describing: tableView.restorationIdentifier))")
+        //print("didSelectRowAt -> \(String(describing: tableView.restorationIdentifier))")
         
         if(tableView.restorationIdentifier == "tableGravacoes"){
             let cell = tableView.cellForRow(at: indexPath) as! MensagemTVCell
@@ -286,12 +305,14 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             tableView.beginUpdates()
             tableView.endUpdates()
         }else{
+            self.selectIndexUsuario = indexPath.row
+            self.mensagensUsuario = Model.instance.getMensagens(contatoDomain: self.contatosDomain[indexPath.row])
             self.openCloseContaView()
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("heightForRowAt -> \(String(describing: tableView.restorationIdentifier))")
+        //print("heightForRowAt -> \(String(describing: tableView.restorationIdentifier))")
         if(tableView.restorationIdentifier == "tableGravacoes"){
             if(selectIndexMsg == indexPath.row){
                 return 150.0
@@ -314,7 +335,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     //Definir para qual tela irá no +
     //TODO: Fazer uma  segue@objc
     @objc func action(sender: UIBarButtonItem) {
-        print("hjxdbsdhjbv")
+        //print("hjxdbsdhjbv")
     }
     
     func fadeAnimationView(view :UIView, isHidden :Bool){
@@ -327,11 +348,6 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             view.isHidden = isHidden
         })
     }
-    
-    
-    
-    
-    
     
     @IBAction func returnContatos(_ sender: Any) {
         self.selectIndexMsg = -1
@@ -371,12 +387,14 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
 //                    detalhesView.isHidden = false
                     self.fadeAnimationView(view: detalhesView, isHidden: false)
                     table.isHidden = true
+                    record.isHidden = false
                 }else{
                     //1 contaView dps humor
                     self.efectContaView(alpha: alpha, flagHidden: flagHidden, multi: multi, constr :constr)
 //                    detalhesView.isHidden = true
                     self.fadeAnimationView(view: detalhesView, isHidden: true)
                     table.isHidden = false
+                    record.isHidden = true
                 }
             }
         }
@@ -470,7 +488,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
                 } else {
                     AKLog("Export succeeded")
                     self.audioFileName = data?.url
-                    print(data?.url.absoluteString)
+                    //print(data?.url.absoluteString)
                 }
             }
             running = .recorded
@@ -487,45 +505,58 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
                 
                 //Referência ao arquivo que eu vou fazer o upload
                 let archiveRef = storageRef.child(fileId)
-                print("primeiro")
+                //print("primeiro")
                 let uploadTask = archiveRef.putFile(from: audioFileName, metadata: nil) { metadata, error in
 
                     if let error = error {
-                        print("deu ruim de novo na metadata", error)
+                        //print("deu ruim de novo na metadata", error)
                         return
                     } else {
                         //MARK: Salvar no Firebase a nova mensagem
                         //MARK: para: contatoDomain.id
-                        print("segundo")
+                        //print("segundo")
                         
                         archiveRef.downloadURL(completion: {(url, error) in
                             self.urlAudio = url
 
                             let tempo = Mensagem.pegarDuracao(resource: self.audioFileName, filePath: fileId)
-//                            print(tempo)
+//                            //print(tempo)
 
+                            //MARK: Pegar como parâmetro esse id
                             let totemId = "UpdvqtyiLBxRrlWjTQJ8"
-                            print("FileID: ", fileId)
-                            print("Result: ", result)
-//                            print("UsuarioID: ", Model.instance.usuario.id!)
+                            //print("FileID: ", fileId)
+                            //print("Result: ", result)
+//                            //print("UsuarioID: ", Model.instance.usuario.id!)
 //
                             let usr = Model.instance.usuario
-                            let dt = Utils.convertStringtoDate(data: result)
-                            let novaMensagem = Mensagem(url: self.urlAudio.absoluteString, audio: fileId, datadeEnvio: dt, duracao: tempo, de: usr.id!, deNome: usr.nome!, para: totemId, salvo: false, visualizado: false)
+                            let dtEnvio = Utils.getDateString(date: result)
+                            
+                            //print("url: \(self.urlAudio.absoluteString)")
+                            //print("audio: \(fileId)")
+                            //print("datadeEnvio: \(dtEnvio)")
+                            //print("duracao: \(tempo)")
+                            //print("de: \(usr.id!)")
+                            //print(usr.contatosID)
+                            //print("deNome: \(usr.nome!)")
+                            //print("para: \(totemId)")
+                            
+                            let novaMensagem = Mensagem(url: self.urlAudio.absoluteString, audio: fileId, datadeEnvio: dtEnvio, duracao: tempo, de: usr.id!, deNome: usr.nome!, para: totemId, salvo: false, visualizado: false)
 
                             DAOFirebase.criarMensagem(mensagem: novaMensagem){id in
 //                                //STOP LOAD
                                 novaMensagem.id = id
-//
+                                
                                 let totem = Model.instance.getTotem(id: totemId)
-                                print("Id totem:  \(String(describing: totem?.id))")
-                                print("Mensagem id: \(novaMensagem.id)")
+                                //print("Id totem:  \(String(describing: totem?.id))")
+                                //print("Mensagem id: \(novaMensagem.id)")
                                 totem!.inserirMensagem(mensagem: novaMensagem)
-//                            }
+                                print("Mensagem salva com sucesso.")
+                                //MARK: Voltar bottomSheet na posição .ready
+                                //MARK: Atualizar tableMensagens
+                            }
                             //START LOAD
                         })
                     }
-                    print("acho que deu boa")
                 }
             
 //            totalPlayerTime.text = String(Int(duration/60)) + ":" + String(format: "%02d", Int(duration.truncatingRemainder(dividingBy: 60)))
