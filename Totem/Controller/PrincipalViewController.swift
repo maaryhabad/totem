@@ -37,6 +37,10 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var nomeLabelConta: UILabel!
     @IBOutlet var iconeTotemConta: UIImageView!
     
+    //Card detalhe contato
+    @IBOutlet var nomeContatoLabel: UILabel!
+    @IBOutlet var imageContato: UIImageView!
+    
     //Vars p/ view Record
     @IBOutlet var record: UIView!
     @IBOutlet var recordButton: UIImageView!
@@ -175,6 +179,10 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
 //        playerSlider.isContinuous = false
         setupPlot()
         
+        //Dados de contatos
+        self.contatosDomain = Model.instance.contatos
+        
+        
         let config = UIImage.SymbolConfiguration(scale: .small)
         let thumb = UIImage(systemName: "circle.fill")?.withConfiguration(config).withTintColor(.lightGray, renderingMode: .alwaysOriginal)
 //        playerSlider.setThumbImage(thumb, for: .normal)
@@ -249,18 +257,14 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print("numberOfRowsInSection -> \(String(describing: tableView.restorationIdentifier))")
         if(tableView.restorationIdentifier == "tableGravacoes"){
             if(self.selectIndexUsuario != -1){
-                self.mensagensUsuario = Model.instance.getMensagens(contatoDomain: self.contatosDomain[self.selectIndexUsuario])
-                ("qtde de mensagens: \(self.mensagensUsuario.count)")
+                self.mensagensUsuario =  self.contatosDomain[self.selectIndexUsuario].mensagens
+                print("qtde de mensagens: \(self.mensagensUsuario.count)")
                 return self.mensagensUsuario.count
             }
             return 0
         }
-        self.contatosDomain = Model.instance.getContatos()
-        //print("qtde contatos usuario model: \(Model.instance.usuario.contatosID!.count)")
-        //print("qtde contatos domain: \(self.contatosDomain)")
         return self.contatosDomain.count
     }
     
@@ -313,13 +317,16 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             tableView.endUpdates()
         }else{
             self.selectIndexUsuario = indexPath.row
-            self.mensagensUsuario = Model.instance.getMensagens(contatoDomain: self.contatosDomain[indexPath.row])
+            let contatoDomain = self.contatosDomain[self.selectIndexUsuario]
+            self.mensagensUsuario =  contatoDomain.mensagens
+            self.nomeContatoLabel.text = contatoDomain.nome
+            self.imageContato.image = UIImage(named: contatoDomain.imagem)
+            self.tableMensagens.reloadData()
             self.openCloseContaView()
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //print("heightForRowAt -> \(String(describing: tableView.restorationIdentifier))")
         if(tableView.restorationIdentifier == "tableGravacoes"){
             if(selectIndexMsg == indexPath.row){
                 return 150.0
@@ -357,12 +364,14 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func returnContatos(_ sender: Any) {
-        self.selectIndexMsg = -1
-        self.tableView(self.tableMensagens, heightForRowAt: self.tableMensagens.indexPathForSelectedRow!)
-        let cell = self.tableMensagens.cellForRow(at: self.tableMensagens.indexPathForSelectedRow!) as! MensagemTVCell
-        cell.detalhesGravacaoView.isHidden = true
-        self.tableMensagens.beginUpdates()
-        self.tableMensagens.endUpdates()
+        if(selectIndexMsg != -1){
+            self.selectIndexMsg = -1
+            self.tableView(self.tableMensagens, heightForRowAt: self.tableMensagens.indexPathForSelectedRow!)
+            let cell = self.tableMensagens.cellForRow(at: self.tableMensagens.indexPathForSelectedRow!) as! MensagemTVCell
+            cell.detalhesGravacaoView.isHidden = true
+            self.tableMensagens.beginUpdates()
+            self.tableMensagens.endUpdates()
+        }
         self.openCloseContaView()
     }
     
@@ -500,6 +509,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             running = .recorded
         } else if (running == .recorded) {
+            self.audioLabel.isHidden = false
             let duration = player.audioFile.duration
                 let result = Utils.pegarDataAtual()
             
@@ -531,21 +541,9 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
 
                             //MARK: Pegar como parâmetro esse id
                             let totemId = "UpdvqtyiLBxRrlWjTQJ8"
-                            //print("FileID: ", fileId)
-                            //print("Result: ", result)
-//                            //print("UsuarioID: ", Model.instance.usuario.id!)
 //
                             let usr = Model.instance.usuario
                             let dtEnvio = Utils.getDateString(date: result)
-                            
-                            //print("url: \(self.urlAudio.absoluteString)")
-                            //print("audio: \(fileId)")
-                            //print("datadeEnvio: \(dtEnvio)")
-                            //print("duracao: \(tempo)")
-                            //print("de: \(usr.id!)")
-                            //print(usr.contatosID)
-                            //print("deNome: \(usr.nome!)")
-                            //print("para: \(totemId)")
                             
                             let novaMensagem = Mensagem(url: self.urlAudio.absoluteString, audio: fileId, datadeEnvio: dtEnvio, duracao: tempo, de: usr.id!, deNome: usr.nome!, para: totemId, salvo: false, visualizado: false)
 
@@ -562,13 +560,18 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
                                 //MARK: Atualizar tableMensagens
                             }
                             //START LOAD
-                            self.recordHeight.constant = 150
-                            self.recordButton.image = UIImage(named: "BtnStart")
-                            self.audioLabel.isHidden = true
-                            UIView.animate(withDuration: 0.5, animations: {
-                                self.view.layoutIfNeeded()
-                            })
-                            self.running = .ready
+                            Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (Timer) in
+                                self.recordHeight.constant = 150
+                                self.recordButton.image = UIImage(named: "BtnGravar")
+                                self.recordButton.isHidden = false
+                                self.audioLabel.isHidden = true
+                                self.tableMensagens.reloadData()
+                                UIView.animate(withDuration: 0.5, animations: {
+                                    self.view.layoutIfNeeded()
+                                })
+                                self.running = .ready
+                            }
+                            
                         })
                     }
                 }

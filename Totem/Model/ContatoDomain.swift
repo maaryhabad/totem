@@ -15,6 +15,7 @@ class ContatoDomain {
     var totemIDUsuario: String
     var totemIDContato: String?
     var totem :Totem?
+    var mensagens :[MensagemDomain]? = []
     
     init(contato: Usuario) {
         self.nome = contato.nome!
@@ -32,16 +33,34 @@ class ContatoDomain {
             }
         }
         
+        //Pegar totem usuario
+        DAOFirebase.buscarTotem(idPossuinte: contato.id!, idCriador: Model.instance.usuario.id!){ id in
+            self.totemIDUsuario = id
+            if(id != ""){
+                DAOFirebase.realTimeTotem(id: id){ totem in
+//                    self.totem = totem
+                    Model.instance.getMensagens(contatoDomain: self){mensagens  in
+                        self.mensagens = mensagens
+                    }
+                }
+            }
+        }
+        
         //Pegar totem contato
         DAOFirebase.buscarTotem(idPossuinte: Model.instance.usuario.id!, idCriador: contato.id!){ id in
             self.totemIDContato = id
-            print("Totem id: \(id)")
             if(id != ""){
                 DAOFirebase.realTimeTotem(id: id){ totem in
                     self.totem = totem
+                    self.totem?.atualizarSentimento()
+                    Model.instance.getMensagens(contatoDomain: self){mensagens  in
+                        self.mensagens = mensagens
+                    }
                 }
             }
         }
     }
+    
+    
     
 }

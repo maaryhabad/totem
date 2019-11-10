@@ -58,9 +58,8 @@ class Mensagem {
     }
 
     
-    static func mapToObject(mensagemData: [String: Any]) -> Mensagem {
+    static func mapToObject(mensagemData: [String: Any], id:String) -> Mensagem {
 
-        let id: String = mensagemData["id"] as! String
         let url :String = mensagemData["url"] as! String
         let audio: String = mensagemData["audio"] as! String
         let datadeEnvio: String = mensagemData["datadeEnvio"] as! String

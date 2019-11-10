@@ -197,21 +197,21 @@ class GravarViewController: UIViewController, AVAudioRecorderDelegate {
         present(vc, animated: true, completion: nil)
     }
     
-    static func realTimeTotem(id: String){
-        let db = Firestore.firestore()
-        var totem: Totem?
-        
-        db.collection("totem").whereField(FieldPath.documentID(), isEqualTo: id).addSnapshotListener({(qs, err) in
-            if let err = err {
-                print("Erro pegando os usuarios", err)
-            } else {
-                guard let querySnapshot = qs else { return }
-                guard querySnapshot.documents.count > 0 else  { return }
-
-                totem = Totem.mapToObject(totemData: querySnapshot.documents[0].data(), id: querySnapshot.documents[0].documentID)
-                print("Atualizou totem \(String(describing: totem?.nome))")
-            }
-        })
-    }
+//    static func realTimeTotem(id: String){
+//        let db = Firestore.firestore()
+//        var totem: Totem?
+//
+//        db.collection("totem").whereField(FieldPath.documentID(), isEqualTo: id).addSnapshotListener({(qs, err) in
+//            if let err = err {
+//                print("Erro pegando os usuarios", err)
+//            } else {
+//                guard let querySnapshot = qs else { return }
+//                guard querySnapshot.documents.count > 0 else  { return }
+//
+//                totem = Totem.mapToObject(totemData: querySnapshot.documents[0].data(), id: querySnapshot.documents[0].documentID)
+//                print("Atualizou totem \(String(describing: totem?.nome))")
+//            }
+//        })
+//    }
 }
 

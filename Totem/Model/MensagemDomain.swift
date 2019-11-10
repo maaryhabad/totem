@@ -20,7 +20,7 @@ class MensagemDomain {
         self.primeiroNome = msg.deNome.split(separator: " ")[0].uppercased()
         self.duracaoAudio = msg.duracao
         self.isVisualizado = msg.visualizado
-        self.dataEnvio = Utils.getDateString(date: msg.datadeEnvio)
+        self.dataEnvio = msg.datadeEnvio
         self.url = msg.url
     }
     

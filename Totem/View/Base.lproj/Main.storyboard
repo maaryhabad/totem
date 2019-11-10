@@ -624,8 +624,10 @@
                         <outlet property="humorTituloView" destination="Wsc-tA-j4o" id="lMC-8U-oXC"/>
                         <outlet property="humoresView" destination="5bV-Z2-qvL" id="Y0B-OK-hDC"/>
                         <outlet property="iconeTotemConta" destination="SHX-Io-tDl" id="qQr-8o-YKo"/>
+                        <outlet property="imageContato" destination="4rN-lN-h0k" id="5QH-iU-Nb9"/>
                         <outlet property="irritadoImg" destination="ajH-8x-Ucx" id="dqc-OM-1Yk"/>
                         <outlet property="irritadoView" destination="qEh-g7-i2G" id="Gkd-ep-agW"/>
+                        <outlet property="nomeContatoLabel" destination="8la-5b-CJN" id="GJc-tX-zBs"/>
                         <outlet property="nomeLabelConta" destination="S3N-FF-KXJ" id="1pU-fK-c5F"/>
                         <outlet property="record" destination="vcc-QC-Gih" id="UIr-KK-Dew"/>
                         <outlet property="recordButton" destination="Rns-9R-TJ8" id="o48-yU-5tk"/>

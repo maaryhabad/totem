@@ -141,9 +141,9 @@ class DAOFirebase {
             "contatos": contatosID
         ]) { err in
             if let err = err {
-                //print("Erro ao fazer o update do documento", err)
+                print("Erro ao fazer o update do documento", err)
             } else {
-                //print("Fez upload do update do documento")
+//                print("Fez upload do update do documento")
             }
         }
         
@@ -156,10 +156,10 @@ class DAOFirebase {
         var id: String! = nil
         
         var ref: DocumentReference? = nil
-        var totemDic: [String:Any] = totem.mapToDictionary()
+        let totemDic: [String:Any] = totem.mapToDictionary()
         ref = db.collection("totem").addDocument(data: totemDic) { err in
             if let err = err {
-                //print("Erro na adição do documento totem: \(err)")
+                print("Erro na adição do documento totem: \(err)")
             } else {
                 //print("Documento adicionado com a ID: \(ref!.documentID)")
                 return id = ref?.documentID
@@ -186,19 +186,21 @@ class DAOFirebase {
         return totens
     }
     
-    static func buscarMensagens(field: String, id: String) -> [Mensagem] {
+    static func buscarMensagens(id: String, completion: @escaping (([Mensagem])->())) -> [Mensagem] {
         let db = Firestore.firestore()
         var mensagens: [Mensagem] = []
         
-        db.collection("totem").whereField(field, isEqualTo: id).getDocuments() { (qs, err) in
+        db.collection("mensagens").whereField("para", isEqualTo: id).getDocuments() { (qs, err) in
             if err != nil {
-                //print("Erro na busca pelo totem", err)
+                print("Erro na busca pelo totem", err!)
             } else {
                 for document in qs!.documents {
-                    let mensagem = Mensagem.mapToObject(mensagemData: document.data())
+                    let mensagem = Mensagem.mapToObject(mensagemData: document.data(), id: document.documentID)
                     mensagens.append(mensagem)
                 }
             }
+//            print("buscarMensagens -> Total msgs: \(mensagens.count)")
+            completion(mensagens)
         }
         return mensagens
         
@@ -215,7 +217,6 @@ class DAOFirebase {
                 for document in qs!.documents {
                     let totemIdcriador = ("\(document.data()["idCriador"] ?? "")")
                     if(totemIdcriador == idCriador){
-                        print("entrou no if buscarTotem")
                         totemId = ("\(document.documentID)")
                     }
                 }
@@ -231,7 +232,7 @@ class DAOFirebase {
         let db = Firestore.firestore()
         
         db.collection("totem").document(totem.id!).updateData([
-            "mensagens" : totem.mensagens
+            "mensagens" : totem.mensagens!
                ]) { err in
                    if let err = err {
                        print("Erro ao fazer o update do documento", err)
@@ -244,18 +245,18 @@ class DAOFirebase {
     
     //MARK: Listeners
     
-    func listenerContatos() {
-        let db = Firestore.firestore()
-        
-        db.collection("usuario").document(Model.instance.usuario.id!).addSnapshotListener { documentSnapshot, error in
-            guard let document = documentSnapshot else {
-                //print("Erro no listener do usuário: \(error!)")
-                return
-            }
-            let source = document.metadata.hasPendingWrites ? "Local" : "Server"
-            //print("\(source) data: \(document.data() ?? [:])")
-        }
-    }
+//    func listenerContatos() {
+//        let db = Firestore.firestore()
+//
+//        db.collection("usuario").document(Model.instance.usuario.id!).addSnapshotListener { documentSnapshot, error in
+//            guard let document = documentSnapshot else {
+//                //print("Erro no listener do usuário: \(error!)")
+//                return
+//            }
+//            let source = document.metadata.hasPendingWrites ? "Local" : "Server"
+//            //print("\(source) data: \(document.data() ?? [:])")
+//        }
+//    }
     
     static func realTimeTotem(id: String, completion: @escaping ((Totem)->())) -> Totem!{
         let db = Firestore.firestore()
