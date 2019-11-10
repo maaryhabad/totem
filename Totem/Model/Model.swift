@@ -15,8 +15,9 @@ class Model {
     private init() {
         
     }
+    var bleManager: BLEManager! = BLEManager.instance
     
-    var usuarioId :String = "fAa4dnL8mmu8d1SgsD5u"//UxzcHc7lR2YmGY0n4OEf"
+    var usuarioId :String = "UxzcHc7lR2YmGY0n4OEf" // "fAa4dnL8mmu8d1SgsD5u"
     var usuario = Usuario()
     var totens: [Totem]! = [] //Meus totens
     var contatos :[ContatoDomain]! = []
