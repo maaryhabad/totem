@@ -277,6 +277,22 @@ class DAOFirebase {
         return totem
     }
     
+    static func updateTotem(totem: Totem) {
+            let db = Firestore.firestore()
+            //print(contatosID)
+        db.collection("totem").document(totem.id!).updateData([
+                "mensagens": totem.mensagens,
+                "sentimento": totem.sentimento
+            ]) { err in
+                if let err = err {
+                    print("Erro ao fazer o update do documento", err)
+                } else {
+    //                print("Fez upload do update do documento")
+                }
+            }
+            
+        }
+    
 //    func listenerMensagens() {
 //        let db = Firestore.firestore()
 //

@@ -8,90 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Gravar View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController storyboardIdentifier="gravar" id="BYZ-38-t0r" customClass="GravarViewController" customModule="Totem" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snB-2U-U9e">
-                                <rect key="frame" x="158" y="426.5" width="98" height="53"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <state key="normal" title="Gravar"/>
-                                <connections>
-                                    <action selector="gravarAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e8S-sK-GYP"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIR-Ul-Fmw">
-                                <rect key="frame" x="176" y="487" width="62" height="53"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="playAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dlb-8c-PZN"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJ2-at-jo4">
-                                <rect key="frame" x="161.5" y="548" width="91" height="53"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                <state key="normal" title="Salvar"/>
-                                <connections>
-                                    <action selector="apertouSalvar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xK7-PS-d74"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97j-k7-qtI">
-                                <rect key="frame" x="152" y="609" width="110" height="46"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <state key="normal" title="Contatos"/>
-                                <connections>
-                                    <action selector="apertouContatos:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DB4-Lv-fYn"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="snB-2U-U9e" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="6Lv-Pw-IR3"/>
-                            <constraint firstItem="pJ2-at-jo4" firstAttribute="top" secondItem="ZIR-Ul-Fmw" secondAttribute="bottom" constant="8" id="GD3-BC-7NS"/>
-                            <constraint firstItem="ZIR-Ul-Fmw" firstAttribute="top" secondItem="snB-2U-U9e" secondAttribute="bottom" constant="7.5" id="MmC-5z-tzK"/>
-                            <constraint firstItem="pJ2-at-jo4" firstAttribute="centerX" secondItem="ZIR-Ul-Fmw" secondAttribute="centerX" id="Rbp-Fw-aVV"/>
-                            <constraint firstItem="97j-k7-qtI" firstAttribute="top" secondItem="pJ2-at-jo4" secondAttribute="bottom" constant="8" id="a20-e9-8dW"/>
-                            <constraint firstItem="ZIR-Ul-Fmw" firstAttribute="centerX" secondItem="snB-2U-U9e" secondAttribute="centerX" id="gSS-tG-lNp"/>
-                            <constraint firstItem="snB-2U-U9e" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="lry-07-OdM"/>
-                            <constraint firstItem="97j-k7-qtI" firstAttribute="centerX" secondItem="pJ2-at-jo4" secondAttribute="centerX" id="rkb-zv-Abf"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Tp7-Lp-uI5"/>
-                    <connections>
-                        <outlet property="gravarBotao" destination="snB-2U-U9e" id="uhR-IV-8mU"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="138" y="1497"/>
-        </scene>
-        <!--Totem love-->
-        <scene sceneID="mC8-dr-aYw">
-            <objects>
-                <tableViewController id="S54-hf-nwq" customClass="PrincipalTableVC" customModule="Totem" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ruo-eP-Bvw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.97264021639999998" green="0.97631102800000003" blue="0.98431617019999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <color key="sectionIndexBackgroundColor" red="0.97656184430000004" green="0.98023241760000002" blue="0.98823767900000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <connections>
-                            <outlet property="dataSource" destination="S54-hf-nwq" id="ymM-9U-wCa"/>
-                            <outlet property="delegate" destination="S54-hf-nwq" id="2Es-dO-zgB"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Totem love" prompt="A" id="rh4-70-QAF"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J51-9r-yox" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1766.6666666666667" y="801.5625"/>
-        </scene>
-        <!--Totem-->
+        <!--Tot-->
         <scene sceneID="Nx4-cK-RP0">
             <objects>
                 <viewController id="77X-74-fXC" customClass="PrincipalViewController" customModule="Totem" customModuleProvider="target" sceneMemberID="viewController">
@@ -578,18 +495,37 @@
                                             <outletCollection property="gestureRecognizers" destination="m5c-az-LFX" appends="YES" id="4Ij-29-XrE"/>
                                         </connections>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r5Y-4K-3Wy" userLabel="LoadIndicatorView">
+                                        <rect key="frame" x="72" y="0.0" width="240" height="150"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="3Mu-d6-3K1" userLabel="loadIndicator">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="Black"/>
+                                        <constraints>
+                                            <constraint firstItem="3Mu-d6-3K1" firstAttribute="centerX" secondItem="r5Y-4K-3Wy" secondAttribute="centerX" id="AL5-Ry-Mb2"/>
+                                            <constraint firstItem="3Mu-d6-3K1" firstAttribute="width" secondItem="r5Y-4K-3Wy" secondAttribute="width" id="STT-lk-nl6"/>
+                                            <constraint firstItem="3Mu-d6-3K1" firstAttribute="height" secondItem="r5Y-4K-3Wy" secondAttribute="height" id="eLe-Bq-L6l"/>
+                                            <constraint firstItem="3Mu-d6-3K1" firstAttribute="centerY" secondItem="r5Y-4K-3Wy" secondAttribute="centerY" id="wHv-We-crQ"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" name="Black"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="j6P-Lc-fZD" secondAttribute="trailing" id="7Tv-f6-ed7"/>
                                     <constraint firstAttribute="height" constant="150" id="UUP-3S-LTO"/>
                                     <constraint firstItem="Rns-9R-TJ8" firstAttribute="centerX" secondItem="vcc-QC-Gih" secondAttribute="centerX" id="UlP-TM-J23"/>
+                                    <constraint firstItem="r5Y-4K-3Wy" firstAttribute="centerY" secondItem="vcc-QC-Gih" secondAttribute="centerY" id="XX8-lP-DiS"/>
                                     <constraint firstItem="1xe-IL-jHq" firstAttribute="top" secondItem="vcc-QC-Gih" secondAttribute="top" id="YAB-Bm-jfa"/>
                                     <constraint firstItem="j6P-Lc-fZD" firstAttribute="top" secondItem="vcc-QC-Gih" secondAttribute="top" constant="-25" id="agM-45-EOE"/>
                                     <constraint firstItem="j6P-Lc-fZD" firstAttribute="leading" secondItem="vcc-QC-Gih" secondAttribute="leading" id="bI3-FZ-aIX"/>
                                     <constraint firstAttribute="bottom" secondItem="Rns-9R-TJ8" secondAttribute="bottom" constant="55" id="bPn-v7-iZY"/>
                                     <constraint firstItem="1xe-IL-jHq" firstAttribute="leading" secondItem="vcc-QC-Gih" secondAttribute="leading" id="j2T-05-0Wm"/>
+                                    <constraint firstItem="r5Y-4K-3Wy" firstAttribute="width" secondItem="vcc-QC-Gih" secondAttribute="width" multiplier="0.625" id="l3V-uv-Cit"/>
                                     <constraint firstAttribute="trailing" secondItem="1xe-IL-jHq" secondAttribute="trailing" id="mGb-Me-UTK"/>
+                                    <constraint firstItem="r5Y-4K-3Wy" firstAttribute="height" secondItem="vcc-QC-Gih" secondAttribute="height" id="sOJ-h4-Th7"/>
+                                    <constraint firstItem="r5Y-4K-3Wy" firstAttribute="centerX" secondItem="vcc-QC-Gih" secondAttribute="centerX" id="wI1-by-qbc"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -605,7 +541,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g5K-ro-R2Z"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Totem" id="HWd-KM-tza"/>
+                    <navigationItem key="navigationItem" title="Tot" id="HWd-KM-tza"/>
                     <connections>
                         <outlet property="audioInputPlot" destination="j6P-Lc-fZD" id="Mxx-4T-AWf"/>
                         <outlet property="audioLabel" destination="Vjz-aN-Eqz" id="fRa-jg-QOn"/>
@@ -627,6 +563,8 @@
                         <outlet property="imageContato" destination="4rN-lN-h0k" id="5QH-iU-Nb9"/>
                         <outlet property="irritadoImg" destination="ajH-8x-Ucx" id="dqc-OM-1Yk"/>
                         <outlet property="irritadoView" destination="qEh-g7-i2G" id="Gkd-ep-agW"/>
+                        <outlet property="loadIndicator" destination="3Mu-d6-3K1" id="ejY-IM-kId"/>
+                        <outlet property="loadInicatorView" destination="r5Y-4K-3Wy" id="gMF-d2-ZMA"/>
                         <outlet property="nomeContatoLabel" destination="8la-5b-CJN" id="GJc-tX-zBs"/>
                         <outlet property="nomeLabelConta" destination="S3N-FF-KXJ" id="1pU-fK-c5F"/>
                         <outlet property="record" destination="vcc-QC-Gih" id="UIr-KK-Dew"/>
@@ -646,24 +584,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1YS-ro-738" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2676.811594202899" y="1489.9553571428571"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="eHs-vi-NDy">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DOn-Xh-PAQ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Cn-Fv-IT8">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="S54-hf-nwq" kind="relationship" relationship="rootViewController" id="qjP-AX-kY3"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ipR-j3-tb4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="856.52173913043487" y="801.5625"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5hL-kF-y1g">

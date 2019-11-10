@@ -50,6 +50,10 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var audioLabel: UILabel!
     var displayLink :CADisplayLink! = nil
     
+    //Load Indicator
+    @IBOutlet var loadInicatorView: UIView!
+    @IBOutlet var loadIndicator: UIActivityIndicatorView!
+    
     //Var para audio
     var micMixer: AKMixer!
     var recorder: AKNodeRecorder!
@@ -156,6 +160,9 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
         //View conta
         self.popularCardConta()
         
+        //View loadIndicator
+        self.loadInicatorView.isHidden = true
+        
         //View de mensagens oculta
         detalhesView.isHidden = true
         
@@ -206,6 +213,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             selectedView = 4
         }
         
+        
         if(selectedView == self.selectIndexEmocao){
             self.selectIndexEmocao = -1
             self.mudarCardConta(selectedView: -1)
@@ -234,14 +242,19 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
         switch selectedView {
         case 0:
             self.contaInfoView.changeColors(x: #colorLiteral(red: 0.9930667281, green: 0.9711793065, blue: 0, alpha: 1), y: #colorLiteral(red: 0.8069227141, green: 0.605541353, blue: 0.001397269817, alpha: 1))
+            self.mudarSentimento(sentimento: "feliz")
         case 1:
             self.contaInfoView.changeColors(x: #colorLiteral(red: 0.2394615939, green: 0.5985017667, blue: 1, alpha: 1), y: #colorLiteral(red: 0.2802936715, green: 0.3074454975, blue: 0.7883472621, alpha: 1))
+            self.mudarSentimento(sentimento: "confiante")
         case 2:
             self.contaInfoView.changeColors(x: #colorLiteral(red: 0.2432119415, green: 1, blue: 0.349971955, alpha: 1), y: #colorLiteral(red: 0.1078010393, green: 0.7889236992, blue: 0, alpha: 1))
+            self.mudarSentimento(sentimento: "tranquilo")
         case 3:
             self.contaInfoView.changeColors(x: #colorLiteral(red: 0.7977316976, green: 0.3991055914, blue: 0.6926496238, alpha: 1), y: #colorLiteral(red: 0.5898076296, green: 0.2702057064, blue: 0.6506463289, alpha: 1))
+            self.mudarSentimento(sentimento: "cansado")
         case 4:
             self.contaInfoView.changeColors(x: #colorLiteral(red: 0.9810246825, green: 0.5891146064, blue: 0.2307883501, alpha: 1), y: #colorLiteral(red: 0.9276855588, green: 0.2729465365, blue: 0.3393034637, alpha: 1))
+            self.mudarSentimento(sentimento: "irritado")
         default:
             self.contaInfoView.changeColors(x: UIColor.white, y: UIColor.white)
         }
@@ -481,6 +494,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             audioInputPlot.isHidden = false
             
         } else if (running == .recording) {
+            self.audioLabel.isHidden = false
             recordButton.image = UIImage(named: "BtnEnviar")
             audioInputPlot.isHidden = true
             audioLabelView.isHidden = false
@@ -498,6 +512,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             let duration = player.audioFile.duration
             recorder.stop()
             audioLabel.text = String(Int(duration/60)) + ":" + String(format: "%02d", Int(duration.truncatingRemainder(dividingBy: 60)))
+            
             tape.exportAsynchronously(name: "tmp.wav", baseDir: .documents, exportFormat: .wav) {data, exportError in
                 if let error = exportError {
                     AKLog("Export Failed \(error)")
@@ -509,7 +524,10 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             running = .recorded
         } else if (running == .recorded) {
-            self.audioLabel.isHidden = false
+            //Inicia load
+            self.loadInicatorView.isHidden = false
+            self.loadIndicator.startAnimating()
+            
             let duration = player.audioFile.duration
                 let result = Utils.pegarDataAtual()
             
@@ -540,7 +558,7 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
 //                            //print(tempo)
 
                             //MARK: Pegar como parâmetro esse id
-                            let totemId = "UpdvqtyiLBxRrlWjTQJ8"
+                            let totemId = Model.instance.contatos[self.selectIndexUsuario].totemIDUsuario
 //
                             let usr = Model.instance.usuario
                             let dtEnvio = Utils.getDateString(date: result)
@@ -570,13 +588,13 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
                                     self.view.layoutIfNeeded()
                                 })
                                 self.running = .ready
+                                self.loadIndicator.stopAnimating()
+                                self.loadInicatorView.isHidden = true
                             }
                             
                         })
                     }
                 }
-            
-//            totalPlayerTime.text = String(Int(duration/60)) + ":" + String(format: "%02d", Int(duration.truncatingRemainder(dividingBy: 60)))
         }
     }
     
@@ -595,16 +613,9 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
         self.iconeTotemConta.image = UIImage(named: Model.instance.usuario.iconeTotem!)
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func mudarSentimento(sentimento :String){
+        for totem in Model.instance.totens{
+            totem.mudarSentimento(sentimento: sentimento)
+        }
     }
-    */
-
 }

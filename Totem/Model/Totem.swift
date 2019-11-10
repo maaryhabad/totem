@@ -77,6 +77,30 @@ class Totem {
     func atualizarSentimento(){
         print("MUDAR SENTIMENTO DO TOTEM \(self.nome) PARA \(self.sentimento)")
         //MARK: Implementar bluetooth aqui
+        var strSentimento :String = ""
+        
+        if(self.sentimento == "Feliz"){
+            selectedView = 0
+            strSentimento = "HIGHYELLOW"
+        }else if(self.sentimento ==  "Confiante"){
+            selectedView = 1
+            strSentimento = "HIGHBLUE"
+        }else if(self.sentimento ==  "Tranquilo"){
+            selectedView = 2
+            strSentimento = "HIGHGREEN"
+        }else if(self.sentimento ==  "Cansado"){
+            selectedView = 3
+            strSentimento = "HIGHPURPLE"
+        }else if(self.sentimento ==  "Irritado"){
+            selectedView = 4
+            strSentimento = "HIGHRED"
+        }
+        
+    }
+    
+    func mudarSentimento(sentimento :String){
+        self.sentimento = sentimento
+        DAOFirebase.updateTotem(totem: self)
     }
     
 }

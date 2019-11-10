@@ -47,6 +47,8 @@ class MensagemTVCell: UITableViewCell {
         print("data: \(String(describing: self.dataLabel.text))")
         print("tempo: \(String(describing: self.tempoLabel))")
         print("nova msg: \(String(describing: self.flagMsgNova))")
+        
+        self.isRead()
     }
     
 }
