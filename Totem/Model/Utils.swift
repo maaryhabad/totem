@@ -30,6 +30,31 @@ class Utils {
         let date = dateFormatter.date(from: data)
         return date!
     }
+    
+    static func toTimeString(segundos :Int) -> String{
+        let m = segundos / 60 as! Int
+        let s = segundos - (segundos * m)
+        
+        let mString = NSString(format: "%02d", m)
+        let sString = NSString(format: "%02d", s)
+        let tempo = "\(mString):\(sString)"
+        return tempo
+    }
+    
+    static func getDateString(date :String) -> String{
+        
+        let startMes = date.index(date.startIndex, offsetBy: 4)
+        let endMes = date.index(date.endIndex, offsetBy: -8)
+        let rangeMes = startMes..<endMes
+        let mes = String(date[rangeMes])
+        
+        let startDia = date.index(date.startIndex, offsetBy: 6)
+        let endDia = date.index(date.endIndex, offsetBy: -6)
+        let rangeDia = startDia..<endDia
+        let dia = String(date[rangeDia])
+        
+        return "\(dia)/\(mes)"
+    }
 
     // fazer função que pega string e retorna um Usuario
     // fazer função que pega string e retorna uma lista de usuários

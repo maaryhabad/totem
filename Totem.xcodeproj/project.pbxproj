@@ -8,10 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		1F908EFD23686C860006653A /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F908EFC23686C860006653A /* Colors.xcassets */; };
+		1F9A7376236C615400A7AFF0 /* BottomSheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F9A7375236C615400A7AFF0 /* BottomSheet.storyboard */; };
+		1F9A7378236C6AC700A7AFF0 /* BottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9A7377236C6AC700A7AFF0 /* BottomSheetController.swift */; };
 		1FF5F23C2369C7F600624A33 /* OnboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5F23B2369C7F600624A33 /* OnboardController.swift */; };
 		1FF5F23E2369D39F00624A33 /* OnboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5F23D2369D39F00624A33 /* OnboardCell.swift */; };
 		2A88686FF8061E5A18AEA62B /* Pods_totem_totemUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51D31FA5E68DB31C6F2CAC28 /* Pods_totem_totemUITests.framework */; };
+		3906B100236860E80022FA0E /* PrincipalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3906B0FF236860E80022FA0E /* PrincipalViewController.swift */; };
+		3916637D23686ADD00C2C7B3 /* PrincipalTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3916637C23686ADD00C2C7B3 /* PrincipalTableVC.swift */; };
+		392CCF712378C4450053A0FD /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392CCF702378C4450053A0FD /* BLEManager.swift */; };
+		392FE68A2369BC68005D72F0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392FE6892369BC68005D72F0 /* Extensions.swift */; };
+		397F6BFC23687627008980B3 /* ContatoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397F6BFA23687627008980B3 /* ContatoTVCell.swift */; };
+		397F6BFD23687627008980B3 /* ContatoTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 397F6BFB23687627008980B3 /* ContatoTVCell.xib */; };
 		3989F9822367291C00F3C070 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3989F9812367291C00F3C070 /* GoogleService-Info.plist */; };
+		39E10905236C6B77002E346A /* MensagemTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E10903236C6B77002E346A /* MensagemTVCell.swift */; };
+		39E10906236C6B77002E346A /* MensagemTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39E10904236C6B77002E346A /* MensagemTVCell.xib */; };
 		78355AC43B5F000870EAFA39 /* Pods_totemTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C084831F8043CA45908100D4 /* Pods_totemTests.framework */; };
 		7F5360CA12A38481DC31E451 /* Pods_totem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */; };
 		CD27435B237700BC00B2D25B /* MensagemDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD27435A237700BC00B2D25B /* MensagemDomain.swift */; };
@@ -22,7 +32,6 @@
 		CD922C2C2371A24C001A52D1 /* Contatos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD922C2B2371A24C001A52D1 /* Contatos.storyboard */; };
 		CD922C2E2371A2F4001A52D1 /* ContatosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD922C2D2371A2F4001A52D1 /* ContatosViewController.swift */; };
 		CD922C302371A346001A52D1 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD922C2F2371A346001A52D1 /* BottomSheetViewController.swift */; };
-		CD922C322371A3E0001A52D1 /* Sentimento.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD922C312371A3E0001A52D1 /* Sentimento.swift */; };
 		CD99236F2361EA6600D31E0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD99236E2361EA6600D31E0E /* AppDelegate.swift */; };
 		CD9923712361EA6600D31E0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923702361EA6600D31E0E /* SceneDelegate.swift */; };
 		CD9923732361EA6600D31E0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9923722361EA6600D31E0E /* ViewController.swift */; };
@@ -58,10 +67,20 @@
 
 /* Begin PBXFileReference section */
 		1F908EFC23686C860006653A /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = Totem/View/Colors.xcassets; sourceTree = SOURCE_ROOT; };
+		1F9A7375236C615400A7AFF0 /* BottomSheet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = BottomSheet.storyboard; path = Totem/View/BottomSheet.storyboard; sourceTree = SOURCE_ROOT; };
+		1F9A7377236C6AC700A7AFF0 /* BottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BottomSheetController.swift; path = Totem/Controller/BottomSheetController.swift; sourceTree = SOURCE_ROOT; };
 		1FF5F23B2369C7F600624A33 /* OnboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardController.swift; path = Totem/Controller/OnboardController.swift; sourceTree = SOURCE_ROOT; };
 		1FF5F23D2369D39F00624A33 /* OnboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardCell.swift; path = Totem/View/OnboardCell.swift; sourceTree = SOURCE_ROOT; };
 		29E8C8D14B8DFE638EF316FE /* Pods_totem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3906B0FF236860E80022FA0E /* PrincipalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrincipalViewController.swift; path = Totem/Controller/PrincipalViewController.swift; sourceTree = SOURCE_ROOT; };
+		3916637C23686ADD00C2C7B3 /* PrincipalTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrincipalTableVC.swift; path = Totem/Controller/PrincipalTableVC.swift; sourceTree = SOURCE_ROOT; };
+		392CCF702378C4450053A0FD /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BLEManager.swift; path = Totem/Controller/BLEManager.swift; sourceTree = SOURCE_ROOT; };
+		392FE6892369BC68005D72F0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Totem/Model/Extensions.swift; sourceTree = SOURCE_ROOT; };
+		397F6BFA23687627008980B3 /* ContatoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContatoTVCell.swift; path = Totem/View/ContatoTVCell.swift; sourceTree = SOURCE_ROOT; };
+		397F6BFB23687627008980B3 /* ContatoTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ContatoTVCell.xib; path = Totem/View/ContatoTVCell.xib; sourceTree = SOURCE_ROOT; };
 		3989F9812367291C00F3C070 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "Totem/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		39E10903236C6B77002E346A /* MensagemTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MensagemTVCell.swift; path = Totem/View/MensagemTVCell.swift; sourceTree = SOURCE_ROOT; };
+		39E10904236C6B77002E346A /* MensagemTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MensagemTVCell.xib; path = Totem/View/MensagemTVCell.xib; sourceTree = SOURCE_ROOT; };
 		51D31FA5E68DB31C6F2CAC28 /* Pods_totem_totemUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_totem_totemUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6496FF24D3D7E57DE2B80836 /* Pods-totemTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-totemTests.debug.xcconfig"; path = "Target Support Files/Pods-totemTests/Pods-totemTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6D7135A9C76226CE5B45EFC3 /* Pods-totem.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-totem.debug.xcconfig"; path = "Target Support Files/Pods-totem/Pods-totem.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,7 +96,6 @@
 		CD922C2B2371A24C001A52D1 /* Contatos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Contatos.storyboard; path = Totem/Contatos.storyboard; sourceTree = SOURCE_ROOT; };
 		CD922C2D2371A2F4001A52D1 /* ContatosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContatosViewController.swift; path = Totem/ContatosViewController.swift; sourceTree = SOURCE_ROOT; };
 		CD922C2F2371A346001A52D1 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BottomSheetViewController.swift; path = Totem/BottomSheetViewController.swift; sourceTree = SOURCE_ROOT; };
-		CD922C312371A3E0001A52D1 /* Sentimento.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sentimento.swift; path = Totem/Model/Sentimento.swift; sourceTree = SOURCE_ROOT; };
 		CD99236B2361EA6600D31E0E /* Totem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Totem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD99236E2361EA6600D31E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD9923702361EA6600D31E0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +169,11 @@
 				CD922C2B2371A24C001A52D1 /* Contatos.storyboard */,
 				1F908EFC23686C860006653A /* Colors.xcassets */,
 				1FF5F23D2369D39F00624A33 /* OnboardCell.swift */,
+				1F9A7375236C615400A7AFF0 /* BottomSheet.storyboard */,
+				397F6BFA23687627008980B3 /* ContatoTVCell.swift */,
+				397F6BFB23687627008980B3 /* ContatoTVCell.xib */,
+				39E10903236C6B77002E346A /* MensagemTVCell.swift */,
+				39E10904236C6B77002E346A /* MensagemTVCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -163,6 +186,10 @@
 				CD922C2F2371A346001A52D1 /* BottomSheetViewController.swift */,
 				CD922C2D2371A2F4001A52D1 /* ContatosViewController.swift */,
 				1FF5F23B2369C7F600624A33 /* OnboardController.swift */,
+				1F9A7377236C6AC700A7AFF0 /* BottomSheetController.swift */,
+				3906B0FF236860E80022FA0E /* PrincipalViewController.swift */,
+				3916637C23686ADD00C2C7B3 /* PrincipalTableVC.swift */,
+				392CCF702378C4450053A0FD /* BLEManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -241,9 +268,9 @@
 				CD9FDC542363218E00DD16C1 /* Mensagem.swift */,
 				CD9FDC572363218E00DD16C1 /* Model.swift */,
 				CD9FDC582363218E00DD16C1 /* Totem.swift */,
-				CD922C312371A3E0001A52D1 /* Sentimento.swift */,
 				CD922C292371A15C001A52D1 /* Utils.swift */,
 				CD9FDC562363218E00DD16C1 /* Usuario.swift */,
+				392FE6892369BC68005D72F0 /* Extensions.swift */,
 				CD81327923672A4D00C05F77 /* DAOFirebase.swift */,
 				CD548AD5237459CA00CD63F2 /* ContatoDomain.swift */,
 				CD27435A237700BC00B2D25B /* MensagemDomain.swift */,
@@ -364,7 +391,10 @@
 				CD8132782365F63100C05F77 /* OnBoard.storyboard in Resources */,
 				CD99237B2361EA6900D31E0E /* Assets.xcassets in Resources */,
 				1F908EFD23686C860006653A /* Colors.xcassets in Resources */,
+				1F9A7376236C615400A7AFF0 /* BottomSheet.storyboard in Resources */,
 				CD9923762361EA6600D31E0E /* Main.storyboard in Resources */,
+				39E10906236C6B77002E346A /* MensagemTVCell.xib in Resources */,
+				397F6BFD23687627008980B3 /* ContatoTVCell.xib in Resources */,
 				3989F9822367291C00F3C070 /* GoogleService-Info.plist in Resources */,
 				CD922C2C2371A24C001A52D1 /* Contatos.storyboard in Resources */,
 			);
@@ -494,24 +524,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				397F6BFC23687627008980B3 /* ContatoTVCell.swift in Sources */,
+				392CCF712378C4450053A0FD /* BLEManager.swift in Sources */,
 				1FF5F23C2369C7F600624A33 /* OnboardController.swift in Sources */,
-				CD922C322371A3E0001A52D1 /* Sentimento.swift in Sources */,
 				CD27435B237700BC00B2D25B /* MensagemDomain.swift in Sources */,
 				CD922C2E2371A2F4001A52D1 /* ContatosViewController.swift in Sources */,
 				CD9FDC592363218E00DD16C1 /* Mensagem.swift in Sources */,
+				1F9A7378236C6AC700A7AFF0 /* BottomSheetController.swift in Sources */,
 				CD81327A23672A4D00C05F77 /* DAOFirebase.swift in Sources */,
 				CD9FDC5B2363218E00DD16C1 /* Usuario.swift in Sources */,
 				CDE5BA862365E72100EC5D73 /* GravarViewController.swift in Sources */,
 				CD922C2A2371A15C001A52D1 /* Utils.swift in Sources */,
+				3916637D23686ADD00C2C7B3 /* PrincipalTableVC.swift in Sources */,
 				CD9923732361EA6600D31E0E /* ViewController.swift in Sources */,
 				CD99236F2361EA6600D31E0E /* AppDelegate.swift in Sources */,
 				CD9923712361EA6600D31E0E /* SceneDelegate.swift in Sources */,
+				392FE68A2369BC68005D72F0 /* Extensions.swift in Sources */,
 				CD9923792361EA6600D31E0E /* totem.xcdatamodeld in Sources */,
 				1FF5F23E2369D39F00624A33 /* OnboardCell.swift in Sources */,
 				CD9FDC5C2363218E00DD16C1 /* Model.swift in Sources */,
+				39E10905236C6B77002E346A /* MensagemTVCell.swift in Sources */,
 				CD922C302371A346001A52D1 /* BottomSheetViewController.swift in Sources */,
 				CD548AD6237459CA00CD63F2 /* ContatoDomain.swift in Sources */,
 				CD9FDC5D2363218E00DD16C1 /* Totem.swift in Sources */,
+				3906B100236860E80022FA0E /* PrincipalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,7 +722,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ADP5XER6GT;
+				DEVELOPMENT_TEAM = GUL3CPS6RX;
 				INFOPLIST_FILE = totem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -705,7 +741,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ADP5XER6GT;
+				DEVELOPMENT_TEAM = GUL3CPS6RX;
 				INFOPLIST_FILE = totem/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

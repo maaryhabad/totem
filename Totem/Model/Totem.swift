@@ -17,9 +17,10 @@ class Totem {
     var idPossuinte: String?
     var mensagens: [String]?
     var nome: String?
-    var sentimento: Sentimento?
+    var sentimento :String?
     
-    init(criador: Usuario?, idCriador: String, possuinte: Usuario?, idPossuinte: String, mensagens: [String]?, nome: String, sentimento: Sentimento?) {
+    
+    init(criador: Usuario?, idCriador: String, possuinte: Usuario?, idPossuinte: String, mensagens: [String]?, nome: String, sentimento :String?) {
         self.criador = criador
         self.idCriador = idCriador
         self.possuinte = possuinte
@@ -27,9 +28,10 @@ class Totem {
         self.mensagens = mensagens
         self.nome = nome
         self.sentimento = sentimento
+        
     }
     
-    init(id: String,  criador: Usuario?, idCriador: String, possuinte: Usuario?, idPossuinte: String, mensagens: [String]?, nome: String, sentimento: Sentimento?) {
+    init(id: String,  criador: Usuario?, idCriador: String, possuinte: Usuario?, idPossuinte: String, mensagens: [String]?, nome: String, sentimento :String?) {
         self.id = id
         self.criador = criador
         self.idCriador = idCriador
@@ -38,6 +40,7 @@ class Totem {
         self.mensagens = mensagens
         self.nome = nome
         self.sentimento = sentimento
+        
     }
     
     func mapToDictionary() -> [String: Any] {
@@ -47,7 +50,8 @@ class Totem {
         totemData["idPossuinte"] = self.idPossuinte
         totemData["mensagens"] = self.mensagens
         totemData["nome"] = self.nome
-        totemData["sentimento"] = self.sentimento
+        totemData["sentimento"] = self.nome
+        
         
         return totemData
     }
@@ -58,16 +62,41 @@ class Totem {
         let idPossuinte = totemData["idPossuinte"] as! String
         let mensagens: [String]? = totemData["mensagens"] as! [String]?
         let nome: String = totemData["nome"] as! String
-//        let sentimento: Sentimento = totemData["sentimento"] as! Sentimento
+        let sentimento: String = totemData["sentimento"] as! String
+
         
-        let totem = Totem(id: id, criador: nil, idCriador: idCriador, possuinte: nil, idPossuinte: idPossuinte, mensagens: mensagens, nome: nome, sentimento: nil)
-        print(totem)
+        let totem = Totem(id: id, criador: nil, idCriador: idCriador, possuinte: nil, idPossuinte: idPossuinte, mensagens: mensagens, nome: nome, sentimento: sentimento)
         return totem
     }
     
     func inserirMensagem(mensagem: Mensagem) {
         self.mensagens?.append(mensagem.id)
         DAOFirebase.updateTotemMensagens(totem: self)
+    }
+    
+    func atualizarSentimento(){
+        print("MUDAR SENTIMENTO DO TOTEM \(self.nome) PARA \(self.sentimento)")
+        //MARK: Implementar bluetooth aqui
+        var strSentimento :String = ""
+        
+        if(self.sentimento == "Feliz"){
+            strSentimento = "HIGHYELLOW"
+        }else if(self.sentimento ==  "Confiante"){
+            strSentimento = "HIGHBLUE"
+        }else if(self.sentimento ==  "Tranquilo"){
+            strSentimento = "HIGHGREEN"
+        }else if(self.sentimento ==  "Cansado"){
+            strSentimento = "HIGHPURPLE"
+        }else if(self.sentimento ==  "Irritado"){
+            strSentimento = "HIGHRED"
+        }
+        
+        Model.instance.bleManager.writeLEDValue(value: strSentimento)
+    }
+    
+    func mudarSentimento(sentimento :String){
+        self.sentimento = sentimento
+        DAOFirebase.updateTotem(totem: self)
     }
     
 }

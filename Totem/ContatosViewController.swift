@@ -48,30 +48,31 @@ class ContatosViewController: UIViewController {
         
     }
     
-    @IBAction func retornaUsuario(_sender: Any) {
-        print("clicounoBotão")
-        
-        //Aqui no bloco(closure) define o que acontece no CompletionHandler do retornaUsuario
-        DAOFirebase.retornaUsuario(id: "UxzcHc7lR2YmGY0n4OEf") { u in
-            var usuario: Usuario
-            usuario = u
-            print(usuario)
-        }
-    }
+//    @IBAction func retornaUsuario(_sender: Any) {
+//        print("clicounoBotão")
+//
+//        //Aqui no bloco(closure) define o que acontece no CompletionHandler do retornaUsuario
+////        DAOFirebase.retornaUsuario(userId: "UxzcHc7lR2YmGY0n4OEf") {
+////            u in
+////            var usuario: Usuario
+////            usuario = u
+////            print(usuario)
+//        }
+//    }
     
-    @IBAction func criarTotem(_sender: Any) {
-        var totems: [Totem] = []
-        
-        for totem in Model.instance.totens! {
-            totems.append(totem)
-            DAOFirebase.criarTotem(totem: totem)
-        }
-        print(totems)
-    }
-    
-    @IBAction func retornaTotem(_sender: Any) {
-       
-    }
+//    @IBAction func criarTotem(_sender: Any) {
+//        var totems: [Totem] = []
+//
+//        for totem in Model.instance.totens! {
+//            totems.append(totem)
+//            DAOFirebase.criarTotem(totem: totem)
+//        }
+//        print(totems)
+//    }
+//
+//    @IBAction func retornaTotem(_sender: Any) {
+//
+//    }
 
     /*
     // MARK: - Navigation
