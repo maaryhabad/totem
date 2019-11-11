@@ -513,13 +513,26 @@ class PrincipalViewController: UIViewController, UITableViewDelegate, UITableVie
             recorder.stop()
             audioLabel.text = String(Int(duration/60)) + ":" + String(format: "%02d", Int(duration.truncatingRemainder(dividingBy: 60)))
             
-            tape.exportAsynchronously(name: "tmp.wav", baseDir: .documents, exportFormat: .wav) {data, exportError in
+            tape.exportAsynchronously(name: "tmp.m4a", baseDir: .documents, exportFormat: .m4a) {data, exportError in
                 if let error = exportError {
                     AKLog("Export Failed \(error)")
                 } else {
                     AKLog("Export succeeded")
-                    self.audioFileName = data?.url
+//                    self.audioFileName = data?.url
                     //print(data?.url.absoluteString)
+                    var options = AKConverter.Options()
+                    options.bitRate = 16_000
+                    options.bitDepth = 16
+                    options.format = "wav"
+                    let tmpURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("file.wav") as URL
+                    let converter = AKConverter(inputURL: data!.url, outputURL: tmpURL, options: options)
+                    converter.start(completionHandler: { error in
+                        if let error = error {
+                            AKLog("Erro na conversão:\(error)")
+                        } else {
+                            self.audioFileName = tmpURL
+                        }
+                    })
                 }
             }
             running = .recorded
